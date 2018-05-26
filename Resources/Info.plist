@@ -1,0 +1,122 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+ *	PDP-8/E Simulator
+ *
+ *	Copyright © 1994-2015 Bernhard Baehr
+ *
+ *	Info.plist - PDP-8/E Simulator application property list
+ *
+ *	This file is part of PDP-8/E Simulator.
+ *
+ *	PDP-8/E Simulator is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>OnlineHelp</string>
+	<key>CFBundleHelpBookName</key>
+	<string>PDP-8/E Simulator Help</string>
+	<key>CFBundleIconFile</key>
+	<string>pdp8e</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.bernhard-baehr.pdp8e.simulator</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>PDP8</string>
+	<key>CFBundleVersion</key>
+	<string>2.0.2</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.2</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.4.9</string>
+	<key>LSRequiresNativeExecution</key>
+	<string>YES</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pdp8Plugin</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>plugin.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>PDP-8/E Simulator Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>BIN</string>
+				<string>bin</string>
+				<string>BN</string>
+				<string>bn</string>
+				<string>RIM</string>
+				<string>rim</string>
+				<string>PT</string>
+				<string>pt</string>
+				<string>PA</string>
+				<string>pa</string>
+				<string>PAL</string>
+				<string>pal</string>
+			</array>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>PNCH</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>papertape.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>PDP-8/E Paper Tape</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rk8e</string>
+				<string>RK8E</string>
+				<string>rk05</string>
+				<string>RK05</string>
+				<string>decpack</string>
+				<string>DECPACK</string>
+			</array>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>RK8E</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>decpack.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>PDP-8/E DECpack Disk Cartridge</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+	</array>
+</dict>
+</plist>

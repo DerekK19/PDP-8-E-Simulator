@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.bernhard-baehr.pdp8e.CPUPreferences</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.2</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>2.0.2</string>
+	<key>NSMainNibFile</key>
+	<string>CPUPreferences</string>
+	<key>NSPrefPaneIconFile</key>
+	<string>cpuPrefIcon.jpg</string>
+	<key>NSPrefPaneIconLabel</key>
+	<string>CPU</string>
+	<key>NSPrincipalClass</key>
+	<string>CPUPreferences</string>
+	<key>OrderInPreferencesPanelToolbar</key>
+	<string>02</string>
+	<key>PrefPaneWindowTitle</key>
+	<string>PDP-8/E CPU Preferences</string>
+</dict>
+</plist>

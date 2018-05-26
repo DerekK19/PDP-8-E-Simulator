@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+ *	PDP-8/E Simulator
+ *
+ *	Copyright © 1994-2015 Bernhard Baehr
+ *
+ *	index.html - Online help for the PC8-E Paper Tape Reader & Punch
+ *
+ *	This file is part of PDP-8/E Simulator.
+ *
+ *	PDP-8/E Simulator is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+	<title>PC8-E Paper Tape Reader &amp; Punch Help</title>
+	<meta name="description"
+		content="Describes the functioning and PDP-8 IOTs of the PC8-E Paper Tape Reader &amp; Punch">
+	<meta name="AppleTitle" content="PC8-E Paper Tape Reader &amp; Punch Help">
+	<meta name="AppleIcon" content="pdp8e.png">
+	<link href="styles.css" rel="stylesheet" media="all">
+</head>
+<body>
+
+<h1>IOTs for the PC8-E Paper Tape Reader &amp; Punch</h1>
+
+<table>
+<tr>
+	<th>Mnemonic<br>Symbol</th>
+	<th>Octal<br>Code</th>
+	<th class="left"><br>Description</th>
+</tr>
+<tr>
+	<td>RPE</td>
+	<td>6010</td>
+	<td class="left">
+		Set the interrupt enable mask for the punch and the reader.
+	</td>
+</tr>
+<tr>
+	<td>RSF</td>
+	<td>6011</td>
+	<td class="left">
+		Skip the next instruction when the reader I/O flag is raised, i. e. when a new
+		character is loaded into the reader buffer RBF.
+	</td>
+</tr>
+<tr>
+	<td>RRB</td>
+	<td>6012</td>
+	<td class="left">
+		Read the content of the reader buffer RBF into AC (by performing a logical OR)
+		and clear the reader I/O flag.
+	</td>
+</tr>
+<tr>
+	<td>RFC</td>
+	<td>6014</td>
+	<td class="left">
+		Clear the reader I/O flag and RBF and start to fetch one character from the input tape
+		to be loaded into RBF. The reader I/O flag is set again when the operation is completed.
+	</td>
+</tr>
+<tr>
+	<td>RCC</td>
+	<td>6016</td>
+	<td class="left">
+		Load RBF into AC (by performing a logical OR), clear the reader I/O flag and RBF and
+		start to read the next tape character. Microprogrammed combination of RRB and RFC.
+	</td>
+</tr>
+<tr>
+	<td>PCE</td>
+	<td>6020</td>
+	<td class="left">
+		Clear the interrupt enable mask for the punch and the reader.
+	</td>
+</tr>
+<tr>
+	<td>PSF</td>
+	<td>6021</td>
+	<td class="left">
+		Skip the next instruction when the punch I/O flag is set.
+	</td>
+</tr>
+<tr>
+	<td>PCF</td>
+	<td>6022</td>
+	<td class="left">
+		Clear the punch I/O flag and the punch buffer PBF.
+	</td>
+</tr>
+<tr>
+	<td>PPC</td>
+	<td>6024</td>
+	<td class="left">
+		Load the punch buffer from AC(4-11) (by performing a logical OR) and start to punch the
+		character in PBF. (This instruction does not clear the PBF and the punch I/O flag.)
+	</td>
+</tr>
+<tr>
+	<td>PLS</td>
+	<td>6026</td>
+	<td class="left">
+		Clear the punch I/O flag, clear PBF, load PBF from AC(4-11) and start to punch the
+		character in PBF. The punch I/O flag is set again when the operation is complete.
+		Microprogrammed combination of PCF and PPC.
+	</td>
+</tr>
+</table>
+
+<h3>Remark</h3>
+
+<p>
+The IOTs RPE (6010), RCC (6016) and PCE (6020) are not available with older PDP-8 models
+(PDP-8, -8/S, -8/I, -8/L).
+</p>
+
+<h2>Paper Tape Formats</h2>
+
+<p>
+There are three basic paper tape formats commonly used in conjunction with the PDP-8 family of computers.
+The following paragraphs describe and illustrate these formats.
+</p>
+
+<table>
+<tr>
+<td class="left">
+<img src="ascii_tape.png">
+</td>
+<td class="left">
+<h3>ASCII Format</h3>
+<p>
+The ASCII format uses eight channels of the paper tape to represent a single character as shown in the
+diagram at left. Channel 8 is normally designated for parity check. The paper tape units of the PDP-8
+family computers do not generate parity, and channel 8 is always punched.
+</p>
+<p>
+377 (DEL, Rubout; all channels perforated) is used to &ldquo;correct&rdquo; typing errors and is ignored
+by paper tape rading programs.
+</td>
+</tr>
+<tr>
+<td class="left">
+<img src="rim_tape.png">
+</td>
+<td class="left">
+<h3>RIM (Read In Mode) Format</h3>
+<p>
+RIM format tape uses adjacent columns to represent 12-bit binary information directly.
+Channels 1 through 6 are used to represent either addresses or information to be stored.
+A channel 7 punch indicates that the adjacent column and the following column are to be interpreted as an
+address specifiying the location in which the information of the following two columns is to be stored.
+The tape leader and trailer of RIM format tape must be punched in channel 8 only (octal 200).
+</p>
+</td>
+</tr>
+<tr>
+<td class="left">
+<img src="bin_tape.png">
+</td>
+<td class="left">
+<h3>BIN (Binary) Format</h3>
+<p>
+BIN format tape is similar to RIM format except that only the first address of consecutive locations is
+specified.
+An address is designated by a channel 7 punch, and information following an address is stored in sequential
+locations after the designated address until another location is specified as an origin.
+The tape leader and trailer of BIN format tape must be punched in channel 8 (octal 200) only.
+Field setting is designated by channel 8 and 7 punch plus a three digit field number in channels 4 through 6.
+</p>
+<p>
+The last two columns of a BIN format tape contain a checksum.
+The checksum is the sum (modulo 7777) of all preceding columns not containing a channel 8 punch
+(the field settings are not included in the checksum).
+When the BIN loader halts the PDP-8 with AC &ne; 0, then a checksum error occured while loading the tape.
+</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
