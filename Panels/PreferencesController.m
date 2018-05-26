@@ -59,7 +59,9 @@
 	[toolbar setDelegate:self];
 	[prefPanel setToolbar:toolbar];
 	[prefPanel setShowsToolbarButton:YES];
-	[toolbar setSelectedItemIdentifier:[prefPaneIdentifiers objectAtIndex:0]];
+    if ([prefPaneIdentifiers count] > 0) {
+        [toolbar setSelectedItemIdentifier:[prefPaneIdentifiers objectAtIndex:0]];
+    }
 }
 
 
@@ -128,8 +130,11 @@
 	[self findPrefPanesAtPath:[[NSBundle mainBundle] builtInPlugInsPath] addToArray:prefPaneBundles];
 	NSMutableArray *prefPaneIdents = [NSMutableArray array];
 	enumerator = [prefPaneBundles objectEnumerator];
-	while ((bundle = [enumerator nextObject]))
-		[prefPaneIdents addObject:[bundle bundleIdentifier]];
+    while ((bundle = [enumerator nextObject])) {
+        if ([bundle bundleIdentifier] != nil) {
+            [prefPaneIdents addObject:[bundle bundleIdentifier]];
+        }
+    }
 	return prefPaneIdents;
 }
 
@@ -210,7 +215,9 @@
 		[self setupToolbar];
 	}
 	if (currentPrefPane == nil) {
-		[self selectPreferencePaneWithIdentifier:[prefPaneIdentifiers objectAtIndex:0]];
+        if ([prefPaneIdentifiers count] > 0) {
+            [self selectPreferencePaneWithIdentifier:[prefPaneIdentifiers objectAtIndex:0]];
+        }
 		NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:PREFS_PANEL_TOPLEFT_KEY];
 		if (str) {	// restore old panel position
 			NSScanner *scanner = [NSScanner scannerWithString:str];

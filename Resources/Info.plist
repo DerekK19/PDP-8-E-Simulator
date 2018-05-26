@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -27,34 +26,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleHelpBookFolder</key>
-	<string>OnlineHelp</string>
-	<key>CFBundleHelpBookName</key>
-	<string>PDP-8/E Simulator Help</string>
-	<key>CFBundleIconFile</key>
-	<string>pdp8e</string>
-	<key>CFBundleIdentifier</key>
-	<string>de.bernhard-baehr.pdp8e.simulator</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>PDP8</string>
-	<key>CFBundleVersion</key>
-	<string>2.0.2</string>
-	<key>CFBundleShortVersionString</key>
-	<string>2.0.2</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.4.9</string>
-	<key>LSRequiresNativeExecution</key>
-	<string>YES</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -85,14 +56,14 @@
 				<string>PAL</string>
 				<string>pal</string>
 			</array>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>PNCH</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>papertape.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>PDP-8/E Paper Tape</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>PNCH</string>
+			</array>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 		</dict>
@@ -106,17 +77,45 @@
 				<string>decpack</string>
 				<string>DECPACK</string>
 			</array>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>RK8E</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>decpack.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>PDP-8/E DECpack Disk Cartridge</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>RK8E</string>
+			</array>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 		</dict>
 	</array>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>OnlineHelp</string>
+	<key>CFBundleHelpBookName</key>
+	<string>PDP-8/E Simulator Help</string>
+	<key>CFBundleIconFile</key>
+	<string>pdp8e</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.2</string>
+	<key>CFBundleSignature</key>
+	<string>PDP8</string>
+	<key>CFBundleVersion</key>
+	<string>2.0.2</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.13</string>
+	<key>LSRequiresNativeExecution</key>
+	<string>YES</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 </dict>
 </plist>

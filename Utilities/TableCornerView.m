@@ -123,7 +123,7 @@
 - (TableCornerView *) initWithFrame:(NSRect)frame
 {
 	if ((self = [super initWithFrame:frame])) {
-		[self setCell:[[TableCornerCell alloc] initImageCell:nil]];
+        [self setCell:[[TableCornerCell alloc] init]];
 		[self setClickable:NO];
 	}
 	return self;

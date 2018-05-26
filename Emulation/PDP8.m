@@ -67,6 +67,17 @@
 #define CODER_KEY_MEMORY	@"MEMORY"
 
 
+#define    timersub(tvp, uvp, vvp)                        \
+do {                                \
+(vvp)->tv_sec = (tvp)->tv_sec - (uvp)->tv_sec;        \
+(vvp)->tv_usec = (tvp)->tv_usec - (uvp)->tv_usec;    \
+if ((vvp)->tv_usec < 0) {                \
+(vvp)->tv_sec--;                \
+(vvp)->tv_usec += 1000000;            \
+}                            \
+} while (0)
+
+
 PDP8	*pdp8;	/* the one and only instance of the PDP8 class, only used by the opcode C functions */
 
 
@@ -720,7 +731,6 @@ static void breakInstruction (void)		/* used for break opcodes */
 - (void) traceThread:(NSNumber *)stopAddress
 {
 	struct timeval tv0, tv1;
-	struct timezone tz;
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	BOOL installBreakpoints = TRUE;
@@ -728,7 +738,7 @@ static void breakInstruction (void)		/* used for break opcodes */
 	// low priority for the trace thread, so the main thread can process user interactions
 	_state.running = TRACING;
 	while (_state.running) {
-		gettimeofday (&tv0, &tz);
+		gettimeofday (&tv0, NULL);
 		[self pdp8Step];
 		[self performSelectorOnMainThread:@selector(sendStepNotifications)
 			withObject:nil waitUntilDone:YES];
@@ -745,7 +755,7 @@ static void breakInstruction (void)		/* used for break opcodes */
 			   events. */
 			[self performSelectorOnMainThread:@selector(oneRunLoopPass)
 				withObject:nil waitUntilDone:YES];
-			gettimeofday (&tv1, &tz);
+			gettimeofday (&tv1, NULL);
 			timersub (&tv1, &tv0, &tv0);
 			if (_state.usecTraceDelay > (ulong) tv0.tv_usec)
 				usleep (_state.usecTraceDelay - tv0.tv_usec);

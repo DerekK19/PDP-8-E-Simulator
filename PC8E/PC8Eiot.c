@@ -51,7 +51,7 @@ void i6011 (void)				/* RSF		6011	*/
 
 unsigned s6011 (void)				/* RSF		6011	skiptest */
 {
-	return pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->inflag;
+	return (int)(pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->inflag);
 }
 
 
@@ -95,7 +95,7 @@ void i6021 (void)				/* PSF		6021	*/
 
 unsigned s6021 (void)				/* PSF		6021	skiptest */
 {
-	return pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->outflag;
+	return (int)(pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->outflag);
 }
 
 

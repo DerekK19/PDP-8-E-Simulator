@@ -28,28 +28,9 @@
 #import "NSFileManager+Additions.h"
 
 
-/* declarations from Mac OS X 10.6 CFURL.h to dynamically load und call new APIs while building
-   with the Mac OS X 10.4 SDK */
-
 #import <dlfcn.h>
 
-typedef struct __CFError *CFErrorRef;
-typedef CFOptionFlags CFURLBookmarkResolutionOptions;
 
-enum  {
-	kCFBookmarkResolutionWithoutUIMask = ( 1UL << 8 ),
-		// don't perform any UI during bookmark resolution
-	kCFBookmarkResolutionWithoutMountingMask = ( 1UL << 9 ),
-		// don't mount a volume during bookmark resolution
-};
-
-static CFDataRef (*CFURLCreateBookmarkDataFromFile) (CFAllocatorRef allocator,
-	CFURLRef fileURL, CFErrorRef *errorRef);
-static CFURLRef (*CFURLCreateByResolvingBookmarkData) (CFAllocatorRef allocator,
-	CFDataRef bookmark, CFURLBookmarkResolutionOptions options, CFURLRef relativeToURL,
-	CFArrayRef resourcePropertiesToInclude, Boolean* isStale, CFErrorRef* error);
-	
-	
 /*
 	NSFileManager: Resolve an alias
 	Original Source: <http://cocoa.karelia.com/Foundation_Categories/NSFileManager__Reso.m>
@@ -78,12 +59,7 @@ static CFURLRef (*CFURLCreateByResolvingBookmarkData) (CFAllocatorRef allocator,
 
 
 - (NSString *) pathResolvedNew:(NSString *)path
-// This code runs with Mac OS 10.6 and better; the dlsym() is only required until we build with newer SDKs
 {
-	if (CFURLCreateBookmarkDataFromFile == NULL)
-		CFURLCreateBookmarkDataFromFile = dlsym(RTLD_NEXT, "CFURLCreateBookmarkDataFromFile");
-	if (CFURLCreateByResolvingBookmarkData == NULL)
-		CFURLCreateByResolvingBookmarkData = dlsym(RTLD_NEXT, "CFURLCreateByResolvingBookmarkData");	
 	CFStringRef resolvedPath = nil;
 	CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef) path, kCFURLPOSIXPathStyle, NO);
 	if (url != NULL) {

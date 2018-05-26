@@ -27,20 +27,6 @@
 
 #include "Utilities.h"
 
-
-@interface NSProcessInfo (OSVersion)		// available in NSProcessInfo.h since 10.10
-
-typedef struct {
-	long	majorVersion;
-	long	minorVersion;
-	long	patchVersion;
-} NSOperatingSystemVersion;
-
-- (NSOperatingSystemVersion) operatingSystemVersion;
-
-@end
-
-
 BOOL runningOnOSXVersion (long major, long minor, BOOL orBetter)
 {
 	if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10)

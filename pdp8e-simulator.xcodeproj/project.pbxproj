@@ -490,7 +490,7 @@
 		210915EA09715375001F160B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = GeneralPreferences/Info.plist; sourceTree = "<group>"; };
 		210915F6097154D7001F160B /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		21091606097156F3001F160B /* GeneralPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralPreferences.h; path = GeneralPreferences/GeneralPreferences.h; sourceTree = "<group>"; };
-		2109163E09715B0B001F160B /* PDP-8:E Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDP-8:E Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2109163E09715B0B001F160B /* PDP-8E Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDP-8E Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		210916D609716A38001F160B /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = GeneralPreferences/English.lproj/GeneralPreferences.nib; sourceTree = "<group>"; };
 		21098E1A086595E1005945C4 /* breakpoint.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = breakpoint.tiff; sourceTree = "<group>"; };
 		21098E1B086595E1005945C4 /* breakOpcode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = breakOpcode.tiff; sourceTree = "<group>"; };
@@ -693,7 +693,7 @@
 		21919F070879CD8300DC0727 /* Breakpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breakpoint.m; sourceTree = "<group>"; };
 		219FBCE71983ED89005C5220 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = "PC8E/English.lproj/io-info.plist"; sourceTree = "<group>"; };
 		21A682FF0D685C73000D5B59 /* ASR33Preferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASR33Preferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
-		21A683000D685C73000D5B59 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; name = Info.plist; path = ASR33Preferences/Info.plist; sourceTree = "<group>"; };
+		21A683000D685C73000D5B59 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = file.bplist; name = Info.plist; path = ASR33Preferences/Info.plist; sourceTree = "<group>"; };
 		21A683410D6862FF000D5B59 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ASR33Preferences/English.lproj/ASR33Preferences.nib; sourceTree = "<group>"; };
 		21A683940D686C17000D5B59 /* asr33PrefIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = asr33PrefIcon.jpg; path = ASR33Preferences/asr33PrefIcon.jpg; sourceTree = "<group>"; };
 		21A6839F0D68758E000D5B59 /* cpuPrefIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cpuPrefIcon.jpg; sourceTree = "<group>"; };
@@ -778,7 +778,7 @@
 		21FFB01D0D623295000B4CA5 /* InputConsumerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputConsumerProtocol.h; path = Utilities/InputConsumerProtocol.h; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -892,7 +892,7 @@
 				2128EA4E109786FD00CA858C /* TSC8-75 Board.pdp8Plugin */,
 				2181CE38109EDC480026FAA5 /* KC8-EA Programmer’s Console.pdp8Plugin */,
 				21B36BE81982EE0200EE4AD8 /* PC8-E Paper Tape Reader & Punch.pdp8Plugin */,
-				2109163E09715B0B001F160B /* PDP-8:E Simulator.app */,
+				2109163E09715B0B001F160B /* PDP-8E Simulator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1594,7 +1594,7 @@
 			name = Simulator;
 			productInstallPath = "$(HOME)/Applications";
 			productName = "pdp8e-simulator2";
-			productReference = 2109163E09715B0B001F160B /* PDP-8:E Simulator.app */;
+			productReference = 2109163E09715B0B001F160B /* PDP-8E Simulator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1602,6 +1602,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 21AE0EF6085B43480051FF07 /* Build configuration list for PBXProject "pdp8e-simulator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -2430,9 +2432,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				INFOPLIST_FILE = GeneralPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2441,6 +2445,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GeneralPreferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = YES;
 			};
@@ -2449,16 +2454,18 @@
 		210915EE09715377001F160B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				INFOPLIST_FILE = GeneralPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2467,6 +2474,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GeneralPreferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = NO;
 			};
@@ -2475,12 +2483,15 @@
 		210915EF09715377001F160B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = GeneralPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2489,6 +2500,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GeneralPreferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = YES;
 			};
@@ -2508,8 +2520,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2518,6 +2532,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = PluginFramework;
+				SDKROOT = macosx;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -2525,6 +2540,7 @@
 		210F346D0BC79DC100482109 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2534,9 +2550,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2545,7 +2562,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = PluginFramework;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2553,6 +2570,7 @@
 		210F346E0BC79DC100482109 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -2560,9 +2578,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2571,6 +2590,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = PluginFramework;
+				SDKROOT = macosx;
 				ZERO_LINK = YES;
 			};
 			name = Default;
@@ -2586,10 +2606,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				INFOPLIST_FILE = CPUPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2598,6 +2619,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CPUPreferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = YES;
 			};
@@ -2606,16 +2628,18 @@
 		2126BE0709817C6D008BB678 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				INFOPLIST_FILE = CPUPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2624,6 +2648,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CPUPreferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = NO;
 			};
@@ -2632,13 +2657,15 @@
 		2126BE0809817C6D008BB678 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = CPUPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2647,6 +2674,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CPUPreferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = YES;
 			};
@@ -2664,8 +2692,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = TSC8/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2673,7 +2703,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.tsc8;
 				PRODUCT_NAME = "TSC8-75 Board";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -2684,15 +2716,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = TSC8/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2700,7 +2734,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.tsc8;
 				PRODUCT_NAME = "TSC8-75 Board";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = NO;
@@ -2711,13 +2747,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = TSC8/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2725,7 +2763,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.tsc8;
 				PRODUCT_NAME = "TSC8-75 Board";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -2744,8 +2784,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = KC8EA/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2753,7 +2795,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.kc8ea;
 				PRODUCT_NAME = "KC8-EA Programmer’s Console";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -2764,15 +2808,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = KC8EA/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2780,7 +2826,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.kc8ea;
 				PRODUCT_NAME = "KC8-EA Programmer’s Console";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = NO;
@@ -2791,12 +2839,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = KC8EA/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2804,7 +2855,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.kc8ea;
 				PRODUCT_NAME = "KC8-EA Programmer’s Console";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -2821,8 +2874,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = ASR33Preferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2831,6 +2886,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ASR33Preferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = YES;
 			};
@@ -2839,14 +2895,16 @@
 		21A683020D685C74000D5B59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = ASR33Preferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2855,6 +2913,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ASR33Preferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = NO;
 			};
@@ -2863,12 +2922,15 @@
 		21A683030D685C74000D5B59 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = ASR33Preferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2877,6 +2939,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ASR33Preferences;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
 				ZERO_LINK = YES;
 			};
@@ -2898,17 +2961,21 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pdp8e-simulator_Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-nonportable-cfstrings",
 					"$(OTHER_CFLAGS)",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e;
 				PRODUCT_NAME = "PDP-8E Simulator";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -2917,6 +2984,7 @@
 		21AE0EF4085B43480051FF07 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
@@ -2927,14 +2995,17 @@
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pdp8e-simulator2_Prefix.pch";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e;
 				PRODUCT_NAME = "PDP-8:E Simulator";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -2943,6 +3014,7 @@
 		21AE0EF5085B43480051FF07 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks",
@@ -2951,11 +3023,15 @@
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pdp8e-simulator2_Prefix.pch";
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e;
 				PRODUCT_NAME = "PDP-8:E Simulator";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
@@ -2970,7 +3046,7 @@
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -2996,10 +3072,10 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_GENERATE_MAP_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx;
 				WARNING_CFLAGS = "";
 				ZERO_LINK = YES;
 			};
@@ -3008,10 +3084,7 @@
 		21AE0EF8085B43480051FF07 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PFE_FILE_C_DIALECTS = "";
@@ -3045,28 +3118,25 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_GENERATE_MAP_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		21AE0EF9085B43480051FF07 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PFE_FILE_C_DIALECTS = "";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				LD_GENERATE_MAP_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx;
 			};
 			name = Default;
 		};
@@ -3082,8 +3152,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = PC8E/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3091,7 +3163,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.pc8e;
 				PRODUCT_NAME = "PC8-E Paper Tape Reader & Punch";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -3102,15 +3176,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = PC8E/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3118,7 +3194,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.pc8e;
 				PRODUCT_NAME = "PC8-E Paper Tape Reader & Punch";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = NO;
@@ -3129,12 +3207,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = PC8E/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3142,7 +3223,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.pc8e;
 				PRODUCT_NAME = "PC8-E Paper Tape Reader & Punch";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -3161,8 +3244,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = ASR33/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3170,7 +3255,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.asr33;
 				PRODUCT_NAME = "ASR 33 Console Teletype";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -3181,6 +3268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -3188,9 +3276,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = ASR33/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3198,7 +3287,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.asr33;
 				PRODUCT_NAME = "ASR 33 Console Teletype";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = NO;
@@ -3209,12 +3300,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = ASR33/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3222,7 +3316,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.asr33;
 				PRODUCT_NAME = "ASR 33 Console Teletype";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -3238,17 +3334,19 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = All;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		21BC389F0BD5696200A37D35 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				PRODUCT_NAME = All;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3256,7 +3354,9 @@
 		21BC38A00BD5696200A37D35 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				PRODUCT_NAME = All;
+				SDKROOT = macosx;
 			};
 			name = Default;
 		};
@@ -3272,8 +3372,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = RK8E/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3281,7 +3383,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.rk8e;
 				PRODUCT_NAME = "RK8-E Disk Cartridge System";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;
@@ -3292,15 +3396,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = RK8E/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3308,7 +3414,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.rk8e;
 				PRODUCT_NAME = "RK8-E Disk Cartridge System";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = NO;
@@ -3319,12 +3427,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = RK8E/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3332,7 +3443,9 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.rk8e;
 				PRODUCT_NAME = "RK8-E Disk Cartridge System";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = pdp8Plugin;
 				ZERO_LINK = YES;

@@ -49,7 +49,7 @@ void i6741 (void)				/* DSKP		6741	*/
 
 unsigned s6741 (void)				/* DSKP		6741	skiptest */
 {
-	return pdp8->IOFLAGS & PLUGIN_POINTER(RK8E)->ioflag;
+	return (int)(pdp8->IOFLAGS & PLUGIN_POINTER(RK8E)->ioflag);
 }
 
 

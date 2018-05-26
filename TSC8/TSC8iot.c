@@ -49,7 +49,7 @@ void i6361 (void)				/* ESKP 6361 */
 
 unsigned s6361 (void)				/* ESKP 6361 skip test */
 {
-	return pdp8->IOFLAGS & pdp8->_tsc8.flag;
+	return (int)(pdp8->IOFLAGS & pdp8->_tsc8.flag);
 }
 
 
