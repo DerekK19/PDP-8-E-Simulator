@@ -275,6 +275,15 @@
 		21FFAA970938A8A600BA35C5 /* skipArrow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FFAA960938A8A600BA35C5 /* skipArrow.tiff */; };
 		21FFAAC00938C04700BA35C5 /* interruptArrow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FFAABF0938C04700BA35C5 /* interruptArrow.tiff */; };
 		21FFAF860D62287D000B4CA5 /* TypeaheadBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FFAF850D62287D000B4CA5 /* TypeaheadBuffer.m */; };
+		6550985420B9FE1D00624A86 /* PC8E.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B36C541982F0ED00EE4AD8 /* PC8E.m */; };
+		6550985520B9FF6000624A86 /* PC8Eiot.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D4AC198550F6002E2DDC /* PC8Eiot.c */; };
+		6550985620B9FF9800624A86 /* PDP8.m in Sources */ = {isa = PBXBuildFile; fileRef = 2115890A0868764B0007B9B0 /* PDP8.m */; };
+		6550985720B9FFB000624A86 /* itab.c in Sources */ = {isa = PBXBuildFile; fileRef = 21CF60CD09200C9D00377059 /* itab.c */; };
+		6550985820B9FFB400624A86 /* eae.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F2450868A3B8002186B0 /* eae.c */; };
+		6550985920B9FFB800624A86 /* iot.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F2530868A639002186B0 /* iot.c */; };
+		6550985A20B9FFBB00624A86 /* mri.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F23B08689ACF002186B0 /* mri.c */; };
+		6550985B20B9FFC000624A86 /* opr.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F2480868A442002186B0 /* opr.c */; };
+		6550985C20B9FFED00624A86 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2171818F09FA879800754508 /* libz.dylib */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -794,6 +803,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6550985C20B9FFED00624A86 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1950,18 +1960,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6550985420B9FE1D00624A86 /* PC8E.m in Sources */,
 				211639F50D4B8F7C00F5B564 /* FloatingPointNumber.m in Sources */,
 				2149F83A0D82AD930084F33F /* Utilities.c in Sources */,
 				21D4741D108A458C006A5154 /* PluginAPI.m in Sources */,
+				6550985820B9FFB400624A86 /* eae.c in Sources */,
 				21D47420108A458E006A5154 /* KeepInMenuWindow.m in Sources */,
 				21D47421108A458F006A5154 /* EnableDisableTextField.m in Sources */,
+				6550985520B9FF6000624A86 /* PC8Eiot.c in Sources */,
+				6550985720B9FFB000624A86 /* itab.c in Sources */,
 				21D47422108A4593006A5154 /* OctalFormatter.m in Sources */,
 				21D47430108A4664006A5154 /* RegisterFormCell.m in Sources */,
+				6550985B20B9FFC000624A86 /* opr.c in Sources */,
 				2128E9D11096379400CA858C /* NSControl+FileDrop.m in Sources */,
 				2128E9D21096379500CA858C /* NSFileManager+Additions.m in Sources */,
 				2128E9D31096379600CA858C /* NSTableView+Scrolling.m in Sources */,
+				6550985920B9FFB800624A86 /* iot.c in Sources */,
 				2128E9D41096379700CA858C /* NSMutableArray+BinarySearch.m in Sources */,
+				6550985620B9FF9800624A86 /* PDP8.m in Sources */,
 				219FBDA21984064D005C5220 /* PaperTapeController.m in Sources */,
+				6550985A20B9FFBB00624A86 /* mri.c in Sources */,
 				219FBDA41984064F005C5220 /* PaperTapeProgressIndicator.m in Sources */,
 				211C61BE198BE6420005DA7D /* NSThread+MainThread.m in Sources */,
 			);
@@ -2424,6 +2442,7 @@
 		210915ED09715377001F160B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -3039,7 +3058,7 @@
 		21AE0EF7085B43480051FF07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PFE_FILE_C_DIALECTS = "";
@@ -3076,6 +3095,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "";
 				ZERO_LINK = YES;
 			};
@@ -3122,6 +3142,7 @@
 				OTHER_LDFLAGS = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -3137,6 +3158,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Default;
 		};

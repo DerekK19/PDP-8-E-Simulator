@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>PluginFramework</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.bernhard-baehr.pdp8e.PluginFramework</string>
+	<string>uk.co.GordonKnight.pdp8e.PluginFramework</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>

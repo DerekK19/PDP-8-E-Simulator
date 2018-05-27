@@ -104,6 +104,8 @@
 
 - (NSArray *) allMemoryInspectors
 {
+    NSMutableArray *inspectors = [NSMutableArray array];
+#if !__OBJC2__
 	int i;
 	
 	int numClasses = 0;
@@ -115,19 +117,34 @@
 		allClasses = realloc(allClasses, sizeof(Class) * numClasses);
 		newNumClasses = objc_getClassList(allClasses, numClasses);
 	}
-	NSMutableArray *inspectors = [NSMutableArray array];
 	for (i = 0; i < numClasses; i++) {
 		Class currentClass = allClasses[i];
 		while (currentClass) {
-			if (currentClass->super_class == [NSFormatter class] &&
+            if ([currentClass superclass] == [NSFormatter class] &&
 				[currentClass conformsToProtocol:@protocol(MemoryInspector)]) {
 				[inspectors addObject:[[[allClasses[i] alloc] init] autorelease]];
 				break;
 			}
-			currentClass = currentClass->super_class;
+			currentClass = [currentClass superclass];
 		}
+        }
 	}
 	free (allClasses);
+#else
+{
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspector6BitASCII") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspector8BitASCII") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorOS8Packed8BitASCII") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorSignedInteger") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorUnsignedInteger") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorDWSignedInteger") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorDWUnsignedInteger") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorFPP8AFPFloatingPoint") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorFPP8AEPFloatingPoint") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorFortranIIFloatingPoint") alloc] init] autorelease]];
+    [inspectors addObject:[[[NSClassFromString(@"MemoryInspectorPascalSFloatingPoint") alloc] init] autorelease]];
+}
+#endif
 	[inspectors sortUsingSelector:@selector(compareOrderInMemoryInspectorMenu:)];
 	return inspectors;
 }

@@ -80,7 +80,7 @@
 {
 	int n = [breakpoints indexOfObject:[Breakpoint breakpointWithIdentifier:ident value:0]
 		inArraySortedBy:@selector(compareAddress:)];
-	return (n == NSNotFound) ? 0 : [(Breakpoint *)[breakpoints objectAtIndex:n] value];
+	return (n == NSNotFound || n < 0) ? 0 : [(Breakpoint *)[breakpoints objectAtIndex:n] value];
 }
 
 

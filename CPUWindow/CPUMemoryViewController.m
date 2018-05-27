@@ -123,17 +123,18 @@
 		tip.tagSide = kHMOutsideBottomLeftAligned;
 		tip.content[0].contentType = tip.content[1].contentType = kHMCFStringContent;
 		tip.content[0].u.tagCFString = tip.content[1].u.tagCFString = tipContent;
-		HMDisplayTag (&tip);
+//		HMDisplayTag (&tip);
 	}
 	[super mouseDown:event];
-	HMHideTag ();
+//	HMHideTag ();
 }
 
 
 - (void) selectRowIndexes:(NSIndexSet *)indexes byExtendingSelection:(BOOL)extend
 {
-	if ((int) [indexes firstIndex] != [self selectedRow])
-		HMHideTag ();
+    if ((int) [indexes firstIndex] != [self selectedRow]) {
+//		HMHideTag ();
+    }
 	[super selectRowIndexes:indexes byExtendingSelection:extend];
 }
 
