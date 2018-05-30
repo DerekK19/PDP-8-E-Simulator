@@ -22,7 +22,7 @@
  */
 
 
-@interface RegisterFormCell : NSFormCell
+@interface RegisterFormCell : NSFormCell <NSMatrixDelegate>
 {
 @private
 	id	registerOwner;

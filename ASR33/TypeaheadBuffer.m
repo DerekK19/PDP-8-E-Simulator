@@ -52,7 +52,7 @@
 - (signed short) getNextChar
 {
 	signed short c = 0;
-	int length = [typeaheadBuffer length];
+	NSUInteger length = [typeaheadBuffer length];
 	if (length < MIN_LENGTH_TO_SHOW_FLUSH_TYPEAHEAD_BUTTON)
 		[flushTypeaheadBufferButton setHidden:YES];
 	if (length > 0) {
@@ -65,7 +65,7 @@
 
 - (void) typeahead:(NSString *)string
 {
-	int length = [typeaheadBuffer length];
+	NSUInteger length = [typeaheadBuffer length];
 	[typeaheadBuffer appendString:string];
 	if ([typeaheadBuffer length] >= MIN_LENGTH_TO_SHOW_FLUSH_TYPEAHEAD_BUTTON)
 		[flushTypeaheadBufferButton setHidden:NO];

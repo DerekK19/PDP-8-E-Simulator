@@ -43,7 +43,7 @@
 			[[NSBundle bundleForClass:[self class]]
 				pathForResource:[self alternateTitle] ofType:@"png"]];
 	}
-	[(NSButton *)[self controlView] setAlternateTitle:nil];
+	[(NSButton *)[self controlView] setAlternateTitle:@""];
 }
 
 
@@ -73,7 +73,7 @@
 }
 
 
-- (void) setState:(int)state
+- (void) setState:(NSInteger)state
 {
 	[super setState:state];
 	[leftNeighbour updateShadow:state];

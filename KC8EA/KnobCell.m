@@ -32,25 +32,25 @@
 
 - (void) awakeFromNib
 {
-	int i;
+	NSInteger i;
 
 	NSString *imageNamePrefix = [self alternateTitle];
-	[(NSButton *)[self controlView] setAlternateTitle:nil];
-	int numberOfImages = [self tag];
+	[(NSButton *)[self controlView] setAlternateTitle:@""];
+	NSInteger numberOfImages = [self tag];
 	if (numberOfImages < 0)
 		numberOfImages = -numberOfImages;
 	images = [[NSMutableArray alloc] initWithCapacity:numberOfImages];
 	for (i = 0; i < numberOfImages; i++) {
 		[images insertObject:[[[NSImage alloc] initByReferencingFile:
 			[[NSBundle bundleForClass:[self class]]
-				pathForResource:[imageNamePrefix stringByAppendingFormat:@"%d", i]
+				pathForResource:[imageNamePrefix stringByAppendingFormat:@"%d", (int)i]
 				ofType:@"png"]] autorelease]
 			atIndex:i];
 	}
 }
 
 
-- (void) setTag:(int)tag
+- (void) setTag:(NSInteger)tag
 // correctly, we would have to overwrite [NSButton setTag], but to avoid subclassing NSButton,
 // we use the cell method to set the buttons tag and image
 {
@@ -64,7 +64,7 @@
 - (void) performClick:(id)sender
 {
 	// called by the key equivalents
-	int newsegment = ([sender tag] + 1) % [images count];
+	NSInteger newsegment = ([sender tag] + 1) % [images count];
 	[sender setImage:[images objectAtIndex:newsegment]];
 	[sender setAlternateImage:[images objectAtIndex:newsegment]];
 	[sender setTag:newsegment];
@@ -82,7 +82,7 @@
 
 - (void) trackAt:(NSPoint)currentPoint inView:(NSButton *)control sendAction:(BOOL)sendAction
 {
-	int segments = [self tag];
+	NSInteger segments = [self tag];
 	NSSize size = [control bounds].size;
 	float length = size.height;
 	float pos = currentPoint.y;

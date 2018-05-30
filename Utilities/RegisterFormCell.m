@@ -54,8 +54,7 @@
 	range.length = -1;
 	[[control currentEditor] setSelectedRange:range];
 	[alert setMessageText:error];
-	[alert beginSheetModalForWindow:[control window]
-		modalDelegate:nil didEndSelector:nil contextInfo:nil];
+	[alert beginSheetModalForWindow:[control window] completionHandler:^(NSModalResponse returnCode) { }];
 	[alert release];
 	return NO;
 }
@@ -63,7 +62,7 @@
 
 - (void) controlTextDidEndEditing:(NSNotification *)notification
 {
-	[registerOwner performSelector:setRegisterValue withObject:(id)[self intValue]];
+	[registerOwner performSelector:setRegisterValue withObject:[self intValue]];
 }
 
 

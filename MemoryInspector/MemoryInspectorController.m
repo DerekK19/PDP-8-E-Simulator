@@ -206,11 +206,11 @@
 	[memoryInspectorDrawer setContentSize:drawerSize];
 	
 	// scroll to a reasonable location
-	int newTopRow = 0;
-	int newSelectedRow = -1;
+	NSInteger newTopRow = 0;
+	NSInteger newSelectedRow = -1;
 	if (currentInspector) {
 		NSRange visibleRange = [self visibleRange];
-		int selectedRow = [memoryView selectedRow];
+		NSInteger selectedRow = [memoryView selectedRow];
 		if (NSLocationInRange(selectedRow, visibleRange)) {
 			newTopRow = selectedRow * [currentInspector wordsPerRow] /
 				[newInspector wordsPerRow] - (selectedRow - visibleRange.location);
@@ -218,7 +218,7 @@
 		} else
 			newTopRow = visibleRange.location * [currentInspector wordsPerRow] /
 				[newInspector wordsPerRow];
-		int lastAddress = (newTopRow + visibleRange.length) * [newInspector wordsPerRow];
+		NSInteger lastAddress = (newTopRow + visibleRange.length) * [newInspector wordsPerRow];
 		if (lastAddress >= PDP8_MEMSIZE)	// don't show white space at the end of the table view
 			newTopRow -= (lastAddress - PDP8_MEMSIZE) / [newInspector wordsPerRow] + 1;
 	}
@@ -258,7 +258,7 @@
 		[self cancelEditingInInspector];
 		int wordsPerRow = [currentInspector wordsPerRow];
 		alignment = (alignment + wordsPerRow +
-			(([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask) ? -1 : 1)) % wordsPerRow;
+                     (([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagOption) ? -1 : 1)) % wordsPerRow;
 		[memoryView reloadData];
 	}
 }
@@ -353,8 +353,7 @@
 	[[control currentEditor] setSelectedRange:range];
 	NSAlert *alert = [[NSAlert alloc] init];
 	[alert setMessageText:error];
-	[alert beginSheetModalForWindow:[memoryInspectorDrawer parentWindow]
-		modalDelegate:nil didEndSelector:nil contextInfo:nil];
+	[alert beginSheetModalForWindow:[memoryInspectorDrawer parentWindow] completionHandler:^(NSModalResponse returnCode) { }];
 	[alert release];
 	return NO;
 }
@@ -377,7 +376,7 @@
 - (void) drawerWillClose:(NSNotification *)notification
 {
 	[self cancelEditingInInspector];
-	lastTopRow = [self visibleRange].location;
+	lastTopRow = (unsigned)([self visibleRange].location);
 }
 
 
@@ -402,9 +401,9 @@
 	// NSLog (@"MemoryInspectorController notifyApplicationWillTerminate");
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:[currentInspector className] forKey:CURRENT_INSPECTOR_CLASS_PREFS_KEY];
-	[defaults setObject:[NSNumber numberWithInt:[self visibleRange].location] forKey:TOP_ROW_PREFS_KEY];
+	[defaults setObject:[NSNumber numberWithInt:(int)([self visibleRange].location)] forKey:TOP_ROW_PREFS_KEY];
 	[defaults setObject:[NSNumber numberWithInt:alignment] forKey:ALIGNMENT_PREFS_KEY];
-	int s = [memoryInspectorDrawer state];
+	NSInteger s = [memoryInspectorDrawer state];
 	[defaults setBool:s == NSDrawerOpenState || s == NSDrawerOpeningState
 		forKey:INSPECTOR_OPEN_PREFS_KEY];
 }
@@ -434,8 +433,8 @@
 	for (i = 0; i < [memoryInspectors count]; i++) {
 		if ([[[memoryInspectors objectAtIndex:i] className] isEqualToString:currentInspectorClass]) {
 			[popupButton selectItemAtIndex:i];
-			alignment = [defaults integerForKey:ALIGNMENT_PREFS_KEY];
-			lastTopRow = [defaults integerForKey:TOP_ROW_PREFS_KEY];
+			alignment = (int)([defaults integerForKey:ALIGNMENT_PREFS_KEY]);
+			lastTopRow = (int)([defaults integerForKey:TOP_ROW_PREFS_KEY]);
 			break;
 		}
 	}

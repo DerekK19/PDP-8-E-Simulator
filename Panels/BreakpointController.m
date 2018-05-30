@@ -77,7 +77,7 @@
 
 - (IBAction) deleteBreakpoint:(id)sender
 {
-	int selectedRow = [tableView selectedRow];
+	NSInteger selectedRow = [tableView selectedRow];
 	[tableView reloadData];		// when editing, this saves the edited cell that will be deleted
 	[breakpoints deleteBreakpointsAtIndexes:[tableView selectedRowIndexes]];
 	// reselect old row, otherwise selection jumps to the position of the edited but deleted breakpoint
@@ -120,11 +120,11 @@
 
 
 - (void) tableView:(NSTableView *)tabView setObjectValue:(id)object
-	forTableColumn:(NSTableColumn *)column row:(int)row
+	forTableColumn:(NSTableColumn *)column row:(NSUInteger)row
 {
 	int columnID = [[column identifier] intValue];
 	if (columnID == ADDRESS_COLUMN) {
-		[breakpoints deleteBreakpointAtIndex:row];
+		[breakpoints deleteBreakpointAtIndex:(uint)row];
 		if ([object isKindOfClass:[NSNumber class]])
 			[tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:
 				[breakpoints setBreakpointWithIdentifier:[object intValue]
@@ -143,12 +143,12 @@
 		[enableAllButton setEnabled:[breakpoints hasBreakpointWithValueNotEqualTo:ALL_BREAKPOINTS]];
 		[disableAllButton setEnabled:[breakpoints hasBreakpointWithValueNotEqualTo:0]];
 	} else {
-		unsigned value = [breakpoints valueAtIndex:row];
-		if ([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask)
+		unsigned value = [breakpoints valueAtIndex:(uint)row];
+		if ([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagOption)
 			value = value ? 0 : ALL_BREAKPOINTS;
 		else
 			value = (value & columnID) ? (value & ~columnID) : (value | columnID);
-		[breakpoints setBreakpointWithIdentifier:[breakpoints identifierAtIndex:row] value:value];
+		[breakpoints setBreakpointWithIdentifier:[breakpoints identifierAtIndex:(uint)row] value:value];
 	}
 }
 
@@ -187,8 +187,7 @@
 	[control abortEditing];
 	NSAlert *alert = [[NSAlert alloc] init];
 	[alert setMessageText:error];
-	[alert beginSheetModalForWindow:[control window] modalDelegate:self
-		didEndSelector:nil contextInfo:nil];
+	[alert beginSheetModalForWindow:[control window] completionHandler:^(NSModalResponse returnCode) { }];
 	[alert release];
 	return NO;
 }
@@ -210,7 +209,7 @@
 	[[tableView window] setMaxSize:size];
 	if (runningOnLionOrNewer()) {	// move the + and - button title one pixel up
 		NSMutableParagraphStyle *style= [[[NSMutableParagraphStyle alloc] init] autorelease];
-		[style setAlignment:NSCenterTextAlignment];
+        [style setAlignment:NSTextAlignmentCenter];
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithFloat:1], NSBaselineOffsetAttributeName,
 			style, NSParagraphStyleAttributeName, nil];

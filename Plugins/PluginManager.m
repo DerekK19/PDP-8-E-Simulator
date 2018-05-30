@@ -51,45 +51,46 @@
 	NSString *ioAddress;
 
 	if (! mnemonics || ! [mnemonics isKindOfClass:[NSArray class]]) {
-		NSRunAlertPanel (NSLocalizedString(
-			@"Invalid IOT information in the I/O description of the plug-in", @""),
-			noLoadMessage, nil, nil, nil);
+		[self noLoadAlertWithMessage:NSLocalizedString(@"Invalid IOT information in the I/O description of the plug-in", @"")
+				      okText: noLoadMessage];
 		return NO;
 	}
 	if (! ioAddresses || ! [ioAddresses isKindOfClass:[NSArray class]]) {
-		NSRunAlertPanel (NSLocalizedString(
-			@"Invalid I/O address information in the I/O description of the plug-in.", @""),
-			noLoadMessage, nil, nil, nil);
+		[self noLoadAlertWithMessage:NSLocalizedString(@"Invalid I/O address information in the I/O description of the plug-in.", @"")
+				      okText: noLoadMessage];
 		return NO;
 	}
 	if ([mnemonics count] != 8 * [ioAddresses count]) {
-		NSRunAlertPanel (NSLocalizedString(
-			@"The number of IOTs does not match number of I/O addresses in the I/O description "
-			"of the plug-in.", @""), noLoadMessage, nil, nil, nil);
-		return NO;		
+		[self noLoadAlertWithMessage:NSLocalizedString(@"The number of IOTs does not match number of I/O addresses in the I/O description of the plug-in.", @"")
+				      okText: noLoadMessage];
+		return NO;
 	}
 	NSEnumerator *enumerator = [ioAddresses objectEnumerator];
 	while ((ioAddress = [enumerator nextObject])) {
 		NSNumber *number;
 		if (! [[OctalFormatter formatterWithBitMask:077 wildcardAllowed:NO] getObjectValue:&number
 			forString:ioAddress errorDescription:nil]) {
-			NSRunAlertPanel ([NSString stringWithFormat:NSLocalizedString(
-				@"Invalid I/O address %C%@%C in the I/O description of the plug-in.",
-				@""), UNICODE_LEFT_DOUBLEQUOTE, ioAddress, UNICODE_RIGHT_DOUBLEQUOTE],
-				noLoadMessage, nil, nil, nil);
+			[self noLoadAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Invalid I/O address %C%@%C in the I/O description of the plug-in.", @""), UNICODE_LEFT_DOUBLEQUOTE, ioAddress, UNICODE_RIGHT_DOUBLEQUOTE]
+					      okText: noLoadMessage];
 			return NO;
 		}
 		int addr = [number intValue];
 		if (! [pdp8 isIOAddressAvailable:addr]) {
-			NSRunAlertPanel ([NSString stringWithFormat:NSLocalizedString(
-				@"The I/O address %2.2o requested by the plug-in is already in use.", @""),
-				addr], noLoadMessage, nil, nil, nil);
+			[self noLoadAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The I/O address %2.2o requested by the plug-in is already in use.", @""), addr]
+					      okText: noLoadMessage];
 			return NO;
 		}
 	}
 	return YES;
 }
 
+- (void) noLoadAlertWithMessage:(NSString *)message okText:(NSString *)okText
+{
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	alert.messageText = okText;
+	alert.informativeText = message;
+	[alert runModal];
+}
 
 - (void) installIOTs:(NSArray *)mnemonics withAddresses:(NSArray *)ioAddresses forPlugin:(PDP8Plugin *)plugin
 {
@@ -126,14 +127,13 @@
 - (BOOL) canInstallIOFlags:(NSArray *)ioFlags noLoadMessage:(NSString *)noLoadMessage
 {
 	if (! ioFlags || ! [ioFlags isKindOfClass:[NSArray class]]) {
-		NSRunAlertPanel (NSLocalizedString(
-			@"Invalid I/O flag information in the I/O description of the plug-in.", @""),
-			noLoadMessage, nil, nil, nil);
+		[self noLoadAlertWithMessage:NSLocalizedString(@"Invalid I/O flag information in the I/O description of the plug-in.", @"")
+				      okText:noLoadMessage];
 		return NO;
 	}
 	if ([ioFlags count] > [ioFlagController numberOfAvailableFlags]) {
-		NSRunAlertPanel (NSLocalizedString(@"There are not enough I/O flags available.", @""),
-			noLoadMessage, nil, nil, nil);
+		[self noLoadAlertWithMessage:NSLocalizedString(@"There are not enough I/O flags available.", @"")
+				      okText:noLoadMessage];
 		return NO;
 	}
 	return YES;
@@ -199,15 +199,14 @@
 				return nil;
 			}
 		} else {
-			NSRunAlertPanel (NSLocalizedString(@"Cannot instantiate the plug-in.", @""),
-				[self noLoadMessage:[[bundle bundlePath] lastPathComponent]], nil, nil, nil);
+			[self noLoadAlertWithMessage:NSLocalizedString(@"Cannot instantiate the plug-in.", @"")
+					      okText:[self noLoadMessage:[[bundle bundlePath] lastPathComponent]]];
 		}
 	} else {
-		NSRunAlertPanel (principalClass ?
-			NSLocalizedString(@"The plug-in has an invalid principal class.", @"") :
-			NSLocalizedString(@"Cannot determine the principal class of the plug-in.", @""),
-			[self noLoadMessage:[[bundle bundlePath] lastPathComponent]], nil, nil, nil);
-		
+		[self noLoadAlertWithMessage:principalClass ?
+		 NSLocalizedString(@"The plug-in has an invalid principal class.", @"") :
+		 NSLocalizedString(@"Cannot determine the principal class of the plug-in.", @"")
+				      okText:[self noLoadMessage:[[bundle bundlePath] lastPathComponent]]];
 	}
 	return [plugin autorelease];
 }
@@ -244,9 +243,8 @@
 					if (plugin)
 						[plugins addObject:plugin];
 				} else
-					NSRunAlertPanel (
-						NSLocalizedString(@"Loading of the plug-in bundle failed.",
-						@""), [self noLoadMessage:bundleName], nil, nil, nil);
+					[self noLoadAlertWithMessage:NSLocalizedString(@"Loading of the plug-in bundle failed.", @"")
+							      okText:[self noLoadMessage:bundleName]];
 			}
 		}
 	}

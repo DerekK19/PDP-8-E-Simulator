@@ -24,6 +24,6 @@
 
 @interface NSTableView (Scrolling)
 
-- (void) scrollRowToTop:(int)row;
+- (void) scrollRowToTop:(NSInteger)row;
 
 @end

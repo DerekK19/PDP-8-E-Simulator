@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: Verifying fastlane version" time="0.020262">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: default_platform" time="0.00104">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: rm -rf /Users/derek/Development/Public/PDP-8:E-Simulator/../FastlaneArtifacts/PDP-8/E\ Simulator.*" time="0.01114">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: backup_file" time="0.002142">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: get_info_plist_value" time="0.004499">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: get_info_plist_value" time="0.004685">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: get_info_plist_value" time="0.00362">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: set_info_plist_value" time="0.007189">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: set_info_plist_value" time="0.010948">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: set_info_plist_value" time="0.007894">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: gym" time="65.120841">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: restore_file" time="0.00536">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: slack" time="1.421813">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

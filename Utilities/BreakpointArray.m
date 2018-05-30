@@ -93,7 +93,7 @@
 			[Breakpoint breakpointWithIdentifier:ident value:val]
 			toArraySortedBy:@selector(compareAddress:) replaceExistingObject:YES];
 	else
-		[[breakpoints objectAtIndex:index] setValue:val];
+		[[breakpoints objectAtIndex:index] setUnsignedValue:val];
 	[[NSNotificationCenter defaultCenter]
 		postNotificationName:BREAKPOINTS_CHANGED_NOTIFICATION object:self];
 	return index;
@@ -135,7 +135,7 @@
 - (void) setBreakpointAtIndex:(unsigned)index value:(unsigned)val
 {
 	NSAssert (index < [breakpoints count], @"Index out of range");
-	[[breakpoints objectAtIndex:index] setValue:val];
+	[[breakpoints objectAtIndex:index] setUnsignedValue:val];
 }
 
 
@@ -162,7 +162,7 @@
 	
 	NSEnumerator *enumerator = [breakpoints objectEnumerator];
 	while ((breakpoint = [enumerator nextObject]))
-		[breakpoint setValue:val];
+		[breakpoint setUnsignedValue:val];
 	[[NSNotificationCenter defaultCenter]
 		postNotificationName:BREAKPOINTS_CHANGED_NOTIFICATION object:self];
 }
@@ -170,7 +170,7 @@
 
 - (int) numberOfBreakpoints
 {
-	return [breakpoints count];
+	return (int)([breakpoints count]);
 }
 
 

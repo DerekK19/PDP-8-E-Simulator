@@ -24,7 +24,7 @@
 
 @interface NSFileManager (Additions)
 
-- (BOOL) fsRef:(FSRef *)fsRef forPath:(NSString *)path;
+- (BOOL) urlRef:(CFURLRef *)urlRef forPath:(NSString *)path;
 - (NSString *) pathResolved:(NSString *)path;		// resolved path, returns nil on failure
 - (BOOL) isAliasPath:(NSString *)inPath;		
 - (NSString *) resolveAliasPath:(NSString *)path;	// resolved path, returns original path on failure

@@ -65,9 +65,9 @@
 	
 	NSMutableString *string = nil;
 	if ([value isKindOfClass:[NSNumber class]])
-		string = [NSString stringWithFormat:outputFormat, [value intValue]];
+		string = [NSMutableString stringWithFormat:outputFormat, [value intValue]];
 	else if ([value isKindOfClass:[NSArray class]]) {
-		unsigned count = [value count];
+		NSUInteger count = [value count];
 		if (numberOfWords < count)
 			count = numberOfWords;
 		string = [NSMutableString stringWithCapacity:5 * count];

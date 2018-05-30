@@ -277,7 +277,7 @@ API_VERSION
 	NSEventType eventType = [[NSApp currentEvent] type];
 	switch ([sender tag]) {
 	case KEY_OFF :
-		if (eventType == NSLeftMouseUp || eventType == NSKeyDown) {
+		if (eventType == NSEventTypeLeftMouseUp || eventType == NSEventTypeKeyDown) {
 			NSAlert *alert = [[NSAlert alloc] init];
 			NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 			[alert setMessageText:NSLocalizedStringFromTableInBundle(
@@ -287,7 +287,7 @@ API_VERSION
 			[alert addButtonWithTitle:
 				NSLocalizedStringFromTableInBundle(@"Yes", nil, bundle, @"")];
 			if ([alert runModal] ==  NSAlertFirstButtonReturn) {
-				[[sender cell] setTag:eventType == NSKeyDown ? KEY_POWER : powerKeyPosition];
+				[[sender cell] setTag:eventType == NSEventTypeKeyDown ? KEY_POWER : powerKeyPosition];
 				[self update];
 			} else
 				[NSApp terminate:self];
@@ -457,7 +457,7 @@ API_VERSION
 - (void) encodeWithCoder:(NSCoder *)coder
 {
 	[coder encodeInt:powerKeyPosition forKey:CODER_KEY_POWER_KEY];
-	[coder encodeInt:[knob tag] forKey:CODER_KEY_DISPLAY_SELECTOR_KNOB];
+	[coder encodeInt:(int)([knob tag]) forKey:CODER_KEY_DISPLAY_SELECTOR_KNOB];
 	[coder encodeBool:[sw state] forKey:CODER_KEY_SW];
 	[coder encodeBool:[halt state] forKey:CODER_KEY_HALT];
 	[coder encodeBool:[singstep state] forKey:CODER_KEY_SINGSTEP];
@@ -491,12 +491,12 @@ API_VERSION
 	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:[self pluginName]];
 	if (data) {
 		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-		self = [self initWithCoder:unarchiver];
+		[self initWithCoder:unarchiver];
 		stateMachine = [[StateMachine alloc] initWithCoder:unarchiver pdp8:pdp8];
 		[unarchiver finishDecoding];
 		[unarchiver release];
 	} else {
-		self = [self init];
+		[self init];
 		stateMachine = [[StateMachine alloc] initWithPDP8:pdp8];
 	}
 	NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];

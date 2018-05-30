@@ -406,21 +406,23 @@ API_VERSION
 	rk05[3] = rk05_3; [rk05[3] setPDP8:pdp8];
 	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:[self pluginName]];
 	if (data) {
-		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-		self = [self initWithCoder:unarchiver];
-		[rk05Controller_0 initWithCoder:unarchiver];
-		[rk05Controller_1 initWithCoder:unarchiver];
-		[rk05Controller_2 initWithCoder:unarchiver];
-		[rk05Controller_3 initWithCoder:unarchiver];
+        NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+		[self initWithCoder: unarchiver];
+		[[rk05Controller_0 initWithCoder:unarchiver] autorelease];
+		[[rk05Controller_1 initWithCoder:unarchiver] autorelease];
+		[[rk05Controller_2 initWithCoder:unarchiver] autorelease];
+		[[rk05Controller_3 initWithCoder:unarchiver] autorelease];
 		[unarchiver finishDecoding];
-		[unarchiver release];
 	} 
 	controlLock = [[NSLock alloc] init];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-		selector:@selector(notifyApplicationWillTerminate:)
-		name:NSApplicationWillTerminateNotification object:nil]; 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyPDP8IOFlagsChanged:)
-		name:IOFLAGS_CHANGED_NOTIFICATION object:nil];
+                                             selector:@selector(notifyApplicationWillTerminate:)
+                                                 name:NSApplicationWillTerminateNotification
+                                               object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notifyPDP8IOFlagsChanged:)
+                                                 name:IOFLAGS_CHANGED_NOTIFICATION
+                                               object:nil];
 }
 
 

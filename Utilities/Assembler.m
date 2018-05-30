@@ -221,7 +221,7 @@
 		bp = [self lookupSymbol:bp getOctal:&w getFlags:&cl error:&err];
 		while (*oldbp == ' ')
 			oldbp++;
-		errpos = oldbp - buf;
+		errpos = (int)(oldbp - buf);
 		if (err)
 			goto error;
 		if (cl == isNothing)

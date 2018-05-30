@@ -38,9 +38,9 @@
 {
 	NSDictionary *userInfo = [notification userInfo];
 	int textMovement = [[userInfo valueForKey:@"NSTextMovement"] intValue];
-	int row = [self editedRow];
-	int col = [self editedColumn];
-	int newrow = (textMovement == NSBacktabTextMovement) ? row - 1 : row + 1;
+	NSInteger row = [self editedRow];
+	NSInteger col = [self editedColumn];
+	NSInteger newrow = (textMovement == NSBacktabTextMovement) ? row - 1 : row + 1;
 	
 	if (textMovement == NSTabTextMovement && runningOnLeopardOrNewer()) {
 		// default behaviour on Leopard: tab to next view

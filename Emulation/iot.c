@@ -90,7 +90,7 @@ VOID i6003 (VOID)				/* SRQ		6003	*/
 }
 unsigned s6003 (VOID)				/* SRQ		6003	*/
 {
-	return (io_flags & int_mask);
+	return (unsigned)(io_flags & int_mask);
 }
 /* -------------------------------------------------------------------- */
 VOID i6004 (VOID)				/* GTF		6004	*/

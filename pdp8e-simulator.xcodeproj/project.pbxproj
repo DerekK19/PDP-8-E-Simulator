@@ -51,7 +51,6 @@
 		211639F40D4B8F7B00F5B564 /* FloatingPointNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FC26B109D6DAF3006625FE /* FloatingPointNumber.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		211639F50D4B8F7C00F5B564 /* FloatingPointNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC26B209D6DAF3006625FE /* FloatingPointNumber.m */; };
 		21163A560D4BA32F00F5B564 /* MemoryInspectorPascalSFloatingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FC28AE09DD9040006625FE /* MemoryInspectorPascalSFloatingPoint.m */; };
-		21163B360D4BDCC600F5B564 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 210F35E20BC90C8500482109 /* Info.plist */; };
 		21163B5C0D4BE3EF00F5B564 /* MemoryInspectorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2133910009B8E2B300F2C028 /* MemoryInspectorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21163E210D4D2C6B00F5B564 /* NSMutableArray+BinarySearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CAB2940877DC7800E9005D /* NSMutableArray+BinarySearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21163E220D4D2C6F00F5B564 /* NSTableView+Scrolling.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F556080949FC6500DA4AB8 /* NSTableView+Scrolling.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -227,7 +226,6 @@
 		21AE0F0F085B43A00051FF07 /* CPUWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE0F0E085B43A00051FF07 /* CPUWindowController.m */; };
 		21AE0F12085B43A60051FF07 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE0F11085B43A60051FF07 /* MainController.m */; };
 		21B36BE01982EE0200EE4AD8 /* PluginFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211DA8380BC91C5500F042A3 /* PluginFramework.framework */; };
-		21B36C551982F0ED00EE4AD8 /* PC8E.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B36C541982F0ED00EE4AD8 /* PC8E.m */; };
 		21B36CBB1983CE4500EE4AD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21B36CBA1983CE4500EE4AD8 /* InfoPlist.strings */; };
 		21B36CCC1983D55600EE4AD8 /* PC8E.nib in Resources */ = {isa = PBXBuildFile; fileRef = 21B36CCA1983D55600EE4AD8 /* PC8E.nib */; };
 		21B36CE21983ECA700EE4AD8 /* PC8-E Paper Tape Reader & Punch.pdp8Plugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21B36BE81982EE0200EE4AD8 /* PC8-E Paper Tape Reader & Punch.pdp8Plugin */; };
@@ -240,7 +238,6 @@
 		21CF5F9D091CF61F00377059 /* CPUMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21CF5F9C091CF61F00377059 /* CPUMemoryViewController.m */; };
 		21CF5FA8091D089600377059 /* IOFlagController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21CF5FA7091D089600377059 /* IOFlagController.m */; };
 		21CF60CF09200C9D00377059 /* itab.c in Sources */ = {isa = PBXBuildFile; fileRef = 21CF60CD09200C9D00377059 /* itab.c */; };
-		21D473E1108A4430006A5154 /* PDP8.m in Sources */ = {isa = PBXBuildFile; fileRef = 2115890A0868764B0007B9B0 /* PDP8.m */; };
 		21D4741D108A458C006A5154 /* PluginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BC37B70BD515C000A37D35 /* PluginAPI.m */; };
 		21D47420108A458E006A5154 /* KeepInMenuWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21163E020D4D278800F5B564 /* KeepInMenuWindow.m */; };
 		21D47421108A458F006A5154 /* EnableDisableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2133B3430D7F22200023A41A /* EnableDisableTextField.m */; };
@@ -533,10 +530,10 @@
 		211EF3A90BFC561000851FF1 /* ASR33TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASR33TextView.h; path = ASR33/ASR33TextView.h; sourceTree = "<group>"; };
 		211EF3AA0BFC561000851FF1 /* ASR33TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASR33TextView.m; path = ASR33/ASR33TextView.m; sourceTree = "<group>"; };
 		2126BE0909817C6D008BB678 /* CPUPreferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPUPreferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
-		2126BE0E09817D4B008BB678 /* CPUPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUPreferences.h; sourceTree = "<group>"; };
-		2126BE0F09817D4B008BB678 /* CPUPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPUPreferences.m; sourceTree = "<group>"; };
+		2126BE0E09817D4B008BB678 /* CPUPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPUPreferences.h; path = CPUPreferences/CPUPreferences.h; sourceTree = "<group>"; };
+		2126BE0F09817D4B008BB678 /* CPUPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPUPreferences.m; path = CPUPreferences/CPUPreferences.m; sourceTree = "<group>"; };
 		2126BE1109817D4B008BB678 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/CPUPreferences.nib; sourceTree = "<group>"; };
-		2126BE1209817D4B008BB678 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2126BE1209817D4B008BB678 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Info.plist; path = CPUPreferences/Info.plist; sourceTree = "<group>"; };
 		2126E0F810580DA5003B4706 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = RK8E/English.lproj/RK8EOnlineHelp; sourceTree = "<group>"; };
 		212879F90BD574BE00F5FC00 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ASR33/Info.plist; sourceTree = "<group>"; };
 		2128E94E109505FB00CA858C /* tty-keystroke2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "tty-keystroke2.mp3"; path = "ASR33/tty-keystroke2.mp3"; sourceTree = "<group>"; };
@@ -705,7 +702,7 @@
 		21A683000D685C73000D5B59 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = file.bplist; name = Info.plist; path = ASR33Preferences/Info.plist; sourceTree = "<group>"; };
 		21A683410D6862FF000D5B59 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ASR33Preferences/English.lproj/ASR33Preferences.nib; sourceTree = "<group>"; };
 		21A683940D686C17000D5B59 /* asr33PrefIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = asr33PrefIcon.jpg; path = ASR33Preferences/asr33PrefIcon.jpg; sourceTree = "<group>"; };
-		21A6839F0D68758E000D5B59 /* cpuPrefIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cpuPrefIcon.jpg; sourceTree = "<group>"; };
+		21A6839F0D68758E000D5B59 /* cpuPrefIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cpuPrefIcon.jpg; path = CPUPreferences/cpuPrefIcon.jpg; sourceTree = "<group>"; };
 		21A683CD0D688C32000D5B59 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21A683D10D688D2A000D5B59 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = GeneralPreferences/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21A683EF0D688DE4000D5B59 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = ASR33Preferences/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -787,6 +784,10 @@
 		21FFB01D0D623295000B4CA5 /* InputConsumerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputConsumerProtocol.h; path = Utilities/InputConsumerProtocol.h; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		65620FD020BA355E00A9FF31 /* Appfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Appfile; path = fastlane/Appfile; sourceTree = "<group>"; };
+		65620FD120BA355E00A9FF31 /* Fastfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
+		65620FD320BA376600A9FF31 /* Jenkinsfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Jenkinsfile; sourceTree = "<group>"; };
+		65620FD420BE89C900A9FF31 /* Gymfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Gymfile; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -985,19 +986,6 @@
 				2159F2480868A442002186B0 /* opr.c */,
 			);
 			path = Emulation;
-			sourceTree = "<group>";
-		};
-		2126BE0D09817D4B008BB678 /* CPUPreferences */ = {
-			isa = PBXGroup;
-			children = (
-				2126BE0E09817D4B008BB678 /* CPUPreferences.h */,
-				2126BE0F09817D4B008BB678 /* CPUPreferences.m */,
-				2126BE1009817D4B008BB678 /* CPUPreferences.nib */,
-				21A6839F0D68758E000D5B59 /* cpuPrefIcon.jpg */,
-				2126BE1209817D4B008BB678 /* Info.plist */,
-				21A683CF0D688C48000D5B59 /* InfoPlist.strings */,
-			);
-			path = CPUPreferences;
 			sourceTree = "<group>";
 		};
 		2128EA8E109787F800CA858C /* TSC8 */ = {
@@ -1296,18 +1284,20 @@
 		29B97314FDCFA39411CA2CEA /* pdp8e-simulator2 */ = {
 			isa = PBXGroup;
 			children = (
+				65620FD320BA376600A9FF31 /* Jenkinsfile */,
 				2181CE16109EDC1B0026FAA5 /* KC8EA */,
 				2128EA8E109787F800CA858C /* TSC8 */,
 				21E8F95F0D73387F00634911 /* RK8E */,
 				21BC384B0BD5415500A37D35 /* ASR33 */,
-				21A6830E0D685C88000D5B59 /* ASR33Preferences */,
 				21B36C4E1982F08C00EE4AD8 /* PC8E */,
-				2126BE0D09817D4B008BB678 /* CPUPreferences */,
-				2109160309715677001F160B /* GeneralPreferences */,
 				219FBDB719840683005C5220 /* PluginFramework */,
+				2109160309715677001F160B /* GeneralPreferences */,
+				21A6830E0D685C88000D5B59 /* ASR33Preferences */,
+				65620FD220BA356F00A9FF31 /* CPUPreferences */,
 				2109161609715798001F160B /* Simulator */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				65620FCF20BA351300A9FF31 /* fastlane */,
 			);
 			name = "pdp8e-simulator2";
 			sourceTree = "<group>";
@@ -1372,6 +1362,29 @@
 				210915F6097154D7001F160B /* PreferencePanes.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65620FCF20BA351300A9FF31 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				65620FD020BA355E00A9FF31 /* Appfile */,
+				65620FD120BA355E00A9FF31 /* Fastfile */,
+				65620FD420BE89C900A9FF31 /* Gymfile */,
+			);
+			name = fastlane;
+			sourceTree = "<group>";
+		};
+		65620FD220BA356F00A9FF31 /* CPUPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				2126BE0E09817D4B008BB678 /* CPUPreferences.h */,
+				2126BE0F09817D4B008BB678 /* CPUPreferences.m */,
+				2126BE1009817D4B008BB678 /* CPUPreferences.nib */,
+				21A6839F0D68758E000D5B59 /* cpuPrefIcon.jpg */,
+				2126BE1209817D4B008BB678 /* Info.plist */,
+				21A683CF0D688C48000D5B59 /* InfoPlist.strings */,
+			);
+			name = CPUPreferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1613,6 +1626,39 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				TargetAttributes = {
+					210915E809715375001F160B = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					210F34680BC79DC000482109 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					2126BDFE09817C6D008BB678 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					2128EA38109786FD00CA858C = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					2181CE25109EDC480026FAA5 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					21A682FE0D685C73000D5B59 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					21B36BC41982EE0200EE4AD8 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					21BC383D0BD5402D00A37D35 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					21E8F9850D7338BF00634911 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+					8D1107260486CEB800E47090 = {
+						DevelopmentTeam = DX8B97QV93;
+						ProvisioningStyle = Manual;
+					};
+				};
 			};
 			buildConfigurationList = 21AE0EF6085B43480051FF07 /* Build configuration list for PBXProject "pdp8e-simulator" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1628,9 +1674,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				210F34680BC79DC000482109 /* Plugin.framework */,
 				2126BDFE09817C6D008BB678 /* CPUPreferences */,
 				210915E809715375001F160B /* GeneralPreferences */,
-				210F34680BC79DC000482109 /* Plugin.framework */,
 				21A682FE0D685C73000D5B59 /* ASR33Preferences */,
 				21BC383D0BD5402D00A37D35 /* ASR33 */,
 				21E8F9850D7338BF00634911 /* RK8E */,
@@ -1658,7 +1704,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21163B360D4BDCC600F5B564 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1872,7 +1917,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/OnlineHelp/OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/OnlineHelp\"\n\n# copy the console teletype to the disabled auxiliary teletype\n/bin/rm -rf \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled\"\n/bin/mkdir \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled\"\n/bin/cp -rp \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns/ASR 33 Console Teletype.pdp8plugin\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled/ASR 33 Auxiliary Teletype.pdp8Plugin\"\n\n# make the plugins to appear as bundles in the Finder\n/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns/\"* \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled/\"*";
+			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/OnlineHelp/OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/OnlineHelp\"\n\n# copy the console teletype to the disabled auxiliary teletype\n/bin/rm -rf \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled\"\n/bin/mkdir \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled\"\n/bin/cp -rp \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns/ASR 33 Console Teletype.pdp8plugin\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled/ASR 33 Auxiliary Teletype.pdp8Plugin\"\n\n# make the plugins to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns/\"* \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/PlugIns Disabled/\"*";
 			showEnvVarsInLog = 0;
 		};
 		2128EA49109786FD00CA858C /* ShellScript */ = {
@@ -1886,7 +1931,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp/TSC8OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
+			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp/TSC8OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
 		2181CE33109EDC480026FAA5 /* ShellScript */ = {
@@ -1900,7 +1945,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/KC8EAOnlineHelp/KC8EAOnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/KC8EAOnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
+			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/TSC8OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/KC8EAOnlineHelp/KC8EAOnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/KC8EAOnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
 		21B36BE31982EE0200EE4AD8 /* ShellScript */ = {
@@ -1914,7 +1959,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp/ASR33OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
+			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/PC8EOnlineHelp/PC8EOnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/PC8EOnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
 		21BC387B0BD567BA00A37D35 /* ShellScript */ = {
@@ -1928,7 +1973,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp/ASR33OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
+			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp/ASR33OnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/ASR33OnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
 		21E8F99C0D7338BF00634911 /* ShellScript */ = {
@@ -1942,7 +1987,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp/RK8EOnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
+			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp/RK8EOnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2026,7 +2071,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B36C551982F0ED00EE4AD8 /* PC8E.m in Sources */,
 				21E1D4AE198550F6002E2DDC /* PC8Eiot.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2095,7 +2139,6 @@
 				210F34870BC8F9EC00482109 /* PluginManager.m in Sources */,
 				21163A560D4BA32F00F5B564 /* MemoryInspectorPascalSFloatingPoint.m in Sources */,
 				216B74FB0D6F4AEF00124930 /* HelpMenuManager.m in Sources */,
-				21D473E1108A4430006A5154 /* PDP8.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2218,6 +2261,7 @@
 				2126BE1109817D4B008BB678 /* English */,
 			);
 			name = CPUPreferences.nib;
+			path = CPUPreferences;
 			sourceTree = "<group>";
 		};
 		2126DEC61052F0E2003B4706 /* RK8E.nib */ = {
@@ -2354,6 +2398,7 @@
 				21A683CD0D688C32000D5B59 /* English */,
 			);
 			name = InfoPlist.strings;
+			path = CPUPreferences;
 			sourceTree = "<group>";
 		};
 		21A683D30D688D38000D5B59 /* InfoPlist.strings */ = {
@@ -2443,7 +2488,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2463,6 +2510,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.GeneralPreferences;
 				PRODUCT_NAME = GeneralPreferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2474,7 +2522,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2492,6 +2542,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.GeneralPreferences;
 				PRODUCT_NAME = GeneralPreferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2503,6 +2554,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2518,6 +2572,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.GeneralPreferences;
 				PRODUCT_NAME = GeneralPreferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2528,7 +2583,9 @@
 		210F346C0BC79DC100482109 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -2540,6 +2597,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_VERSION = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Plugins/Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -2550,6 +2608,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.PluginFramework;
 				PRODUCT_NAME = PluginFramework;
 				SDKROOT = macosx;
 				ZERO_LINK = YES;
@@ -2560,7 +2619,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -2570,6 +2631,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_VERSION = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Plugins/Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -2580,6 +2642,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.PluginFramework;
 				PRODUCT_NAME = PluginFramework;
 				SDKROOT = macosx;
 				ZERO_LINK = NO;
@@ -2590,6 +2653,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -2598,6 +2663,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_VERSION = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Plugins/Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -2608,6 +2674,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.PluginFramework;
 				PRODUCT_NAME = PluginFramework;
 				SDKROOT = macosx;
 				ZERO_LINK = YES;
@@ -2617,7 +2684,9 @@
 		2126BE0609817C6D008BB678 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2637,6 +2706,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.CPUPreferences;
 				PRODUCT_NAME = CPUPreferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2648,7 +2718,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2666,6 +2738,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.CPUPreferences;
 				PRODUCT_NAME = CPUPreferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2677,6 +2750,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2692,6 +2768,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.CPUPreferences;
 				PRODUCT_NAME = CPUPreferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2703,7 +2780,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2722,7 +2801,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.tsc8;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.TSC8;
 				PRODUCT_NAME = "TSC8-75 Board";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2736,7 +2815,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2753,7 +2834,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.tsc8;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.TSC8;
 				PRODUCT_NAME = "TSC8-75 Board";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2767,6 +2848,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2782,7 +2866,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.tsc8;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.TSC8;
 				PRODUCT_NAME = "TSC8-75 Board";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2795,7 +2879,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2814,7 +2900,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.kc8ea;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.KC8EA;
 				PRODUCT_NAME = "KC8-EA Programmer’s Console";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2828,7 +2914,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2845,7 +2933,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.kc8ea;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.KC8EA;
 				PRODUCT_NAME = "KC8-EA Programmer’s Console";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2859,6 +2947,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2874,7 +2965,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.kc8ea;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.KC8EA;
 				PRODUCT_NAME = "KC8-EA Programmer’s Console";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2886,7 +2977,9 @@
 		21A683010D685C74000D5B59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -2904,6 +2997,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.ASR33Preferences;
 				PRODUCT_NAME = ASR33Preferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2915,7 +3009,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2931,6 +3027,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.ASR33Preferences;
 				PRODUCT_NAME = ASR33Preferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2942,6 +3039,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2957,6 +3057,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.ASR33Preferences;
 				PRODUCT_NAME = ASR33Preferences;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
@@ -2967,11 +3068,11 @@
 		21AE0EF3085B43480051FF07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks",
-				);
+				DEVELOPMENT_TEAM = DX8B97QV93;
+				FRAMEWORK_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2985,15 +3086,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Wno-nonportable-cfstrings",
 					"$(OTHER_CFLAGS)",
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e;
 				PRODUCT_NAME = "PDP-8E Simulator";
+				PROVISIONING_PROFILE = "bd46f74b-02d6-4d91-ba58-707c0fa6a95f";
+				PROVISIONING_PROFILE_SPECIFIER = "PDP 8e Simulator MacOS Development";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -3004,11 +3107,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks",
-				);
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
+				FRAMEWORK_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -3018,12 +3121,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e;
 				PRODUCT_NAME = "PDP-8:E Simulator";
+				PROVISIONING_PROFILE = "a60e5b5e-df5d-4955-bc64-eeca68bc4c57";
+				PROVISIONING_PROFILE_SPECIFIER = "PDP8e Simulator MacOS Distribution";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -3034,10 +3139,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks",
-				);
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
+				FRAMEWORK_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3046,10 +3152,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e;
 				PRODUCT_NAME = "PDP-8:E Simulator";
+				PROVISIONING_PROFILE = "a60e5b5e-df5d-4955-bc64-eeca68bc4c57";
+				PROVISIONING_PROFILE_SPECIFIER = "PDP8e Simulator MacOS Distribution";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3059,6 +3167,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PFE_FILE_C_DIALECTS = "";
@@ -3105,6 +3214,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PFE_FILE_C_DIALECTS = "";
@@ -3150,6 +3260,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PFE_FILE_C_DIALECTS = "";
@@ -3166,7 +3277,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3185,7 +3298,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.pc8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.PC8E;
 				PRODUCT_NAME = "PC8-E Paper Tape Reader & Punch";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3199,7 +3312,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3216,7 +3331,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.pc8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.PC8E;
 				PRODUCT_NAME = "PC8-E Paper Tape Reader & Punch";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3230,6 +3345,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3245,7 +3363,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.pc8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.PC8E;
 				PRODUCT_NAME = "PC8-E Paper Tape Reader & Punch";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3258,7 +3376,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3277,7 +3397,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.asr33;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.ASR33;
 				PRODUCT_NAME = "ASR 33 Console Teletype";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3291,7 +3411,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3309,7 +3431,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.asr33;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.ASR33;
 				PRODUCT_NAME = "ASR 33 Console Teletype";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3323,6 +3445,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3338,7 +3463,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.asr33;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.ASR33;
 				PRODUCT_NAME = "ASR 33 Console Teletype";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3386,7 +3511,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3405,7 +3532,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.rk8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.RK8E;
 				PRODUCT_NAME = "RK8-E Disk Cartridge System";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3419,7 +3546,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3436,7 +3565,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.rk8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.RK8E;
 				PRODUCT_NAME = "RK8-E Disk Cartridge System";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3450,6 +3579,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = DX8B97QV93;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3465,7 +3597,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.GordonKnight.pdp8e.rk8e;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.gordonknight.pdp8e.RK8E;
 				PRODUCT_NAME = "RK8-E Disk Cartridge System";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

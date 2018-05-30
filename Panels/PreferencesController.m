@@ -222,7 +222,7 @@
 		if (str) {	// restore old panel position
 			NSScanner *scanner = [NSScanner scannerWithString:str];
 			NSPoint topLeft;
-			if ([scanner scanFloat:&topLeft.x] && [scanner scanFloat:&topLeft.y])
+			if ([scanner scanFloat:(float *)(&topLeft.x)] && [scanner scanFloat:(float *)(&topLeft.y)])
 				[prefPanel setFrameTopLeftPoint:topLeft];
 			else
 				[prefPanel center];

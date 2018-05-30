@@ -118,9 +118,8 @@
 		return FALSE;
 	*value = [NSArray arrayWithObjects:
 		[NSNumber numberWithInt:077770000 | [f exponent]],
-		[NSNumber numberWithInt:
-			077770000 | ([f negative] ? 04000 : 0) | (unsigned long) ([f mantissa] >> 53)],
-		[NSNumber numberWithInt:077770000 | (unsigned long) (([f mantissa] >> 41) & 07777)],
+		[NSNumber numberWithInt:(int)(077770000 | ([f negative] ? 04000 : 0) | (unsigned long) ([f mantissa] >> 53))],
+		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) (([f mantissa] >> 41) & 07777))],
 		nil];
 	return TRUE;
 }

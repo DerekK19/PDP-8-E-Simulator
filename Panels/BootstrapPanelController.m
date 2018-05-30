@@ -105,7 +105,7 @@
 			path = [NSString stringWithFormat:NSLocalizedString(
 				@"The resource file %@ is missing in the application bundle.", @""), file];
 		NSAlert *alert = [[NSAlert alloc] init];
-		[alert setAlertStyle:NSWarningAlertStyle];
+		[alert setAlertStyle:NSAlertStyleWarning];
 		[alert setMessageText:error];
 		[alert setInformativeText:path];
 		[alert runModal];

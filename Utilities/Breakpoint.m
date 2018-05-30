@@ -73,7 +73,7 @@
 }
 
 
-- (void) setValue:(unsigned)val
+- (void) setUnsignedValue:(unsigned)val
 {
 	value = val;
 }

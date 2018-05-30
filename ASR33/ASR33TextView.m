@@ -67,7 +67,7 @@
 		NSEvent *currentEvent = [NSApp currentEvent];
 		unsigned modifierFlags = [currentEvent modifierFlags];
 		unsigned c = [[currentEvent charactersIgnoringModifiers] characterAtIndex:0];
-		if (modifierFlags & NSControlKeyMask) {
+		if (modifierFlags & NSEventModifierFlagControl) {
 			switch (c) {
 			case 'c' :
 			case 'C' :
@@ -81,7 +81,7 @@
 				NSLog (@"character %c (%o) ignored", c, c);
 				break; 
 			}
-		} else if (modifierFlags & NSFunctionKeyMask) {
+		} else if (modifierFlags & NSEventModifierFlagFunction) {
 			if (c == 0xf739)		// fn-6 = forward delete on notebook keyboards
 				[typeaheadBuffer typeahead:@"\177"];		// Rubout
 		}
@@ -111,7 +111,7 @@
 - (void) putChar:(unichar)c
 {
 	NSTextStorage *storage = [self textStorage];
-	int length = [storage length];
+	NSUInteger length = [storage length];
 	NSRange endOfText = NSMakeRange(length, 0);
 	[self scrollRangeToVisible:endOfText];
 	[self setSelectedRange:endOfText];
@@ -124,7 +124,7 @@
 			[super deleteBackward:self];
 		break;
 	default :
-		[super insertText:[NSString stringWithCharacters:&c length:1]];
+		[super insertText:[NSString stringWithCharacters:&c length:1] replacementRange:[self selectedRange]];
 		break;
 	}
 }

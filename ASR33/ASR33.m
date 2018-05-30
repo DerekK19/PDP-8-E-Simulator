@@ -297,7 +297,7 @@ API_VERSION
 	if (runWithRealtimeSpeed) {
 		uint64_t us = absolute2nanoseconds(mach_absolute_time() - maTime) / 1000;
 		if (us < TELETYPE_DELAY)
-			usleep (TELETYPE_DELAY - us);
+			usleep ((useconds_t)(TELETYPE_DELAY - us));
 		maTime = mach_absolute_time();
 	}
 	return maTime;
@@ -460,7 +460,7 @@ API_VERSION
 	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:[self pluginName]];
 	if (data) {
 		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-		self = [self initWithCoder:unarchiver];
+        [self initWithCoder:unarchiver];
 		[unarchiver finishDecoding];
 		[unarchiver release];
 	} else

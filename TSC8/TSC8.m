@@ -272,7 +272,7 @@ API_VERSION
 	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:[self pluginName]];
 	if (data) {
 		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-		self = [self initWithCoder:unarchiver];
+		[self initWithCoder:unarchiver];
 		[unarchiver finishDecoding];
 		[unarchiver release];
 	}

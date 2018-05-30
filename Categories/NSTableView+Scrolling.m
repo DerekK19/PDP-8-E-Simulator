@@ -31,7 +31,7 @@
 @implementation NSTableView (Scrolling)
 
 
-- (void) scrollRowToTop:(int)row
+- (void) scrollRowToTop:(NSInteger)row
 {
 	NSClipView *clipView = (NSClipView *) [self superview];
 	if (clipView) {

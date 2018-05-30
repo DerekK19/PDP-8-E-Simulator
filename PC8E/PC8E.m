@@ -209,7 +209,6 @@ API_VERSION
 
 - (void) pc8eReaderThread:(id)object
 {
-	[[NSAutoreleasePool alloc] init];
 	uint64_t matStartTime = mach_absolute_time();
 	uint64_t matLastStartTime;
 	for (;;) {
@@ -229,7 +228,6 @@ API_VERSION
 
 - (void) pc8ePunchThread:(id)object
 {
-	[[NSAutoreleasePool alloc] init];
 	for (;;) {
 		[outputLock lockWhenCondition:OUTPUT];
 		uint64_t matStart = mach_absolute_time();
@@ -362,7 +360,7 @@ API_VERSION
 	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:[self pluginName]];
 	if (data) {
 		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-		self = [self initWithCoder:unarchiver];
+		[self initWithCoder:unarchiver];
 		[unarchiver finishDecoding];
 		[unarchiver release];
 	}

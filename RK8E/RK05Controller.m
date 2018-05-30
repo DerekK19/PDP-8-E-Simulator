@@ -96,8 +96,7 @@
 			@"This DECpack is already mounted to another RK05 drive.", nil, bundle, @"")
 		];
 		[alert setInformativeText:path];
-		[alert beginSheetModalForWindow:[mountUnmountButton window]
-			modalDelegate:nil didEndSelector:nil contextInfo:nil];
+		[alert beginSheetModalForWindow:[mountUnmountButton window] completionHandler:^(NSModalResponse returnCode) { }];
 		[alert release];
 	} else
 		[self updateMountButton:path];
@@ -105,13 +104,13 @@
 }
 
 
-- (void) panelDidEnd:(NSSavePanel *)panel return:(int)ret context:(void *)context
+- (void) panelDidEnd:(NSSavePanel *)panel result:(NSModalResponse)result
 {
-	if (ret == NSOKButton) {
+	if (result == NSModalResponseOK) {
 		[panel close];
-		[self mount:[panel filename] create:[panel isMemberOfClass:[NSSavePanel class]]];
+		[self mount:[[panel URL] path] create:[panel isMemberOfClass:[NSSavePanel class]]];
 	}
-	[[NSUserDefaults standardUserDefaults] setObject:[panel directory] forKey:LAST_FILE_PANEL_DIR_KEY];
+	[[NSUserDefaults standardUserDefaults] setObject:[[panel directoryURL] path] forKey:LAST_FILE_PANEL_DIR_KEY];
 }
 
 
@@ -132,25 +131,29 @@
 				"The data on that DECpack might be corrupt.", nil,
 				[NSBundle bundleForClass:[self class]], @"")];
 			[alert setInformativeText:[filenameField stringValue]];
-			[alert beginSheetModalForWindow:[mountUnmountButton window]
-				modalDelegate:nil didEndSelector:nil contextInfo:nil];
+			[alert beginSheetModalForWindow:[mountUnmountButton window] completionHandler:^(NSModalResponse returnCode) { }];
 			[alert release];
 		}
 		[self updateMountButton:nil];
 	} else {
-		if ([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask) {
-			NSSavePanel *savePanel = [NSSavePanel savePanel];
-			[savePanel setRequiredFileType:@"rk05"];
-			[savePanel beginSheetForDirectory:
-				[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY]
-				file:nil modalForWindow:[mountUnmountButton window] modalDelegate:self
-				didEndSelector:@selector(panelDidEnd:return:context:) contextInfo:nil];
-		} else
-			[[NSOpenPanel openPanel] beginSheetForDirectory:
-				[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY]
-				file:nil types:[self openFileTypes]
-				modalForWindow:[mountUnmountButton window] modalDelegate:self
-				didEndSelector:@selector(panelDidEnd:return:context:) contextInfo:nil];
+        if ([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagOption) {
+            NSSavePanel *savePanel = [NSSavePanel savePanel];
+            [savePanel setDirectoryURL: [NSURL fileURLWithPath: [[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY] isDirectory: YES]];
+            [savePanel setAllowedFileTypes: [NSArray arrayWithObject:@"rk05"]];
+            [savePanel beginSheetModalForWindow:[mountUnmountButton window]
+                              completionHandler:^(NSModalResponse result) {
+                [self panelDidEnd:savePanel result:result];
+            }];
+        } else {
+            NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+            [openPanel setDirectoryURL: [NSURL fileURLWithPath: [[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY] isDirectory: YES]];
+            [openPanel setAllowedFileTypes: [self openFileTypes]];
+            [openPanel beginSheetModalForWindow:[mountUnmountButton window]
+                              completionHandler:^(NSModalResponse result) {
+                                  [self panelDidEnd:openPanel result:result];
+                              }];
+        }
+//        [nsUrl autorelease];
 	}
 }
 
@@ -171,19 +174,19 @@
 		[[alert addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"No", nil, bundle, @"")]
 			setKeyEquivalent:@"\e"];
 		if ([alert runModal] == NSAlertFirstButtonReturn) {
-			NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-			[openPanel setTitle:[NSString stringWithFormat:
+			NSOpenPanel *panel = [NSOpenPanel openPanel];
+			[panel setTitle:[NSString stringWithFormat:
 				NSLocalizedStringFromTableInBundle(@"Locate the DECpack %C%@%C",
 					nil, bundle, @""),
 					UNICODE_LEFT_DOUBLEQUOTE,
 					[[NSFileManager defaultManager] displayNameAtPath:path],
 					UNICODE_RIGHT_DOUBLEQUOTE]];
-			if ([openPanel runModalForDirectory:
-				[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY]
-				file:nil types:[self openFileTypes]] == NSOKButton)
-				[self mount:[openPanel filename] create:NO];
+            [panel setDirectoryURL: [NSURL fileURLWithPath:[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY] isDirectory: YES]];
+            [panel setAllowedFileTypes: [self openFileTypes]];
+			if ([panel runModal] == NSModalResponseOK)
+				[self mount:[[panel URL] path] create:NO];
 			[[NSUserDefaults standardUserDefaults]
-				setObject:[openPanel directory] forKey:LAST_FILE_PANEL_DIR_KEY];
+				setObject:[[panel directoryURL] path] forKey:LAST_FILE_PANEL_DIR_KEY];
 		}
 		[alert release];
 	} else
@@ -228,7 +231,7 @@
 		[mountUnmountButton setBezelStyle:NSRoundedBezelStyle];
 		[mountUnmountButton setFrame:NSInsetRect(NSOffsetRect(rect, 0, -1), -5, -2)];
 	}
-	int drive = [mountUnmountButton tag];
+	int drive = (int)([mountUnmountButton tag]);
 	[rk05 setDriveNumber:drive];
 	[self setDecpackPathAndMountAtStartup:
 		[coder decodeObjectForKey:[NSString stringWithFormat:CODER_KEY_RK05_PATH_FMT, drive]]];

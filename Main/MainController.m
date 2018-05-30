@@ -65,12 +65,12 @@
 	/* The preferences may be inconsistent here because NSUserDefaultsController sends the
 	   notification before the km8eClick: method of CPUPreferences is called. */ 
 	BOOL hasKM8E = [defaults boolForKey:CPU_PREFS_KM8E_KEY];
-	unsigned memsize = [defaults integerForKey:CPU_PREFS_MEMORYSIZE_KEY];
+	unsigned memsize = (int)([defaults integerForKey:CPU_PREFS_MEMORYSIZE_KEY]);
 	memsize = hasKM8E ? max(memsize, 2 * PDP8_FIELDSIZE) : PDP8_FIELDSIZE;
 	BOOL hasTimesharing = hasKM8E ? [defaults boolForKey:CPU_PREFS_TIMESHARING_KEY] : NO;
 	[pdp8 mountKM8E:hasKM8E memorySize:memsize timesharingEnabled:hasTimesharing];
 	[pdp8 setTraceSpeed:[defaults floatForKey:GENERAL_PREFS_TRACE_SPEED_KEY]];
-	[pdp8 setGoSpeed:[defaults integerForKey:GENERAL_PREFS_GO_SPEED_KEY]];
+	[pdp8 setGoSpeed:(int)([defaults integerForKey:GENERAL_PREFS_GO_SPEED_KEY])];
 }
 
 
@@ -125,7 +125,7 @@
 
 - (IBAction) go:(id)sender
 {
-	int s = [memoryInspectorDrawer state];
+	NSInteger s = [memoryInspectorDrawer state];
 	memoryInspectorVisibleBeforeGo = s == NSDrawerOpenState || s == NSDrawerOpeningState;
 	breakpointPanelVisibleBeforeGo = [breakpointPanel isVisible];
 	bootstrapPanelVisibleBeforeGo = [bootstrapPanel isVisible];
@@ -189,25 +189,25 @@
 	[loadPaperTapeFieldStepper setEnabled:lastField != 0];
 	[[loadPaperTapeFieldStepper target] performSelector:[loadPaperTapeFieldStepper action]
 		withObject:loadPaperTapeFieldStepper];
-	[panel setAccessoryView:loadPaperTapeFieldView];
-	if ([panel runModalForDirectory:
-		[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY]
-		file:nil types:[NSArray arrayWithObjects:
-			NSFileTypeForHFSTypeCode(0x504e4348l /* 'PNCH' */),
-			@"BIN", @"bin", @"BN", @"bn", @"RIM", @"rim", @"PT", @"pt", nil]] == NSOKButton) {
+    [panel setDirectoryURL: [NSURL fileURLWithPath:[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY] isDirectory: YES]];
+	[panel setAccessoryView: loadPaperTapeFieldView];
+    [panel setAllowedFileTypes:[NSArray arrayWithObjects:
+                            NSFileTypeForHFSTypeCode(0x504e4348l /* 'PNCH' */),
+                                @"BIN", @"bin", @"BN", @"bn", @"RIM", @"rim", @"PT", @"pt", nil]];
+    if ([panel runModal ] == NSModalResponseOK) {
 		[self cancelEditing];
-		NSString *error = [pdp8 loadPaperTape:[panel filename]
+		NSString *error = [pdp8 loadPaperTape:[[panel URL] path]
 			toField:[loadPaperTapeFieldStepper intValue]];
 		if (error) {
 			NSAlert *alert = [[NSAlert alloc] init];
-			[alert setAlertStyle:NSWarningAlertStyle];
+			[alert setAlertStyle:NSAlertStyleWarning];
 			[alert setMessageText:error];
-			[alert setInformativeText:[panel filename]];
+			[alert setInformativeText:[[panel URL] path]];
 			[alert runModal];
 			[alert release];
 		}
 	}
-	[[NSUserDefaults standardUserDefaults] setObject:[panel directory] forKey:LAST_FILE_PANEL_DIR_KEY];
+	[[NSUserDefaults standardUserDefaults] setObject:[[panel directoryURL] path] forKey:LAST_FILE_PANEL_DIR_KEY];
 }
 
 
@@ -247,7 +247,7 @@
 	}
 	if (action == @selector(toggleMemoryInspectorDrawer:)) {
 		if ([menuItem respondsToSelector:@selector(setState:)]) {
-			int s = [memoryInspectorDrawer state];
+			NSInteger s = [memoryInspectorDrawer state];
 			[menuItem setState:s == NSDrawerOpenState || s == NSDrawerOpeningState ?
 				NSOnState : NSOffState];
 		}
@@ -275,15 +275,6 @@
 
 - (void) applicationWillFinishLaunching:(NSNotification *)notification
 {
-	if (! runningOnTigerOrNewer()) {
-		NSRunAlertPanel (
-			NSLocalizedString(
-				@"This version of the PDP-8/E Simulator needs Mac OS X 10.4 or better", @""),
-			NSLocalizedString(@"For older Systems (down to System 2.0.1 on a Mac 512Ke), there "
-				"is still the old version 1.5 of the PDP-8/E Simulator available.", @""),
-			NSLocalizedString(@"Quit", @""), nil, nil);
-		exit (0);
-	}
 	LOG_ASSERTING ();
 }
 

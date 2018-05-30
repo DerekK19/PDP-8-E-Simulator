@@ -93,7 +93,7 @@
 
 - (NSMenu *) menuForEvent:(NSEvent *)event
 {
-	int row = [self rowAtPoint:[self convertPoint:[event locationInWindow] fromView:nil]];
+	NSInteger row = [self rowAtPoint:[self convertPoint:[event locationInWindow] fromView:nil]];
 	[self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 	return [self menu];
 }
@@ -104,10 +104,10 @@
 	CFStringRef tipContent;
 	
 	NSPoint point = [self convertPoint:[event locationInWindow] fromView:nil];
-	int row = [self rowAtPoint:point];
+	NSInteger row = [self rowAtPoint:point];
 	[self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 	// why does [super mouseDown:event] not select the clicked row immediately?
-	if (([event modifierFlags] & NSShiftKeyMask) && [self columnAtPoint:point] == OPCODE_COLUMN &&
+	if (([event modifierFlags] & NSEventModifierFlagShift) && [self columnAtPoint:point] == OPCODE_COLUMN &&
 		(tipContent = (CFStringRef) [[self delegate] operandInfoAtAddress:row])) {
 		HMHelpContentRec tip;
 		tip.version = kMacHelpVersion;
@@ -141,7 +141,7 @@
 
 - (int) getCurrentAddress	// OpcodeFormatterAddressGetter protocol
 {
-	return [self selectedRow];
+	return (int)([self selectedRow]);
 }
 
 
@@ -187,7 +187,7 @@
 	[memoryView setTarget:self];
 	[memoryView setDoubleAction:@selector(memoryViewDoubleClick:)];
 	[memoryView registerForDraggedTypes:[NSArray arrayWithObject:PC_ARROW_DRAG_TYPE]];
-	pcDefaultRow = [[NSUserDefaults standardUserDefaults] integerForKey:PC_DEFAULT_ROW_PREFS_KEY];
+	pcDefaultRow = (uint)([[NSUserDefaults standardUserDefaults] integerForKey:PC_DEFAULT_ROW_PREFS_KEY]);
 	if (pcDefaultRow == 0)
 		pcDefaultRow = PC_DEFAULT_ROW;
 	[memoryView scrollRowToTop:0200 + 1 - pcDefaultRow];
@@ -309,7 +309,6 @@
 	return PDP8_MEMSIZE;
 }
 
-
 - (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)column row:(int)row
 {
 	switch ([[column identifier] intValue]) {
@@ -336,11 +335,11 @@
 		if ((row & 007770) == 000010) {		// autoincrement locations are underlined
 			NSMutableParagraphStyle *style =
 				[[[NSMutableParagraphStyle alloc] init] autorelease];
-			[style setAlignment:NSCenterTextAlignment];
+			[style setAlignment:NSTextAlignmentCenter];
 			return [[[NSAttributedString alloc]
 				initWithString:[NSString stringWithFormat:@"%5.5o", row]
 				attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithInt:NSSingleUnderlineStyle],
+					[NSNumber numberWithInt:NSUnderlineStyleSingle],
 						NSUnderlineStyleAttributeName,
 					style, NSParagraphStyleAttributeName,
 					nil]] autorelease];
@@ -410,8 +409,7 @@
 	range.length = [string length] - range.location;
 	[[control currentEditor] setSelectedRange:range];
 	[alert setMessageText:[error substringFromIndex:[scanner scanLocation] + 1]];
-	[alert beginSheetModalForWindow:[control window]
-		modalDelegate:nil didEndSelector:nil contextInfo:nil];
+	[alert beginSheetModalForWindow:[control window] completionHandler:^(NSModalResponse returnCode) { }];
 	[alert release];
 	return NO;
 }
@@ -432,7 +430,7 @@
 {
 	unsigned modifiers;
 	
-	int row = [sender clickedRow];
+	int row = (int)([sender clickedRow]);
 	if (row < 0 || [pdp8 isRunning])
 		return;
 	switch ([sender clickedColumn]) {
@@ -443,10 +441,10 @@
 	case BP_COLUMN :
 	case ADDR_COLUMN :
 		modifiers = [[NSApp currentEvent] modifierFlags];
-		if (modifiers & NSAlternateKeyMask) {
+            if (modifiers & NSEventModifierFlagOption) {
 			unsigned opcode = [pdp8 memoryAt:row];
 			unsigned value = [breakopcodes valueForIdentifier:opcode];
-			if (modifiers & NSCommandKeyMask)
+                if (modifiers & NSEventModifierFlagCommand)
 				value = (value + BREAKOPCODE) & BREAKOPCODE;
 			else
 				value = value ? 0 : BREAKOPCODE;
@@ -473,7 +471,7 @@
 {
 	if ([pdp8 isRunning])
 		return FALSE;
-	int row = [memoryView selectedRow];
+	int row = (int)([memoryView selectedRow]);
 	unsigned breakop = [breakopcodes valueForIdentifier:[pdp8 memoryAt:row]];
 	switch ([menuItem tag]) {
 	case CONTEXTMENU_SET_BREAKPOINT :
@@ -510,7 +508,7 @@
 
 - (IBAction) handleContextMenu:(id)sender
 {
-	int row = [memoryView selectedRow];
+	int row = (int)([memoryView selectedRow]);
 	unsigned opcode = [pdp8 memoryAt:row];
 	unsigned breakop = [breakopcodes valueForIdentifier:opcode];
 	switch ([sender tag]) {
@@ -542,7 +540,7 @@
 		break;
 	case CONTEXTMENU_SET_DEFAULT_PC_ROW :
 		[self updateVisibleMemoryRange];
-		pcDefaultRow = row - visibleMemoryRange.location + 1;
+		pcDefaultRow = (int)(row - visibleMemoryRange.location + 1);
 		[[NSUserDefaults standardUserDefaults] setInteger:pcDefaultRow
 			forKey:PC_DEFAULT_ROW_PREFS_KEY];
 		[self scrollToPC];

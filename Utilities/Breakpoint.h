@@ -41,7 +41,7 @@
 - (Breakpoint *) initWithIdentifier:(unsigned)ident value:(unsigned)val;
 - (unsigned) identifier;
 - (unsigned) value;
-- (void) setValue:(unsigned)val;
+- (void) setUnsignedValue:(unsigned)val;
 - (NSComparisonResult) compareAddress:(Breakpoint *)breakpoint;
 
 @end

@@ -26,6 +26,7 @@
 
 #import "IOFlagController.h"
 #import "PDP8.h"
+#import "Utilities.h"
 
 
 #define NAME_COLUMN		0
@@ -85,7 +86,7 @@
 
 - (unsigned) numberOfAvailableFlags
 {
-	return 8 * sizeof(enabledFlags) - [deviceNames count];
+	return (unsigned)(8 * sizeof(enabledFlags) - [deviceNames count]);
 }
 
 
@@ -105,7 +106,7 @@
 
 - (void) disableIODevice:(unsigned long)ioflag
 {
-	NSAssert1 ((((1 << [deviceNames count]) - 1) & ioflag) == ioflag, @"Invalid IO flag: %o", ioflag);
+	NSAssert1 ((((1 << [deviceNames count]) - 1) & ioflag) == ioflag, @"Invalid IO flag: %o", (uint)ioflag);
 	enabledFlags &= ~ioflag;
 	[pdp8 clearInterruptMaskBits:ioflag];
 	[pdp8 clearIOFlagBits:ioflag];
@@ -115,7 +116,7 @@
 
 - (void) enableIODevice:(unsigned long)ioflag
 {
-	NSAssert1 ((((1 << [deviceNames count]) - 1) & ioflag) == ioflag, @"Invalid IO flag: %o", ioflag);
+	NSAssert1 ((((1 << [deviceNames count]) - 1) & ioflag) == ioflag, @"Invalid IO flag: %o", (uint)ioflag);
 	enabledFlags |= ioflag;
 	[ioFlagsView reloadData];
 }
@@ -123,7 +124,7 @@
 
 - (int) numberOfRowsInTableView:(NSTableView *)tableView
 {
-	return [deviceNames count];
+	return (int)([deviceNames count]);
 }
 
 

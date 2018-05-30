@@ -52,7 +52,7 @@ void i6031 (void)				/* KSF		6031	*/
 
 unsigned s6031 (void)				/* KSF		6031	stiptest */
 {
-	return pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->inflag;
+	return (unsigned)(pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->inflag);
 }
 
 
@@ -108,7 +108,7 @@ void i6041 (void)				/* TSF		6041	*/
 
 unsigned s6041 (void)				/* TSF		6041	skiptest */
 {
-	return pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->outflag;
+	return (unsigned)(pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->outflag);
 }
 
 
@@ -138,7 +138,7 @@ void i6045 (void)				/* TSK		6045	*/
 
 unsigned s6045 (void)				/* TSK		6045	skiptest */
 {
-	return pdp8->IOFLAGS & pdp8->IMASK & (PLUGIN_POINTER(ASR33)->inflag | PLUGIN_POINTER(ASR33)->outflag);
+	return (unsigned)(pdp8->IOFLAGS & pdp8->IMASK & (PLUGIN_POINTER(ASR33)->inflag | PLUGIN_POINTER(ASR33)->outflag));
 }
 
 

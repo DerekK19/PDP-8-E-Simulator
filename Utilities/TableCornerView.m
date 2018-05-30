@@ -123,12 +123,11 @@
 - (TableCornerView *) initWithFrame:(NSRect)frame
 {
 	if ((self = [super initWithFrame:frame])) {
-        [self setCell:[[TableCornerCell alloc] init]];
+        [self setCell:[[[TableCornerCell alloc] init] autorelease]];
 		[self setClickable:NO];
 	}
 	return self;
 }
-
 
 - (void) setImageNamed:(NSString *)name toolTip:(NSString *)toolTip
 {

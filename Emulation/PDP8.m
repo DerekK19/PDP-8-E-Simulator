@@ -25,6 +25,7 @@
 #import <Cocoa/Cocoa.h>
 #import <zlib.h>
 #import <mach/mach_time.h>
+#import <sys/time.h>
 
 #define USE_PDP8_REGISTERS_DIRECTLY	1
 
@@ -758,7 +759,7 @@ static void breakInstruction (void)		/* used for break opcodes */
 			gettimeofday (&tv1, NULL);
 			timersub (&tv1, &tv0, &tv0);
 			if (_state.usecTraceDelay > (ulong) tv0.tv_usec)
-				usleep (_state.usecTraceDelay - tv0.tv_usec);
+				usleep ((uint)(_state.usecTraceDelay) - tv0.tv_usec);
 		}
 	}
 	[self resetBreakpoints];
@@ -1244,18 +1245,18 @@ static void breakInstruction (void)		/* used for break opcodes */
 
 - (void) setMemoryAtAddress:(int)address toValues:(NSArray *)values withMask:(BOOL)withMask
 {
-	int i;
+	NSUInteger i;
 	
-	int count = [values count];
+	NSUInteger count = [values count];
 	NSAssert (values, @"values is nil");
 	NSAssert1 ((address & ~077777) == 0, @"Bad start address: 0%o", address);
-	NSAssert1 (((address + count - 1) & ~077777) == 0, @"Bad end address: 0%o", address + count - 1);
+	NSAssert1 (((address + count - 1) & ~077777) == 0, @"Bad end address: 0%o", (uint)(address + count - 1));
 	NSAssert1 ((address + count - 1) < _hw.memsize,
 		@"End address out of available memory: 0%o", address);
 	for (i = 0; i < count; i++) {
 		int value = [[values objectAtIndex:i] intValue];
 		NSAssert2 ((value & ~(withMask ? 077777777 : 07777)) == 0,
-			@"Bad mask/value 0%o for pdp8.mem[%5.5o]", value, address + i);
+			@"Bad mask/value 0%o for pdp8.mem[%5.5o]", value, (uint)(address + i));
 		int mask = withMask ? (value >> 12) : 07777;
 		mem[address + i] = (mem[address + i] & ~mask) | (value & mask);
 	}

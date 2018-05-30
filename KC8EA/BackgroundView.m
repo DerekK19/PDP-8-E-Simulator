@@ -40,7 +40,7 @@
 - (void) drawRect:(NSRect)rect
 {
 	[backgroundImage drawInRect:[self bounds] fromRect:NSZeroRect
-		operation:NSCompositeSourceOver fraction:1];
+                      operation:NSCompositingOperationSourceOver fraction:1];
 }
 
 

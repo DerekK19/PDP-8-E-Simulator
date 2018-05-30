@@ -33,6 +33,7 @@
 
 PDP8 *pdp8;		// plugin local pdp8 variable for the IOT functions
 
+//NSArray *topLevelObjects;
 
 static void setPDP8 (PDP8 *p8)
 {
@@ -49,11 +50,12 @@ static void setPDP8 (PDP8 *p8)
 
 - (unsigned) apiVersion
 {
-	[[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self
-		file:[NSString stringWithCString:__FILE__] lineNumber:__LINE__
-		description:NSLocalizedString(
-			@"Your plugin must override the apiVersion method using the API_VERSION macro.",
-			@"")];
+	[[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd
+                                                        object:self
+                                                          file:[NSString stringWithCString:__FILE__
+                                                                                  encoding: NSUTF8StringEncoding]
+                                                    lineNumber:__LINE__
+                                                   description:NSLocalizedString(@"Your plugin must override the apiVersion method using the API_VERSION macro.", @"")];
 	return CURRENT_PLUGIN_API_VERSION;
 }
 
@@ -115,13 +117,21 @@ static void setPDP8 (PDP8 *p8)
 - (void) loadNibs
 {
 	NSString *resourceName;
+    NSBundle *thisBundle;
 	
-	NSString *resourcePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+    thisBundle = [NSBundle bundleForClass:[self class]];
+	NSString *resourcePath = [thisBundle resourcePath];
 	NSDirectoryEnumerator *resourcePathEnum =
 		[[NSFileManager defaultManager] enumeratorAtPath:resourcePath];
 	while (resourcePathEnum && (resourceName = [resourcePathEnum nextObject])) {
-		if ([[resourceName pathExtension] isEqualToString:@"nib"])
-			[NSBundle loadNibNamed:[resourceName lastPathComponent] owner:self];
+        if ([[resourceName pathExtension] isEqualToString:@"nib"]) {
+            [NSBundle loadNibNamed:[resourceName lastPathComponent] owner:self];
+//            topLevelObjects = [[NSArray alloc] init];
+//            NSString *name = [[resourceName lastPathComponent] stringByDeletingPathExtension];
+//            if (![bundle loadNibNamed:name owner:self topLevelObjects:&topLevelObjects]) {
+//                NSLog(@"Failed to load NIB %@", name);
+//            }
+        }
 	}
 }
 

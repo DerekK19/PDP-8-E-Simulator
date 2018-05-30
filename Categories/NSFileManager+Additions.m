@@ -46,67 +46,36 @@
 @implementation NSFileManager (Additions)
 
 
-- (BOOL) fsRef:(FSRef *)fsRef forPath:(NSString *)path
+- (BOOL) urlRef:(CFURLRef *)urlRef forPath:(NSString *)path
 {
-	BOOL ok = NO;
-	CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef) path, kCFURLPOSIXPathStyle, NO);
-	if (url) {
-		ok = CFURLGetFSRef(url, fsRef);
-		CFRelease (url);
-	}
-	return ok;
+    BOOL ok = NO;
+    CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef) path, kCFURLPOSIXPathStyle, NO);
+    if (url) {
+        *urlRef = url;
+        ok = YES;
+    }
+    return ok;
 }
-
-
-- (NSString *) pathResolvedNew:(NSString *)path
-{
-	CFStringRef resolvedPath = nil;
-	CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef) path, kCFURLPOSIXPathStyle, NO);
-	if (url != NULL) {
-		CFErrorRef *err = nil;
-		CFDataRef bookmark = CFURLCreateBookmarkDataFromFile(NULL, url, err);
-		if (bookmark != NULL) {
-			CFURLRef resolvedurl = CFURLCreateByResolvingBookmarkData(NULL, bookmark,
-				kCFBookmarkResolutionWithoutUIMask, NULL, NULL, NO, err);
-			if (resolvedurl != NULL) {
-				resolvedPath = CFURLCopyFileSystemPath(resolvedurl, kCFURLPOSIXPathStyle);
-				CFRelease (resolvedurl);
-			}
-		}
-		CFRelease (url);
-	}
-	return [((NSString *) resolvedPath) autorelease];
-}
-
-
-- (NSString *) pathResolvedOld:(NSString *)path
-// This code runs with Mac OS 10.4 to 10.9, it is deprecated since Mac OS 10.8, it doesn't work with Yosemite
-{
-	CFStringRef resolvedPath = nil;
-	CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef) path, kCFURLPOSIXPathStyle, NO);
-	if (url != NULL) {
-		FSRef fsRef;
-		if (CFURLGetFSRef(url, &fsRef)) {
-			Boolean targetIsFolder, wasAliased;
-			if (FSResolveAliasFile(&fsRef, true, &targetIsFolder, &wasAliased) == noErr &&
-				wasAliased) {
-				CFURLRef resolvedurl = CFURLCreateFromFSRef(NULL, &fsRef);
-				if (resolvedurl != NULL) {
-					resolvedPath = CFURLCopyFileSystemPath(resolvedurl,
-						kCFURLPOSIXPathStyle);
-					CFRelease (resolvedurl);
-				}
-			}
-		}
-		CFRelease (url);
-	}
-	return [((NSString *) resolvedPath) autorelease];
-}
-
 
 - (NSString *) pathResolved:(NSString *)path
 {
-	return runningOnSnowLeopardOrNewer() ? [self pathResolvedNew:path] : [self pathResolvedOld:path];
+    CFStringRef resolvedPath = nil;
+    CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef) path, kCFURLPOSIXPathStyle, NO);
+    if (url != NULL) {
+        CFErrorRef *err = nil;
+        CFDataRef bookmark = CFURLCreateBookmarkDataFromFile(NULL, url, err);
+        if (bookmark != NULL) {
+            CFURLRef resolvedurl = CFURLCreateByResolvingBookmarkData(NULL, bookmark,
+                                                                      kCFBookmarkResolutionWithoutUIMask, NULL, NULL, NO, err);
+            if (resolvedurl != NULL) {
+                resolvedPath = CFURLCopyFileSystemPath(resolvedurl, kCFURLPOSIXPathStyle);
+                CFRelease (resolvedurl);
+            }
+            CFRelease(bookmark);
+        }
+        CFRelease (url);
+    }
+    return [((NSString *) resolvedPath) autorelease];
 }
 
 

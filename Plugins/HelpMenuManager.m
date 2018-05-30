@@ -23,7 +23,7 @@
 
 
 #import <Cocoa/Cocoa.h>
-
+#include <Carbon/Carbon.h>
 #import "Utilities.h"
 #import "HelpMenuManager.h"
 #import "NSFileManager+Additions.h"
@@ -118,15 +118,15 @@
 		[self openHelpUrl:[self helpUrlForId:(runningOnMavericksOrNewer() ?
 			[sender representedObject] : title)]];
 	else
-		AHGotoPage (title, NULL, NULL);
+		AHGotoPage ((__bridge CFStringRef)title, NULL, NULL);
 }
 
 
 - (void) addHelpMenuItem:(NSString *)title id:(NSString *)id
 {
 	NSMenu *helpMenu = [[[NSApp mainMenu] itemWithTitle:NSLocalizedString(@"Help", @"")] submenu];
-	int n = [helpMenu numberOfItems];
-	int i;
+	NSInteger n = [helpMenu numberOfItems];
+	NSInteger i;
 	for (i = 1; i < n; i++) {
 		switch ([[[helpMenu itemAtIndex:i] title] compare:title]) {
 		case NSOrderedSame :
@@ -150,11 +150,11 @@
 
 - (void) addBundleHelp:(NSBundle *)bundle
 {
-	FSRef fsRef;
+	CFURLRef urlRef;
 	
-	if ([[NSFileManager defaultManager] fsRef:&fsRef forPath:[bundle bundlePath]]) {
+	if ([[NSFileManager defaultManager] urlRef:&urlRef forPath:[bundle bundlePath]]) {
 		[self unregisterHelpBookForDomain:[bundle bundleIdentifier]];
-		if (AHRegisterHelpBook(&fsRef) == noErr) {
+		if (AHRegisterHelpBookWithURL(urlRef) == noErr) {
 			[registeredHelpBookDomains addObject:[bundle bundleIdentifier]];
 			NSString *bookTitle = [[bundle infoDictionary] objectForKey:@"CFBundleHelpBookName"];
 			if (bookTitle)

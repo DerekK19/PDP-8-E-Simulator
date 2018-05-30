@@ -74,9 +74,9 @@
 - (IBAction) statusCheckboxClicked:(id)sender
 {
 	if ([sender intValue])
-		[rk8e setStatusBits:[sender tag] clearStatusBits:0];
+		[rk8e setStatusBits:(uint)([sender tag]) clearStatusBits:0];
 	else
-		[rk8e setStatusBits:0 clearStatusBits:[sender tag]];
+		[rk8e setStatusBits:0 clearStatusBits:(uint)([sender tag])];
 }
 
 

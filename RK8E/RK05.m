@@ -492,7 +492,6 @@ static ushort CRC (const unsigned char *p)	/* CRC with polygon x^16 + x^15 + x^2
 
 - (void) rk05Thread:(id)object
 {
-	[[NSAutoreleasePool alloc] init];
 	for (;;) {
 		[commandsLock lockWhenCondition:COMMANDS_AVAILABLE];
 		while (cmd)

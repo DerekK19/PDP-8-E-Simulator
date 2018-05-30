@@ -130,12 +130,12 @@
 }
 
 
-- (void) panelDidEnd:(NSSavePanel *)panel return:(int)ret context:(void  *)context
+- (void) panelDidEnd:(NSSavePanel *)panel result:(NSModalResponse)result
 {
 	NSFileHandle *handle;
 	
-	if (ret == NSOKButton) {
-		NSString *path = [panel filename];
+	if (result == NSModalResponseOK) {
+		NSString *path = [[panel URL] path];
 		if (kind == PAPER_TAPE_READER)
 			handle = [NSFileHandle fileHandleForReadingAtPath:path];
 		else {
@@ -154,12 +154,11 @@
 				NSLocalizedStringFromTableInBundle(
 					@"Cannot create this paper tape file.", nil, bundle, @"")];
 			[alert setInformativeText:path];
-			[alert beginSheetModalForWindow:[loadUnloadButton window]
-				modalDelegate:nil didEndSelector:nil contextInfo:nil];
-			[alert release];
+            [alert beginSheetModalForWindow:[loadUnloadButton window] completionHandler:^(NSModalResponse returnCode) { }];
+            [alert release];
 		}
 	}
-	[[NSUserDefaults standardUserDefaults] setObject:[panel directory] forKey:LAST_FILE_PANEL_DIR_KEY];
+	[[NSUserDefaults standardUserDefaults] setObject:[[panel directoryURL] path] forKey:LAST_FILE_PANEL_DIR_KEY];
 }
 
 
@@ -184,12 +183,12 @@
 		[filenameField setHidden:YES];
 		[progressIndicator setHidden:YES];
 	} else {
-		NSSavePanel *panel = (kind == PAPER_TAPE_READER) ?
-					[NSOpenPanel openPanel] : [NSSavePanel savePanel];
-		[panel beginSheetForDirectory:
-			[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY]
-			file:nil modalForWindow:[loadUnloadButton window] modalDelegate:self
-			didEndSelector:@selector(panelDidEnd:return:context:) contextInfo:nil];
+        NSSavePanel *panel = (kind == PAPER_TAPE_READER) ? [NSOpenPanel openPanel] : [NSSavePanel savePanel];
+        [panel setDirectoryURL: [NSURL fileURLWithPath:[[NSUserDefaults standardUserDefaults] stringForKey:LAST_FILE_PANEL_DIR_KEY] isDirectory: YES]];
+        [panel beginSheetModalForWindow:[loadUnloadButton window]
+                      completionHandler:^(NSModalResponse result) {
+                          [self panelDidEnd:panel result:result];
+                      }];
 	}
 }
 
@@ -209,7 +208,7 @@
 
 - (void) awakeFromNib
 {
-	kind = [loadUnloadButton tag];
+	kind = (int)([loadUnloadButton tag]);
 	adjustToolbarControlForTiger (filenameField);
 	adjustToolbarControlForTiger (progressIndicator);
 	[loadUnloadButton registerAsFileDropTarget];
@@ -250,7 +249,7 @@
 			@"Yes", nil, bundle, @"")] setKeyEquivalent:@"\r"];
 		[[alert addButtonWithTitle:NSLocalizedStringFromTableInBundle(
 			@"No", nil, bundle, @"")] setKeyEquivalent:@"\e"];
-		[alert setAlertStyle:NSCriticalAlertStyle];
+        [alert setAlertStyle:NSAlertStyleCritical];
 		if ([alert runModal] == NSAlertFirstButtonReturn &&
 			(handle = [NSFileHandle fileHandleForWritingAtPath:path]))
 			[handle truncateFileAtOffset:0];

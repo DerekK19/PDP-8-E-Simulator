@@ -32,14 +32,14 @@
 
 - (unsigned) addObject:(id)object toArraySortedBy:(SEL)compare replaceExistingObject:(BOOL)replace
 {
-	int n = [self count];	
+	NSUInteger n = [self count];
 	if (n == 0) {
 		[self addObject:object];
 		return 0;
 	}
 	NSRange range = NSMakeRange(0, n);
 	while (range.length > 0) {
-		unsigned m = range.location + range.length / 2;
+		NSUInteger m = range.location + range.length / 2;
 		switch ((NSComparisonResult)
 			[[self objectAtIndex:m] performSelector:compare withObject:object]) {
 		case NSOrderedAscending:
@@ -53,25 +53,25 @@
 		case NSOrderedSame:
 			if (replace)
 				[self replaceObjectAtIndex:m withObject:object];
-			return m;
+			return (unsigned)m;
 		default:
 			NSAssert (FALSE, @"Invalid comparison result");
 			break;
 		}
 	}
 	[self insertObject:object atIndex:range.location];
-	return range.location;
+	return (unsigned)(range.location);
 }
 
 
 - (unsigned) indexOfObject:(id)object inArraySortedBy:(SEL)compare;
 {
-	int n = [self count];
+	NSUInteger n = [self count];
 	if (n == 0)
 		return NSNotFound;
 	NSRange range = NSMakeRange(0, n);
 	while (range.length > 0) {
-		unsigned m = range.location + range.length / 2;
+		NSUInteger m = range.location + range.length / 2;
 		switch ((NSComparisonResult)
 			[[self objectAtIndex:m] performSelector:compare withObject:object]) {
 		case NSOrderedAscending:
@@ -83,7 +83,7 @@
 			range.length = m - range.location;
 			break;
 		case NSOrderedSame:
-			return m;
+			return (unsigned)m;
 		default:
 			NSAssert (FALSE, @"Invalid comparison result");
 			break;
