@@ -1600,6 +1600,7 @@
 				210F36090BC9157B00482109 /* CopyFiles */,
 				2139F8600D67610900836D7B /* CopyFiles */,
 				21232F180D6767DF009E21A6 /* ShellScript */,
+				65620FD520BEA83700A9FF31 /* Copy executable to local App Store folder */,
 			);
 			buildRules = (
 			);
@@ -1988,6 +1989,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# index the online help\n#/Developer/Applications/Utilities/Help\\ Indexer.app/Contents/MacOS/Help\\ Indexer \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp\" -PantherIndexing NO -Tokenizer 1 -ShowProgress NO -UseRemoteRoot NO -LogStyle 2 -IndexAnchors YES -TigerIndexing YES -GenerateSummaries YES -MinTermLength 3\n/usr/bin/hiutil -C -m 3 -a -f \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp/RK8EOnlineHelp.helpindex\" \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/English.lproj/RK8EOnlineHelp\"\n\n# make the plugin to appear as bundles in the Finder\n#/usr/bin/SetFile -a B \"${CONFIGURATION_BUILD_DIR}/${FULL_PRODUCT_NAME}\"";
+			showEnvVarsInLog = 0;
+		};
+		65620FD520BEA83700A9FF31 /* Copy executable to local App Store folder */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy executable to local App Store folder";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Echo Remove any existing $FULL_PRODUCT_NAME from App Store folder\nrm -rf \"${HOME}/Development/AppStore/$FULL_PRODUCT_NAME\"\n\nEcho Copy $FULL_PRODUCT_NAME to App Store folder\ncp -RLf \"$CONFIGURATION_BUILD_DIR/$FULL_PRODUCT_NAME\" \"${HOME}/Development/AppStore/$FULL_PRODUCT_NAME\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
