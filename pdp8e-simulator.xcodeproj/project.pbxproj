@@ -272,8 +272,6 @@
 		21FFAA970938A8A600BA35C5 /* skipArrow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FFAA960938A8A600BA35C5 /* skipArrow.tiff */; };
 		21FFAAC00938C04700BA35C5 /* interruptArrow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 21FFAABF0938C04700BA35C5 /* interruptArrow.tiff */; };
 		21FFAF860D62287D000B4CA5 /* TypeaheadBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FFAF850D62287D000B4CA5 /* TypeaheadBuffer.m */; };
-		6550985420B9FE1D00624A86 /* PC8E.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B36C541982F0ED00EE4AD8 /* PC8E.m */; };
-		6550985520B9FF6000624A86 /* PC8Eiot.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D4AC198550F6002E2DDC /* PC8Eiot.c */; };
 		6550985620B9FF9800624A86 /* PDP8.m in Sources */ = {isa = PBXBuildFile; fileRef = 2115890A0868764B0007B9B0 /* PDP8.m */; };
 		6550985720B9FFB000624A86 /* itab.c in Sources */ = {isa = PBXBuildFile; fileRef = 21CF60CD09200C9D00377059 /* itab.c */; };
 		6550985820B9FFB400624A86 /* eae.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F2450868A3B8002186B0 /* eae.c */; };
@@ -281,6 +279,7 @@
 		6550985A20B9FFBB00624A86 /* mri.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F23B08689ACF002186B0 /* mri.c */; };
 		6550985B20B9FFC000624A86 /* opr.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159F2480868A442002186B0 /* opr.c */; };
 		6550985C20B9FFED00624A86 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2171818F09FA879800754508 /* libz.dylib */; };
+		65620FDD20BFCDDA00A9FF31 /* PC8E.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B36C541982F0ED00EE4AD8 /* PC8E.m */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -2021,14 +2020,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6550985420B9FE1D00624A86 /* PC8E.m in Sources */,
 				211639F50D4B8F7C00F5B564 /* FloatingPointNumber.m in Sources */,
 				2149F83A0D82AD930084F33F /* Utilities.c in Sources */,
 				21D4741D108A458C006A5154 /* PluginAPI.m in Sources */,
 				6550985820B9FFB400624A86 /* eae.c in Sources */,
 				21D47420108A458E006A5154 /* KeepInMenuWindow.m in Sources */,
 				21D47421108A458F006A5154 /* EnableDisableTextField.m in Sources */,
-				6550985520B9FF6000624A86 /* PC8Eiot.c in Sources */,
 				6550985720B9FFB000624A86 /* itab.c in Sources */,
 				21D47422108A4593006A5154 /* OctalFormatter.m in Sources */,
 				21D47430108A4664006A5154 /* RegisterFormCell.m in Sources */,
@@ -2088,6 +2085,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21E1D4AE198550F6002E2DDC /* PC8Eiot.c in Sources */,
+				65620FDD20BFCDDA00A9FF31 /* PC8E.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2504,6 +2502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2538,6 +2537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2570,6 +2570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2599,6 +2600,7 @@
 		210F346C0BC79DC100482109 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2635,6 +2637,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2669,6 +2672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = DX8B97QV93;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2700,6 +2704,7 @@
 		2126BE0609817C6D008BB678 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2734,6 +2739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2766,6 +2772,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2796,6 +2803,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2831,6 +2839,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2864,6 +2873,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2895,6 +2905,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2930,6 +2941,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2963,6 +2975,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -2993,6 +3006,7 @@
 		21A683010D685C74000D5B59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3025,6 +3039,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3055,6 +3070,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3084,6 +3100,7 @@
 		21AE0EF3085B43480051FF07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3123,6 +3140,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3155,6 +3173,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3293,6 +3312,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3328,6 +3348,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3361,6 +3382,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3392,6 +3414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3427,6 +3450,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3461,6 +3485,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3527,6 +3552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3562,6 +3588,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
@@ -3595,6 +3622,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = DX8B97QV93;
