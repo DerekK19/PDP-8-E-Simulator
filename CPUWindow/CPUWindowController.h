@@ -25,7 +25,7 @@
 @class RegisterFormCell, EnableDisableTextField, PDP8;
 
 
-@interface CPUWindowController : NSObject
+@interface CPUWindowController : NSObject <NSToolbarDelegate>
 {
 @private
 	IBOutlet NSWindow		*window;

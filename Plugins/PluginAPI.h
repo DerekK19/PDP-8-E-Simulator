@@ -53,6 +53,8 @@
 	NSBundle	*bundle;
 @protected
 	PDP8		*pdp8;
+    NSArray     *topLevelObjects;
+
 }
 
 - (void) setPDP8:(PDP8 *)p8;		// gives the plugin a pointer to the global PDP-8 object

@@ -36,5 +36,6 @@
 
 - (IBAction) mountUnmountClicked:(id)sender;
 - (IBAction) writeProtectClicked:(id)sender;
+- (void) loadCoder:(NSCoder *)coder;
 
 @end

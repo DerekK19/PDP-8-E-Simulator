@@ -86,7 +86,7 @@
 
 - (void) noLoadAlertWithMessage:(NSString *)message okText:(NSString *)okText
 {
-	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	NSAlert *alert = [[NSAlert alloc] init];
 	alert.messageText = okText;
 	alert.informativeText = message;
 	[alert runModal];
@@ -104,7 +104,7 @@
 		[[OctalFormatter formatterWithBitMask:077 wildcardAllowed:NO] getObjectValue:&number
 			forString:ioAddress errorDescription:nil];
 		int addr = [number intValue];
-		[pdp8 setPluginPointer:plugin forIOAddress:addr];
+		[pdp8 setPluginPointer:(__bridge void *)(plugin) forIOAddress:addr];
 		NSArray *iots = [plugin iotsForAddress:addr];
 		if (iots) {
 			NSArray *skiptests = [plugin skiptestsForAddress:addr];
@@ -192,7 +192,6 @@
 				[plugin pluginDidLoad];
 				[[HelpMenuManager sharedHelpMenuManager] addBundleHelp:bundle];
 			} else {
-				[plugin release];
 				// unload is a 10.5 method (does nothing on 10.4), but we use the 10.4 SDK
 				// so use performSelector: to avoid unknown message warning
 				[bundle performSelector:@selector(unload)];
@@ -208,7 +207,7 @@
 		 NSLocalizedString(@"Cannot determine the principal class of the plug-in.", @"")
 				      okText:[self noLoadMessage:[[bundle bundlePath] lastPathComponent]]];
 	}
-	return [plugin autorelease];
+	return plugin;
 }
 
 
@@ -254,7 +253,7 @@
 
 - (void) notifyApplicationWillFinishLaunching:(NSNotification *)notification
 {
-	pluginInstances = [[self loadAllPlugins] retain];
+	pluginInstances = [self loadAllPlugins];
 }
 
 

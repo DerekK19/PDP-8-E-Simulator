@@ -39,6 +39,6 @@
 }
 
 - (IBAction) handleContextMenu:(id)sender;
-- (NSString *) operandInfoAtAddress:(int)addr;	// private delegate method, declared here to avoid warning
+- (NSString *) operandInfoAtAddress:(NSInteger)addr;	// private delegate method, declared here to avoid warning
 
 @end

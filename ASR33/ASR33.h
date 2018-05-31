@@ -63,6 +63,7 @@
 	BOOL					isConsoleTTY;
 }
 
+- (void) loadCoder:(NSCoder *)coder;
 - (unsigned short) getKBB;
 - (void) setKBB:(unsigned short)kbb;
 - (unsigned short) getTTO;

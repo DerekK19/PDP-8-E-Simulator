@@ -40,24 +40,32 @@
 	NSRange range = NSMakeRange(0, n);
 	while (range.length > 0) {
 		NSUInteger m = range.location + range.length / 2;
-		switch ((NSComparisonResult)
-			[[self objectAtIndex:m] performSelector:compare withObject:object]) {
-		case NSOrderedAscending:
-			n = range.location + range.length;
-			range.location = m + 1;
-			range.length = n - range.location;
-			break;
-		case NSOrderedDescending:
-			range.length = m - range.location;
-			break;
-		case NSOrderedSame:
-			if (replace)
-				[self replaceObjectAtIndex:m withObject:object];
-			return (unsigned)m;
-		default:
-			NSAssert (FALSE, @"Invalid comparison result");
-			break;
-		}
+        id obj = [self objectAtIndex:m];
+        if ([obj respondsToSelector:compare]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            NSComparisonResult result = (NSComparisonResult) [obj performSelector:compare withObject:object];
+#pragma clang diagnostic pop
+            switch (result) {
+            case NSOrderedAscending:
+                n = range.location + range.length;
+                range.location = m + 1;
+                range.length = n - range.location;
+                break;
+            case NSOrderedDescending:
+                range.length = m - range.location;
+                break;
+            case NSOrderedSame:
+                if (replace)
+                    [self replaceObjectAtIndex:m withObject:object];
+                return (unsigned)m;
+            default:
+                NSAssert (FALSE, @"Invalid comparison result");
+                break;
+            }
+        } else {
+            NSLog(@"** Cannot performSelector:compare(1)");
+        }
 	}
 	[self insertObject:object atIndex:range.location];
 	return (unsigned)(range.location);
@@ -72,22 +80,30 @@
 	NSRange range = NSMakeRange(0, n);
 	while (range.length > 0) {
 		NSUInteger m = range.location + range.length / 2;
-		switch ((NSComparisonResult)
-			[[self objectAtIndex:m] performSelector:compare withObject:object]) {
-		case NSOrderedAscending:
-			n = range.location + range.length;
-			range.location = m + 1;
-			range.length = n - range.location;
-			break;
-		case NSOrderedDescending:
-			range.length = m - range.location;
-			break;
-		case NSOrderedSame:
-			return (unsigned)m;
-		default:
-			NSAssert (FALSE, @"Invalid comparison result");
-			break;
-		}
+        id obj = [self objectAtIndex:m];
+        if ([obj respondsToSelector:compare]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            NSComparisonResult result = (NSComparisonResult) [obj performSelector:compare withObject:object];
+#pragma clang diagnostic pop
+            switch (result) {
+            case NSOrderedAscending:
+                n = range.location + range.length;
+                range.location = m + 1;
+                range.length = n - range.location;
+                break;
+            case NSOrderedDescending:
+                range.length = m - range.location;
+                break;
+            case NSOrderedSame:
+                return (unsigned)m;
+            default:
+                NSAssert (FALSE, @"Invalid comparison result");
+                break;
+            }
+        } else {
+            NSLog(@"** Cannot performSelector:compare(2)");
+        }
 	}
 	return NSNotFound;
 }

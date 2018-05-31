@@ -145,8 +145,8 @@
 		selector:@selector(notifyStop:) name:PDP8_STOP_NOTIFICATION object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 		selector:@selector(notifyStep:) name:PDP8_STEP_NOTIFICATION object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyPluginsLoaded:)
-		name:PLUGINS_LOADED_NOTIFICATION object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(notifyPluginsLoaded:) name:PLUGINS_LOADED_NOTIFICATION object:nil];
 }
 
 

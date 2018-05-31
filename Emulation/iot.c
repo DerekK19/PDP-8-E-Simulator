@@ -145,7 +145,7 @@ VOID i6007 (VOID)				/* CAF		6007	*/
     int i;
     for (i = 0; i < PDP8_IOADDRS; i++) {
 	if (pdp8->_state.pluginPointer[i])
-		[(PDP8Plugin *) pdp8->_state.pluginPointer[i] CAF:i];
+        [(__bridge PDP8Plugin *) pdp8->_state.pluginPointer[i] CAF:i];
     }
 
 #ifdef FPP

@@ -25,7 +25,7 @@
 #define PREF_PANE_EXTENSION	@"prefPane"
 
 
-@interface PreferencesController : NSObject
+@interface PreferencesController : NSObject <NSToolbarDelegate>
 {
 @private
 	IBOutlet NSPanel	*prefPanel;

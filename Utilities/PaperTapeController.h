@@ -21,6 +21,7 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FileDropControlTargetProtocol.h"
 
 @protocol InputConsumer;
 @class PaperTapeProgressIndicator, EnableDisableTextField;

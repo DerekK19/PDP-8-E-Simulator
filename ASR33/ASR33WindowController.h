@@ -21,11 +21,12 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Cocoa/Cocoa.h>
 
 @class ASR33, PaperTapeController, ASR33TextView, RegisterFormCell, KeepInMenuWindow;
 
 
-@interface ASR33WindowController : NSObject
+@interface ASR33WindowController : NSObject <NSToolbarDelegate>
 {
 @private
 	IBOutlet ASR33			*asr33;
