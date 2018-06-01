@@ -92,7 +92,8 @@ platform :mac do
     lane :home do
         # match does not work for Mac apps
         gym(
-            scheme: ENV["BuildScheme"]
+            scheme: ENV["BuildScheme"],
+            configuration: "Debug"
             ) # Build your app - more options available
             # pilot
     end
