@@ -33,9 +33,9 @@ platform :mac do
         ENV["AppName"] = "PDP 8/e Simulator"
         
         # The App's path name
-        ENV["IpaPath"] = "../FastlaneArtifacts/PDP-8\/E\\ Simulator.app"
+        ENV["IpaPath"] = "../FastlaneArtifacts/PDP-8E\\ Simulator.app"
         
-        sh "rm -rf "+ENV['PWD']+"/../FastlaneArtifacts/PDP-8\/E\\ Simulator.*"
+        sh "rm -rf "+ENV['PWD']+"/../FastlaneArtifacts/PDP-8E\\ Simulator.*"
         
         # --- BELOW HERE: Everything should be similar for all Fastlane projects
         
