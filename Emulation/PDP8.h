@@ -284,7 +284,7 @@ typedef struct {
 extern PDP8	*pdp8;
 #define EXECUTION_TIME(time)	(pdp8->_state.executionTime += (time))
 #if defined(NS_BLOCK_ASSERTIONS)
-#define PLUGIN_POINTER(plugin)	((plugin *) pdp8->_state.pluginPointer[(pdp8->_state.currInst >> 3) & 077])
+#define PLUGIN_POINTER(plugin)	((__bridge plugin *) pdp8->_state.pluginPointer[(pdp8->_state.currInst >> 3) & 077])
 #else
 #define PLUGIN_POINTER(plugin)	((plugin *) [pdp8 pluginPointer:[plugin class]])
 #endif
