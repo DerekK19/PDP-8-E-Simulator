@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	StateMachine.c - State Machine for the KC8-EA Programmer’s Console
+ *	StateMachine.m - State Machine for the KC8-EA Programmer’s Console
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -88,17 +88,17 @@
 - (id) initWithCoder:(NSCoder *)coder
 {
 	self = [super init];
-	cycle = [coder decodeIntForKey:CODER_KEY_CYCLE];
-	md = [coder decodeIntForKey:CODER_KEY_MD];
-	mdDir = [coder decodeIntForKey:CODER_KEY_MDDIR];
-	ir = [coder decodeIntForKey:CODER_KEY_IR];
-	cpma = [coder decodeIntForKey:CODER_KEY_CPMA];
-	bus = [coder decodeIntForKey:CODER_KEY_BUS];
+	cycle = (unsigned short) [coder decodeIntForKey:CODER_KEY_CYCLE];
+	md = (unsigned short) [coder decodeIntForKey:CODER_KEY_MD];
+	mdDir = (unsigned short) [coder decodeIntForKey:CODER_KEY_MDDIR];
+	ir = (unsigned short) [coder decodeIntForKey:CODER_KEY_IR];
+	cpma = (unsigned short) [coder decodeIntForKey:CODER_KEY_CPMA];
+	bus = (unsigned short) [coder decodeIntForKey:CODER_KEY_BUS];
 	pause = [coder decodeBoolForKey:CODER_KEY_PAUSE];
-	autoindex = [coder decodeIntForKey:CODER_KEY_AUTOINDEX];
+	autoindex = (unsigned short) [coder decodeIntForKey:CODER_KEY_AUTOINDEX];
 	interruptInProgress = [coder decodeBoolForKey:CODER_KEY_INTERRUPT_IN_PROGRESS];
-	oldpc = [coder decodeIntForKey:CODER_KEY_OLDPC];
-	oldinst = [coder decodeIntForKey:CODER_KEY_OLDINST];
+	oldpc = (unsigned short) [coder decodeIntForKey:CODER_KEY_OLDPC];
+	oldinst = (unsigned short) [coder decodeIntForKey:CODER_KEY_OLDINST];
 	return self;
 }
 
@@ -133,7 +133,7 @@
 		| ([pdp8 getInhibit] || [pdp8 getDelay] ? 00400 : 0)	// NO INT
 		| ([pdp8 getEnable] ? 00200 : 0)			// Interrupt On
 		| (interruptInProgress ? 0 : [pdp8 getUF] ? 00100 : 0)	// User Flag
-		| ([pdp8 getIF] << 3)					// Instruction Field
+		| (unsigned short) ([pdp8 getIF] << 3)				// Instruction Field
 		| [pdp8 getDF];						// Data Field
 }
 
@@ -165,7 +165,7 @@
 - (void) loadAddress
 {
 	if ([pdp8 isStopped]) {
-		cpma = ([pdp8 getIF] << 12) | [pdp8 getSR];
+		cpma = (unsigned short) (([pdp8 getIF] << 12) | [pdp8 getSR]);
 		bus = [pdp8 getSR];
 		[pdp8 setPC:bus];
 		cycle = FETCH;
@@ -223,8 +223,8 @@
 			md = [pdp8 memoryAt:[pdp8 getProgramCounter]];
 			mdDir = MB_FROM_MEM;
 			ir = (md & 07000) >> 3;
-			cpma = ([pdp8 getIF] << 12) |
-				((md & 00200) ? (cpma & 07600) : 0) | (md & 0177);
+			cpma = (unsigned short) (([pdp8 getIF] << 12) |
+				((md & 00200) ? (cpma & 07600) : 0) | (md & 0177));
 			if (ir <= IR_JMP && (md & 00400))	/* indirect MRI */
 				cycle = DEFER;
 			else if (ir < IR_JMP)			/* direct MRI != JMP */
@@ -232,9 +232,9 @@
 			else {					/* OPR, IOT or direct JMP */
 				cycle = FETCH;
 				if (ir == IR_JMP)
-					cpma = ([pdp8 getIB] << 12) | (cpma & 07777);
+					cpma = (unsigned short)  (([pdp8 getIB] << 12) | (cpma & 07777));
 				else {
-					cpma = ([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777);
+					cpma = (unsigned short)  (([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777));
 					[self setDatabus];
 					if (ir == IR_IOT)
 						pause = YES;
@@ -251,14 +251,14 @@
 	switch (md) {
 	case 07403 :	/* SCL */
 		if ([pdp8 getEAEmode] == EAE_MODE_A) {
-			cpma = ([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777);
+			cpma = (unsigned short) (([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777));
 			md = [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 		}
 		break;
 	case 07405 :	/* MUY */
 	case 07407 :	/* DVI */
-		cpma = ([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777);
+		cpma = (unsigned short) (([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777));
 		md = [pdp8 memoryAt:cpma];
 		mdDir = MB_FROM_MEM;
 		if ([pdp8 getEAEmode] == EAE_MODE_B) {
@@ -267,7 +267,7 @@
 				md = (md + 1) & 07777;
 				mdDir = MB_TO_MEM;
 			}
-			cpma = ([pdp8 getDF] << 12) | md;
+			cpma = (unsigned short) (([pdp8 getDF] << 12) | md);
 			md = (cpma == autoindex) ? ([pdp8 memoryAt:cpma] + 1) & 07777 : [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 		}
@@ -275,13 +275,13 @@
 	case 07413 :	/* SHL */
 	case 07415 :	/* ASR */
 	case 07417 : 	/* LSR */
-		cpma = ([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777);
+		cpma = (unsigned short) (([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777));
 		md = [pdp8 memoryAt:cpma];
 		mdDir = MB_FROM_MEM;
 		break;
 	case 07443 :	/* DAD */
 		if ([pdp8 getEAEmode] == EAE_MODE_B) {
-			cpma = ([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777);
+			cpma = (unsigned short) (([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777));
 			md = [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 			if ((cpma & 07770) == 010) {
@@ -289,14 +289,14 @@
 				md = (md + 1) & 07777;
 				mdDir = MB_TO_MEM;
 			} 
-			cpma = ([pdp8 getDF] << 12) | ((md + 1) & 07777);
+			cpma = (unsigned short) (([pdp8 getDF] << 12) | ((md + 1) & 07777));
 			md = (cpma == autoindex) ? ([pdp8 memoryAt:cpma] + 1) & 07777 : [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 		}
 		break;
 	case 07445 :	/* DST */
 		if ([pdp8 getEAEmode] == EAE_MODE_B) {
-			cpma = ([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777);
+			cpma = (unsigned short) (([pdp8 getIF] << 12) | (([pdp8 getPC] + 1) & 07777));
 			md = [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 			if ((cpma & 07770) == 010) {
@@ -304,7 +304,7 @@
 				md = (md + 1) & 07777;
 				mdDir = MB_TO_MEM;
 			} 
-			cpma = ([pdp8 getDF] << 12) | ((md + 1) & 07777);
+			cpma = (unsigned short) (([pdp8 getDF] << 12) | ((md + 1) & 07777));
 			md = [pdp8 getAC];
 			mdDir = MB_TO_MEM;
 		}
@@ -329,8 +329,8 @@
 			md = [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 			ir = (md & 07000) >> 3;
-			cpma = ([pdp8 getIF] << 12) |
-				((md & 0200) ? (cpma & 07600) : 0) | (md & 0177);
+			cpma = (unsigned short) (([pdp8 getIF] << 12) |
+				((md & 0200) ? (cpma & 07600) : 0) | (md & 0177));
 			if (ir <= IR_JMP && (md & 0400))
 				cycle = DEFER;
 			else if (ir < IR_JMP)
@@ -355,7 +355,7 @@
 			md = [pdp8 memoryAt:cpma];
 			mdDir = MB_FROM_MEM;
 		}
-		cpma = ([pdp8 getDF] << 12) | md;
+		cpma = (unsigned short) (([pdp8 getDF] << 12) | md);
 		cycle = EXECUTE;
 		break;
 	case EXECUTE :

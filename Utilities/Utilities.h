@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	Utilities.h - Some general utilities and macros, esp. for Tiger compatibility
  *
@@ -58,16 +58,50 @@ BOOL runningOnOSXVersion (long major, long minor, BOOL orBetter);
 #define runningOnYosemiteOrNewer()	runningOnOSXVersion(10, 10, YES)
 #define runningOnElCapitan()		runningOnOSXVersion(10, 11, NO)
 #define runningOnElCapitanOrNewer()	runningOnOSXVersion(10, 11, YES)
+#define runningOnSierra()		runningOnOSXVersion(10, 12, NO)
+#define runningOnSierraOrNewer()	runningOnOSXVersion(10, 12, YES)
+#define runningOnHighSierra()		runningOnOSXVersion(10, 13, NO)
+#define runningOnHighSierraOrNewer()	runningOnOSXVersion(10, 13, YES)
+#define runningOnMojave()		runningOnOSXVersion(10, 14, NO)
+#define runningOnMojaveOrNewer()	runningOnOSXVersion(10, 14, YES)
 
 
-void adjustToolbarControlForTiger (NSView *view);
 void adjustTableHeaderForElCapitan (NSTableView *view);
+
+
+id disableAppNap (NSString *reason);		// needs NSProcessInfo from the 10.9 SDK
+void reenableAppNap (id activity);
+
+
+#if __LP64__
+// With Mojave public beta, [[NSAppearance currentAppearance] name] still returns NSAppearanceNameAquaDark when the
+// AppleInterfaceThemeChangedNotification is posted after a switch back to the light appearance, so we can't use
+// this to detect the current appearance mode.
+#define isMojaveDarkModeActive()	(runningOnMojaveOrNewer() && [@"Dark" isEqualToString:	\
+						[[NSUserDefaults standardUserDefaults]		\
+							stringForKey:@"AppleInterfaceStyle"]])
+#else
+#define isMojaveDarkModeActive()	NO
+#endif
+
+#define THEME_CHANGED_NOTIFICATION	@"AppleInterfaceThemeChangedNotification"
+
+
+#ifndef __MAC_10_5
+
+@interface NSThread (MainThread)
+
++ (BOOL) isMainThread;
+
+@end
+
+#endif
 
 
 #define NSAssertRunningOnMainThread()	NSAssert ([NSThread isMainThread], @"Called from non-main thread")
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_5
+#ifndef __MAC_10_5
 // NSCondition is available since 10.0 but missing in the headers until 10.5, see NSLock.h
 
 @interface NSCondition : NSObject <NSLocking>
@@ -80,6 +114,29 @@ void adjustTableHeaderForElCapitan (NSTableView *view);
 - (BOOL) waitUntilDate:(NSDate *)limit;
 - (void) signal;
 - (void) broadcast;
+
+@end
+
+#endif
+
+
+#ifndef __MAC_10_5
+// NSInteger and NSUInteger are available since 10.5
+// when not defined, we compile with Xcode 3 for 32-Bit PPC oder x86, so they are int, not long
+
+typedef int NSInteger;
+typedef unsigned int NSUInteger;
+typedef float CGFloat;
+
+#endif
+
+
+#ifndef __MAC_10_14
+// Accent colors were added with Mojave
+
+@interface NSColor (Mojave)
+
++ (NSColor *) controlAccentColor;
 
 @end
 

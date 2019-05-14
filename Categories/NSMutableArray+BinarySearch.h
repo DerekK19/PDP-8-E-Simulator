@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	NSMutableArray+BinarySearch.h - Category for binary search
  *
@@ -24,7 +24,7 @@
 
 @interface NSMutableArray (BinarySearch)
 
-- (unsigned) addObject:(id)object toArraySortedBy:(SEL)compare replaceExistingObject:(BOOL)replace;
-- (unsigned) indexOfObject:(id)object inArraySortedBy:(SEL)compare;
+- (NSUInteger) addObject:(id)object toArraySortedBy:(SEL)compare replaceExistingObject:(BOOL)replace;
+- (NSUInteger) indexOfObject:(id)object inArraySortedBy:(SEL)compare;
 
 @end

@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	RK8E.h - RK8-E Disk Cartridge System for the PDP-8/E Simulator
  *
@@ -114,7 +114,7 @@
 - (unsigned short) getCurrentDriveNumber;
 - (void) updateStatusMountFlags;
 - (void) setStatusBits:(unsigned)set clearStatusBits:(unsigned)clear;
-- (void) setCRC:(unsigned)newCRC;
+- (void) setCRC:(unsigned short)newCRC;
 - (BOOL) isCRCOK;
 - (void) lockControl;
 - (void) unlockControl;

@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	eae.c - EAE instructions code for the PDP-8/E
  *
@@ -133,7 +133,7 @@ VOID i7405 (VOID)				/* MUY			*/
     } else
     	EXECUTION_TIME (74);
     temp = ((ULONG) *p * MQ) + (AC & 07777) ;
-    AC = temp >> 12 ;	/* no overflow into L can occure */
+    AC = (ushort) (temp >> 12);	/* no overflow into L can occure */
     MQ = temp & 07777 ;
     SC = 014 ;
 }
@@ -168,8 +168,8 @@ VOID i7407 (VOID)				/* DVI			*/
     if (AC < *p)			/* Normal divide	*/
     {
 	REG ULONG temp = ((ULONG) AC << 12) | MQ ;
-	MQ = temp / *p ;
-	AC = temp - ((ULONG) *p * MQ) ;
+	MQ = (ushort) (temp / *p);
+	AC = (ushort) (temp - ((ULONG) *p * MQ));
 	SC = 015 ;
 	EXECUTION_TIME (EAE == 'A' ? 74 : 86);
     }
@@ -211,15 +211,25 @@ VOID i7413 (VOID)				/* SHL			*/
     if (++PC & 010000)
 	PC &= 07777 ;
     count = *(base + (IF | PC)) & 037 ;
-    EXECUTION_TIME (29 + 3 * count);	/* A: 2.6 + 0.3 * count; B: 2.9 + 0.3 * count */
+/* 
+ * Don't use the original code: in EAE mode A a SHL 37 causes count == 040 = 32,
+ * and with Intel CPUs in 32-bit mode, no shift takes place at all. With PowerPC
+ * and Intel 64-bit mode, this code works fine. See also ASR and LSR.
+ * Detected with MAINDEC-8E-D0LB-PB KE8-E EAE Instruction Test Part 1.
+ *
+ *  EXECUTION_TIME (29 + 3 * count);	// A: 2.6 + 0.3 * count; B: 2.9 + 0.3 * count
+ *  if (EAE == 'A')
+ *	count++ ;
+ *  if (count)
+ *	temp <<= count ;
+ */
     if (EAE == 'A')
-	count++ ;
-    if (count)
-	temp <<= count ;
+	temp <<= 1 ;
+    temp <<= count ;
     AC = (temp >> 12) & 017777 ;
     MQ = temp & 07777 ;
     SC = (EAE == 'B') ? 037 : 0 ;
-
+    EXECUTION_TIME (29 + 3 * count);	/* A: 2.6 + 0.3 * #shifts; B: 2.9 + 0.3 * #shifts */
 }
 /* -------------------------------------------------------------------- */
 VOID i7415 (VOID)				/* ASR			*/
@@ -227,11 +237,11 @@ VOID i7415 (VOID)				/* ASR			*/
     REG INT count ;
     REG LONG gtf ;
 
-    AC = ((AC & 04000) << 1) | (AC & 07777) ;
+    AC = (ushort) (((AC & 04000) << 1) | (AC & 07777));
     if (++PC & 010000)
 	PC &= 07777 ;
     count = *(base + (IF | PC)) & 037 ;
-    EXECUTION_TIME (29 + 3 * count);	/* A: 2.6 + 0.3 * count; B: 2.9 + 0.3 * count */
+    EXECUTION_TIME (29 + 3 * count);	/* A: 2.6 + 0.3 * #shifts; B: 2.9 + 0.3 * #shifts */
     if (EAE == 'A')
 	count++ ;
     if (count)
@@ -240,16 +250,30 @@ VOID i7415 (VOID)				/* ASR			*/
 	if (AC & 04000)
 	    temp |= 0xff000000 ;
 	gtf = (count < 24) ? (temp & (1l << (count - 1))) : (AC & 04000) ;
-	if (AC & 04000)
+/*
+ * Don't use the original code: in EAE mode A a ASR 37 causes count == 040 = 32,
+ * and with Intel CPUs in 32-bit mode, no shift takes place at all when AC(0) == 0. 
+ * With PowerPC and Intel 64-bit mode, this code works fine. See also SHL and ASR.
+ * Detected with MAINDEC-8E-D0LB-PB KE8-E EAE Instruction Test Part 1.
+ *
+ *	if (AC & 04000)
+ *	{
+ *	    while (count > 8)
+ *	    {
+ *		temp = (temp >> 8) | 0xffff0000 ;
+ *		count -= 8 ;
+ *	    }
+ *	}
+ */
+	while (count > 8)
 	{
-	    while (count > 8)
-	    {
-		temp = (temp >> 8) | 0xffff0000 ;
-		count -= 8 ;
-	    }
+	    temp >>= 8 ;
+	    if (AC & 04000)
+		temp |= 0xffff0000 ;
+	    count -= 8 ;
 	}
 	temp >>= count ;
-	if (temp & 040000000)
+ 	if (temp & 040000000)
 	    temp |= 0100000000 ;
 /*
  *	Note from Bob Supnik at DEC: supnik@human.enet.dec.com
@@ -272,17 +296,32 @@ VOID i7417 (VOID)				/* LSR			*/
     if (++PC & 010000)
 	PC &= 07777 ;
     count = *(base + (IF | PC)) & 037 ;
-    EXECUTION_TIME (29 + 3 * count);	/* A: 2.6 + 0.3 * count; B: 2.9 + 0.3 * count */
-    if (EAE == 'A')
-	count++ ;
+/* 
+ * Don't use the original code: in EAE mode A a LSR 37 causes count == 040 = 32,
+ * and with Intel CPUs in 32-bit mode, no shift takes place at all. With PowerPC
+ * and Intel 64-bit mode, this code works fine. See also SHL and ASR.
+ * Detected with MAINDEC-8E-D0LB-PB KE8-E EAE Instruction Test Part 1.
+ *
+ *  EXECUTION_TIME (29 + 3 * count);	// A: 2.6 + 0.3 * count; B: 2.9 + 0.3 * count
+ *  if (EAE == 'A')
+ *	count++ ;
+ *  AC &= 07777 ;
+ *  temp = ((ULONG) AC << 12) | MQ ;
+ *  if (EAE == 'B' && count)
+ *	GTF = (temp >> (count - 1)) & 1;
+ *  temp >>= count ;
+ */
     AC &= 07777 ;
     temp = ((ULONG) AC << 12) | MQ ;
     if (EAE == 'B' && count)
-	GTF = (temp >> (count - 1)) & 1;
+	GTF = (temp >> (count - 1)) & 1 ;
+    if (EAE == 'A')
+	temp >>= 1 ;
     temp >>= count ;
     AC = (temp >> 12) & 07777 ;
     MQ = temp & 07777 ;
     SC = (EAE == 'B') ? 037 : 0 ;
+    EXECUTION_TIME (29 + 3 * count);	/* A: 2.6 + 0.3 * #shifts; B: 2.9 + 0.3 * #shifts */
 }
 /* -------------------------------------------------------------------- */
 VOID i7421 (VOID)				/* MQL			*/
@@ -370,7 +409,7 @@ VOID i7443 (VOID)
 	temp = MQ + *(base + (DF | addr)) ;
 	temp += ((ULONG) ((AC & 07777)
 			+ *(base + (DF | ((addr+1) & 07777))))) << 12 ;
-	AC = temp >> 12 ;
+	AC = (ushort) (temp >> 12);
 	MQ = temp & 07777 ;
 	EXECUTION_TIME (52);
     }
@@ -425,7 +464,7 @@ unsigned s7451 (VOID)
     if (EAE == 'A')				/* A: SCA NMI		*/
 	return (false);
     else					/* B: DPSZ		*/
-	return (!((AC & 07777) | MQ));
+	return !((AC & 07777) | MQ);
 }
 /* -------------------------------------------------------------------- */
 VOID i7453 (VOID)
@@ -449,7 +488,7 @@ VOID i7453 (VOID)
  *	add link/complement and add link, carry out to link
  */
 	REG ULONG temp = (((ULONG) MQ << 12) | (AC & 07777)) + 1 ;
-	AC = temp >> 12 ;
+	AC = (ushort) (temp >> 12);
 	MQ = temp & 07777 ;
 	EXECUTION_TIME (18);	/* time of DPIC */
     }
@@ -783,7 +822,7 @@ VOID i7573 (VOID)				/* A: SWP SCA SHL	*/
     else
     {
 	REG ULONG temp = (((ULONG) (AC & 07777) << 12) | MQ) + 1 ;
-	AC = temp >> 12 ;
+	AC = (ushort) (temp >> 12);
 	MQ = temp & 07777 ;
 	EXECUTION_TIME (18);
     }

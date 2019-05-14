@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	PreferencesController.h - Controller for the preferences panel
+ *	PreferencesController.h - Controller for the Preferences panel
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -25,7 +25,10 @@
 #define PREF_PANE_EXTENSION	@"prefPane"
 
 
-@interface PreferencesController : NSObject <NSToolbarDelegate>
+@interface PreferencesController : NSObject
+#ifdef __MAC_10_6
+	<NSToolbarDelegate>	// with the 10.6 SDKs, it is a protocol, before it was an interface
+#endif
 {
 @private
 	IBOutlet NSPanel	*prefPanel;

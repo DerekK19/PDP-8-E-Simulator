@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	Unicode.h - Some unicode character constants
+ *	Unicode.h - Some Unicode character constants
  *
  *	This file is part of PDP-8/E Simulator.
  *

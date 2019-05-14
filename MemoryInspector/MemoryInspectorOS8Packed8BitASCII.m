@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspectorOS8Packed8BitASCII.m - OS/8 Packed 8Bit ASCII Memory Inspector
  *
@@ -106,12 +106,12 @@
 	NSAssert ([value count] == WORDS_PER_ROW, @"Invalid number of words to format");
 	NSMutableString *string = [NSMutableString stringWithCapacity:CONTENT_WIDTH];
 	for (i = 0; i < WORDS_PER_ROW; i += 2) {
-		w0 = [[value objectAtIndex:i] intValue];
+		w0 = (unsigned short) [[value objectAtIndex:i] intValue];
 		c = w0 & 0177;
 		if (c < 040 || c >= 0177)
 			c = UNICODE_MIDDLE_DOT;
 		[string appendFormat:@"%C", c];
-		w1 = [[value objectAtIndex:i + 1] intValue];
+		w1 = (unsigned short) [[value objectAtIndex:i + 1] intValue];
 		c = w1 & 0177;
 		if (c < 040 || c >= 0177)
 			c = UNICODE_MIDDLE_DOT;

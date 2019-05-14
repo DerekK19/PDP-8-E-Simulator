@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	CPUMemoryViewController.h - Controller for CPU window memory view
  *
@@ -26,6 +26,9 @@
 
 
 @interface CPUMemoryViewController : NSObject
+#ifdef __MAC_10_6
+	<NSTableViewDelegate, NSTableViewDataSource>
+#endif
 {
 @private
 	IBOutlet CPUMemoryTableView	*memoryView;
@@ -39,6 +42,6 @@
 }
 
 - (IBAction) handleContextMenu:(id)sender;
-- (NSString *) operandInfoAtAddress:(NSInteger)addr;	// private delegate method, declared here to avoid warning
+- (NSString *) operandInfoAtAddress:(int)addr;	// private delegate method, declared here to avoid a warning
 
 @end

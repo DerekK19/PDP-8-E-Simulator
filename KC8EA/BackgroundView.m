@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	BackgroundView.m - NSView for a background image for a window
  *
@@ -40,7 +40,7 @@
 - (void) drawRect:(NSRect)rect
 {
 	[backgroundImage drawInRect:[self bounds] fromRect:NSZeroRect
-                      operation:NSCompositingOperationSourceOver fraction:1];
+		operation:NSCompositeSourceOver fraction:1];
 }
 
 

@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator Source Code
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	RK8Eiot.h - IOTs for the RK8-E plugin
+ *	RK8Eiot.c - IOTs for the RK8-E plug-in
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -41,7 +41,6 @@ void i6741 (void)				/* DSKP		6741	*/
 	[rk8e lockControl];
 	if (pdp8->IOFLAGS & rk8e->ioflag)
 		pdp8->PC++;
-
 	[rk8e unlockControl];
 	EXECUTION_TIME (26);
 }
@@ -49,7 +48,7 @@ void i6741 (void)				/* DSKP		6741	*/
 
 unsigned s6741 (void)				/* DSKP		6741	skiptest */
 {
-	return (int)(pdp8->IOFLAGS & PLUGIN_POINTER(RK8E)->ioflag);
+	return (pdp8->IOFLAGS & PLUGIN_POINTER(RK8E)->ioflag) != 0;
 }
 
 
@@ -139,7 +138,7 @@ void i6743 (void)				/* DLAG		6743	*/
 	rk8e->wordcount = (rk8e->command & COMMAND_HALF_BLOCK) ? 128 : 0;
 	RK05 *pack = rk8e->rk05[(rk8e->command >> 1) & 3];
 	if ((! [pack isWriteProtected] || rk8e->maint) && ! [pack isCalibrating]) {
-		rk8e->block = ((rk8e->command & 1) << 12) | (pdp8->AC & 07777);
+		rk8e->block = (unsigned short) (((rk8e->command & 1) << 12) | (pdp8->AC & 07777));
 		rk8e->crc = rk8e->checkcrc = rk8e->block & 017740;
 		/* cylinder in 16 bit format 000xxxxxxxx00000*/
 	}
@@ -273,7 +272,7 @@ void i6747 (void)				/* DMAN		6747	*/
 			/* combination of 01000 and 00200 where the bit shifted into lower data
 			   buffer is the logical OR of the bits from CRC and surface & sector */
 			rk8e->ldb[0] = ((rk8e->block << 11) | (rk8e->ldb[0] >> 1)) & 07777;
-			rk8e->crc = ((pdp8->AC & 2) << 14) | (rk8e->crc >> 1);
+			rk8e->crc = (unsigned short) (((pdp8->AC & 2) << 14) | (rk8e->crc >> 1));
 			rk8e->block = (rk8e->crc & 017740) | ((rk8e->block >> 1) & 037);
 			if (++rk8e->shifts == 12 && rk8e->ldbfill == 0) {
 				rk8e->ldbfill = 1;
@@ -283,7 +282,7 @@ void i6747 (void)				/* DMAN		6747	*/
 		case 01000 :
 			/* shift CRC to lower data buffer and AC10 to CRC */
 			rk8e->ldb[0] = ((rk8e->crc << 11) | (rk8e->ldb[0] >> 1)) & 07777;
-			rk8e->crc = ((pdp8->AC & 2) << 14) | (rk8e->crc >> 1);
+			rk8e->crc = (unsigned short) (((pdp8->AC & 2) << 14) | (rk8e->crc >> 1));
 			rk8e->block = (rk8e->crc & 017740) | (rk8e->block & 037);
 			if (++rk8e->shifts == 12 && rk8e->ldbfill == 0) {
 				rk8e->ldbfill = 1;
@@ -323,7 +322,7 @@ void i6747 (void)				/* DMAN		6747	*/
 		case 00100 :
 			/* shift AC10 to upper data buffer, buffer should sink in the silo when full */
 			if (rk8e->ldbfill < 4 && rk8e->wordcount < 256) {
-				rk8e->udb = ((pdp8->AC & 2) << 10) | (rk8e->udb >> 1);
+				rk8e->udb = (unsigned short) (((pdp8->AC & 2) << 10) | (rk8e->udb >> 1));
 				if (++rk8e->shifts == 12) {
 					if ((rk8e->command & COMMAND_HALF_BLOCK) && rk8e->wordcount >= 128)
 						rk8e->udb = 0;

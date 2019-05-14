@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	NonWrappingTableView.h - NSTableView without wrap-around editing
+ *	NonWrappingTableView.m - NSTableView without wrap-around editing
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -29,6 +29,19 @@
 
 
 @implementation NonWrappingTableView
+
+
+#if __LP64__
+
+- (void) awakeFromNib
+{
+	/* With 64-bit and Sierra or newer, the animated focus ring produces a lot of problems
+	   in the table view (editing cells without focus ring, slowdown, focus ring jumping to wrong cells etc.),
+	   so we disable the animated focus ring for the complete application. */
+	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NSUseAnimatedFocusRing"];
+}
+
+#endif
 
 
 - (void) textDidEndEditing:(NSNotification *)notification

@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	OctalFormatter.m - Formatter for octal numbers
+ *	OctalFormatter.h - Formatter for octal numbers
  *
  *	This file is part of PDP-8/E Simulator.
  *

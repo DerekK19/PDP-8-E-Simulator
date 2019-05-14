@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	BreakpointController.h - Class for maintaining breakpoints
  *
@@ -25,7 +25,11 @@
 @class BreakpointArray;
 
 
-@interface BreakpointController : NSObject {
+@interface BreakpointController : NSObject
+#ifdef __MAC_10_6
+	<NSTableViewDelegate, NSTableViewDataSource>
+#endif
+{
 @private
 	IBOutlet NSTableView		*tableView;
 	IBOutlet NSButton		*addButton;

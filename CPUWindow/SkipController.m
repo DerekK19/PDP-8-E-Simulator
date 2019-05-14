@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	SkipController.h - Controller for the skip indicator in the CPU window
+ *	SkipController.m - Controller for the skip indicator in the CPU window
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -31,13 +31,16 @@
 #import "eae.h"
 #import "iot.h"
 #import "opr.h"
+#import "utilities.h"
 
 
 #define UPDATE_SKIPINDICATOR_NOTIFICATION	@"updateSkipIndicatorNotification"
 
 
-#define SKIP_IMAGE_NAME				@"skipArrow"
-#define INTERRUPT_IMAGE_NAME			@"interruptArrow"
+#define SKIP_IMAGE				@"skipArrow"
+#define SKIP_IMAGE_DARK				@"skipArrowDark"
+#define INTERRUPT_IMAGE				@"interruptArrow"
+#define INTERRUPT_IMAGE_DARK			@"interruptArrowDark"
 
 
 // Key Value pair for the skiptest dictionary initialization
@@ -81,13 +84,16 @@ typedef unsigned (*PDP8SkiptestFunctionPointer)(void);
 	[defaultCenter addObserver:self selector:@selector(notifySkipIndicator:)
 		name:SF_CHANGED_NOTIFICATION object:nil];	// required for TSC8 ESME
 	[defaultCenter addObserver:self selector:@selector(notifyUpdateSkipIndicator:)
-		name:UPDATE_SKIPINDICATOR_NOTIFICATION object:nil]; 
-	/* PDP-8 notifications that probably can't change the skip/interrupt indicator:
-	   SR_CHANGED_NOTIFICATION
-	   SC_CHANGED_NOTIFICATION
-	   UB_CHANGED_NOTIFICATION
-	   SF_CHANGED_NOTIFICATION
-	*/
+		name:UPDATE_SKIPINDICATOR_NOTIFICATION object:nil];
+	// PDP-8 notifications that probably can't change the skip/interrupt indicator:
+	// SR_CHANGED_NOTIFICATION
+	// SC_CHANGED_NOTIFICATION
+	// UB_CHANGED_NOTIFICATION
+	// SF_CHANGED_NOTIFICATION
+#if __LP64__
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
+		selector:@selector(notifyUpdateSkipIndicator:) name:THEME_CHANGED_NOTIFICATION object:nil];
+#endif
 	dictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
 	/* MRI skip instructions */
 		KV(i2000, s2000), KV(i2200, s2200), KV(i2400, s2400), KV(i2410, s2410),
@@ -131,9 +137,9 @@ typedef unsigned (*PDP8SkiptestFunctionPointer)(void);
 
 
 - (void) notifySkipIndicator:(NSNotification *)notification
+/* coalesc the multiple ..._CHANGED_NOTIFICATIONS to one UPDATE_SKIPINDICATOR_NOTIFICATION
+   to avoid time consuming repeated updates */
 {
-	/* coalesc the multiple ..._CHANGED_NOTIFICATIONS to one UPDATE_SKIPINDICATOR_NOTIFICATION
-	   to avoid time consuming repeated updates */
 	// NSLog (@"notifySkipIndicator");
 	[[NSNotificationQueue defaultQueue] enqueueNotification:
 		[NSNotification notificationWithName:UPDATE_SKIPINDICATOR_NOTIFICATION object:self]
@@ -147,15 +153,14 @@ typedef unsigned (*PDP8SkiptestFunctionPointer)(void);
 	NSAssert (! [pdp8 isGoing], @"PDP-8 is running");
 	if ([pdp8 getEnable] && ([pdp8 getIOFlagBits:~0] & [pdp8 getInterruptMaskBits:~0]) &&
 		! ([pdp8 getDelay] || [pdp8 getInhibit]))
-		[view setImageNamed:INTERRUPT_IMAGE_NAME toolTip:
-			NSLocalizedString(@"An interrupt is pending", @"")];
+		[view setImageNamed:isMojaveDarkModeActive() ? INTERRUPT_IMAGE_DARK : INTERRUPT_IMAGE
+			toolTip:NSLocalizedString(@"An interrupt is pending", @"")];
 	else {
-		NSValue *skipfunc = [dictionary objectForKey:
-			[NSValue valueWithPointer:[pdp8 getNextInstruction]]];
+		NSValue *skipfunc = [dictionary objectForKey:[NSValue valueWithPointer:[pdp8 getNextInstruction]]];
 		if (skipfunc) {
-			if (((PDP8SkiptestFunctionPointer)[skipfunc pointerValue])())
-				[view setImageNamed:SKIP_IMAGE_NAME toolTip:
-					NSLocalizedString(@"The next instruction will be skipped", @"")];
+			if (((PDP8SkiptestFunctionPointer) [skipfunc pointerValue])())
+				[view setImageNamed:isMojaveDarkModeActive() ? SKIP_IMAGE_DARK : SKIP_IMAGE
+					toolTip:NSLocalizedString(@"The next instruction will be skipped", @"")];
 			else
 				[view setImageNamed:nil toolTip:nil];
 		} else

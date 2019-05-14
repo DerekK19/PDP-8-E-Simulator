@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	PluginManager.m - Manager for I/O Device Plugins
+ *	PluginManager.m - Manager for I/O device plug-ins
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -39,7 +39,7 @@
 
 #define PLUGIN_EXTENSION		@"pdp8Plugin"
 #define PLUGIN_APPSUPPORT_PATH		@"Application Support/PDP-8:E Simulator"
-#define PLUGIN_NEXTTOAPP_PATH		@"../PDP-8:E Simulator Plugins"
+#define PLUGIN_NEXTTOAPP_PATH		@"../PDP-8:E Simulator PlugIns"
 
 
 @implementation PluginManager
@@ -48,49 +48,54 @@
 - (BOOL) canInstallIOTs:(NSArray *)mnemonics withIOAddresses:(NSArray *)ioAddresses
 	noLoadMessage:(NSString *)noLoadMessage
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-security"
+
 	NSString *ioAddress;
 
 	if (! mnemonics || ! [mnemonics isKindOfClass:[NSArray class]]) {
-		[self noLoadAlertWithMessage:NSLocalizedString(@"Invalid IOT information in the I/O description of the plug-in", @"")
-				      okText: noLoadMessage];
+		NSRunAlertPanel (NSLocalizedString(
+			@"Invalid IOT information in the I/O description of the plug-in", @""),
+			noLoadMessage, nil, nil, nil);
 		return NO;
 	}
 	if (! ioAddresses || ! [ioAddresses isKindOfClass:[NSArray class]]) {
-		[self noLoadAlertWithMessage:NSLocalizedString(@"Invalid I/O address information in the I/O description of the plug-in.", @"")
-				      okText: noLoadMessage];
+		NSRunAlertPanel (NSLocalizedString(
+			@"Invalid I/O address information in the I/O description of the plug-in.", @""),
+			noLoadMessage, nil, nil, nil);
 		return NO;
 	}
 	if ([mnemonics count] != 8 * [ioAddresses count]) {
-		[self noLoadAlertWithMessage:NSLocalizedString(@"The number of IOTs does not match number of I/O addresses in the I/O description of the plug-in.", @"")
-				      okText: noLoadMessage];
-		return NO;
+		NSRunAlertPanel (NSLocalizedString(
+			@"The number of IOTs does not match number of I/O addresses in the I/O description "
+			"of the plug-in.", @""), noLoadMessage, nil, nil, nil);
+		return NO;		
 	}
 	NSEnumerator *enumerator = [ioAddresses objectEnumerator];
 	while ((ioAddress = [enumerator nextObject])) {
 		NSNumber *number;
 		if (! [[OctalFormatter formatterWithBitMask:077 wildcardAllowed:NO] getObjectValue:&number
 			forString:ioAddress errorDescription:nil]) {
-			[self noLoadAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Invalid I/O address %C%@%C in the I/O description of the plug-in.", @""), UNICODE_LEFT_DOUBLEQUOTE, ioAddress, UNICODE_RIGHT_DOUBLEQUOTE]
-					      okText: noLoadMessage];
+			NSRunAlertPanel ([NSString stringWithFormat:NSLocalizedString(
+				@"Invalid I/O address %C%@%C in the I/O description of the plug-in.",
+				@""), UNICODE_LEFT_DOUBLEQUOTE, ioAddress, UNICODE_RIGHT_DOUBLEQUOTE],
+				noLoadMessage, nil, nil, nil);
 			return NO;
 		}
 		int addr = [number intValue];
 		if (! [pdp8 isIOAddressAvailable:addr]) {
-			[self noLoadAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The I/O address %2.2o requested by the plug-in is already in use.", @""), addr]
-					      okText: noLoadMessage];
+			NSRunAlertPanel ([NSString stringWithFormat:NSLocalizedString(
+				@"The I/O address %2.2o requested by the plug-in is already in use.", @""),
+				addr], noLoadMessage, nil, nil, nil);
 			return NO;
 		}
 	}
 	return YES;
+	
+#pragma clang diagnostic pop
 }
 
-- (void) noLoadAlertWithMessage:(NSString *)message okText:(NSString *)okText
-{
-	NSAlert *alert = [[NSAlert alloc] init];
-	alert.messageText = okText;
-	alert.informativeText = message;
-	[alert runModal];
-}
+
 
 - (void) installIOTs:(NSArray *)mnemonics withAddresses:(NSArray *)ioAddresses forPlugin:(PDP8Plugin *)plugin
 {
@@ -103,8 +108,8 @@
 		NSNumber *number;
 		[[OctalFormatter formatterWithBitMask:077 wildcardAllowed:NO] getObjectValue:&number
 			forString:ioAddress errorDescription:nil];
-		int addr = [number intValue];
-		[pdp8 setPluginPointer:(__bridge void *)(plugin) forIOAddress:addr];
+		unsigned short addr = (unsigned short) [number intValue];
+		[pdp8 setPluginPointer:plugin forIOAddress:addr];
 		NSArray *iots = [plugin iotsForAddress:addr];
 		if (iots) {
 			NSArray *skiptests = [plugin skiptestsForAddress:addr];
@@ -126,17 +131,23 @@
 
 - (BOOL) canInstallIOFlags:(NSArray *)ioFlags noLoadMessage:(NSString *)noLoadMessage
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-security"
+
 	if (! ioFlags || ! [ioFlags isKindOfClass:[NSArray class]]) {
-		[self noLoadAlertWithMessage:NSLocalizedString(@"Invalid I/O flag information in the I/O description of the plug-in.", @"")
-				      okText:noLoadMessage];
+		NSRunAlertPanel (NSLocalizedString(
+			@"Invalid I/O flag information in the I/O description of the plug-in.", @""),
+			noLoadMessage, nil, nil, nil);
 		return NO;
 	}
 	if ([ioFlags count] > [ioFlagController numberOfAvailableFlags]) {
-		[self noLoadAlertWithMessage:NSLocalizedString(@"There are not enough I/O flags available.", @"")
-				      okText:noLoadMessage];
+		NSRunAlertPanel (NSLocalizedString(@"There are not enough I/O flags available.", @""),
+			noLoadMessage, nil, nil, nil);
 		return NO;
 	}
 	return YES;
+
+#pragma clang diagnostic pop
 }
 
 
@@ -169,12 +180,19 @@
 
 - (PDP8Plugin *) loadPlugin:(NSBundle *)bundle
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-security"
+
 	PDP8Plugin *plugin = nil;
-	Class principalClass = [bundle principalClass];
+	Class principalClass = NSClassFromString([bundle objectForInfoDictionaryKey:@"NSPrincipalClass"]);
+	if (principalClass == nil)
+		principalClass = [bundle principalClass];
+	// else
+	//	principalClass is already loaded, e. g. for ASR 33 Auxiliary Teletype from the ASR 33 Console Teletype
 	if (principalClass && [principalClass isSubclassOfClass:[PDP8Plugin class]]) {
 		plugin = [[principalClass alloc] init];
 		if (plugin) {
-			[plugin apiVersion];	// plugin must overrides this method, otherwise we crash
+			[plugin apiVersion];	// plug-in must override this method, otherwise we crash
 			[plugin setBundle:bundle];
 			[plugin setPDP8:pdp8];
 			NSDictionary *ioInfo = [plugin ioInformation];
@@ -192,27 +210,33 @@
 				[plugin pluginDidLoad];
 				[[HelpMenuManager sharedHelpMenuManager] addBundleHelp:bundle];
 			} else {
+				[plugin release];
 				// unload is a 10.5 method (does nothing on 10.4), but we use the 10.4 SDK
 				// so use performSelector: to avoid unknown message warning
 				[bundle performSelector:@selector(unload)];
 				return nil;
 			}
 		} else {
-			[self noLoadAlertWithMessage:NSLocalizedString(@"Cannot instantiate the plug-in.", @"")
-					      okText:[self noLoadMessage:[[bundle bundlePath] lastPathComponent]]];
+			NSRunAlertPanel (NSLocalizedString(@"Cannot instantiate the plug-in.", @""),
+				[self noLoadMessage:[[bundle bundlePath] lastPathComponent]], nil, nil, nil);
 		}
 	} else {
-		[self noLoadAlertWithMessage:principalClass ?
-		 NSLocalizedString(@"The plug-in has an invalid principal class.", @"") :
-		 NSLocalizedString(@"Cannot determine the principal class of the plug-in.", @"")
-				      okText:[self noLoadMessage:[[bundle bundlePath] lastPathComponent]]];
+		NSRunAlertPanel (principalClass ?
+			NSLocalizedString(@"The plug-in has an invalid principal class.", @"") :
+			NSLocalizedString(@"Cannot determine the principal class of the plug-in.", @""),
+			[self noLoadMessage:[[bundle bundlePath] lastPathComponent]], nil, nil, nil);
 	}
-	return plugin;
+	return [plugin autorelease];
+
+#pragma clang diagnostic pop
 }
 
 
 - (NSArray *) loadAllPlugins
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-security"
+
 	NSEnumerator	*searchPathEnum;
 	NSString	*path;
 	NSString	*bundleName;
@@ -242,18 +266,21 @@
 					if (plugin)
 						[plugins addObject:plugin];
 				} else
-					[self noLoadAlertWithMessage:NSLocalizedString(@"Loading of the plug-in bundle failed.", @"")
-							      okText:[self noLoadMessage:bundleName]];
+					NSRunAlertPanel (
+						NSLocalizedString(@"Loading of the plug-in bundle failed.",
+						@""), [self noLoadMessage:bundleName], nil, nil, nil);
 			}
 		}
 	}
 	return plugins;
+
+#pragma clang diagnostic pop
 }
 
 
 - (void) notifyApplicationWillFinishLaunching:(NSNotification *)notification
 {
-	pluginInstances = [self loadAllPlugins];
+	pluginInstances = [[self loadAllPlugins] retain];
 }
 
 

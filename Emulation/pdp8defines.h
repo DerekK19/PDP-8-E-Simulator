@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	pdp8defines.h - #defines making the PDP8 class from 
  *			PDP8.h compatible to Bill Haygoods pdp8 

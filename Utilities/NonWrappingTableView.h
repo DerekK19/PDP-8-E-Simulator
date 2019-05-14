@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	NonWrappingTableView.h - NSTableView without wrap-around editing
  *
@@ -25,6 +25,7 @@
 @interface NonWrappingTableView : NSTableView
 {
 }
+
 @end
 
 

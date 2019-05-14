@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	IOFlagController.h - Controller for the I/O flags table view in the CPU window
  *
@@ -26,6 +26,9 @@
 
 
 @interface IOFlagController : NSObject
+#ifdef __MAC_10_6
+	<NSTableViewDelegate, NSTableViewDataSource>
+#endif
 {
 @private
 	IBOutlet NSTableView	*ioFlagsView;

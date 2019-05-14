@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	RK05Controller.h - Controller for RK05 view
  *
@@ -25,7 +25,8 @@
 @class RK05;
 
 
-@interface RK05Controller : NSObject <NSCoding, FileDropControlTarget> {
+@interface RK05Controller : NSObject <NSCoding, FileDropControlTarget>
+{
 @private
 	IBOutlet NSButton	*mountUnmountButton;
 	IBOutlet NSButton	*writeProtectCheckbox;
@@ -36,6 +37,5 @@
 
 - (IBAction) mountUnmountClicked:(id)sender;
 - (IBAction) writeProtectClicked:(id)sender;
-- (void) loadCoder:(NSCoder *)coder;
 
 @end

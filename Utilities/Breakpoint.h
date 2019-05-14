@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	Breakpoint.h - Class for a single breakpoint
  *
@@ -41,7 +41,7 @@
 - (Breakpoint *) initWithIdentifier:(unsigned)ident value:(unsigned)val;
 - (unsigned) identifier;
 - (unsigned) value;
-- (void) setUnsignedValue:(unsigned)val;
+- (void) setValue:(unsigned)val;
 - (NSComparisonResult) compareAddress:(Breakpoint *)breakpoint;
 
 @end

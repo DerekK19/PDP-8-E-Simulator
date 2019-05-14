@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	BootstrapPanelController.h - Controller for the bootstrap panel
  *
@@ -31,6 +31,7 @@
 	IBOutlet NSMatrix	*loaderRadioButtons;
 	IBOutlet NSButton	*adjustPCCheckbox;
 	IBOutlet NSStepper	*ifStepper;
+	IBOutlet NSImageView	*bracketView;
 	IBOutlet PDP8		*pdp8;
 }
 

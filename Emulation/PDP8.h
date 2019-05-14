@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	PDP8.h - The PDP-8/E Emulator Class
  *
@@ -55,6 +55,8 @@
 
 #define PDP8_FIELDSIZE	0010000			/* size of a 4K PDP-8 memory field */
 #define PDP8_MEMSIZE	0100000			/* maximal PDP-8 memory size is 32K */
+#define PDP8_PAGESIZE	0200			/* size of a 128 words memory page */
+
 #define PDP8_IOADDRS	0100			/* number of I/O addresses: 6xx? */
 
 #define EAE_MODE_A	'A'			/* values for pdp8->eaeMode */
@@ -94,7 +96,7 @@ typedef struct {
 	ushort	eriot;		/* last instruction (IOT, JMP, JMS) that caused an user mode trap */
 	ushort	ertb;		/* address of last JMP or JMS that caused an user mode trap */
 	ushort	ecdf;		/* set when a CDF is executed in user mode, cleared by ECDF or ESME */
-	ushort	esmeEnabled;	/* TSC8-75 supports the ESME mode, i. e. the IOT 6365 */
+	BOOL	esmeEnabled;	/* TSC8-75 supports the ESME mode, i. e. the IOT 6365 */
 }	TSC8_75;
 
 
@@ -106,7 +108,7 @@ typedef struct {
 				/* implementing the PDP-8 instructions can inspect this */
 	ulong	executionTime;	/* every PDP-8 instruction must add to this value the execution */
 				/* time (in 0.1 microseconds) of the instruction */
-				/* for IOTs of I/O devices implemented by plugins these are: */
+				/* for IOTs of I/O devices implemented by plug-ins these are: */
 				/* 12 (1.2 microseconds) for IOTs of devices directly attached to */
 				/* the OMNIBUS; */
 				/* for devices attached via the KA8-E Positive I/O Bus Interface: */
@@ -118,11 +120,12 @@ typedef struct {
 	uint64_t absoluteTime;	/* Mach kernel absolut time corresponding to PDP-8 executionTime */
 	int	goSpeed;	/* GO_AS_FAST_AS_POSSIBLE, GO_WITH_PDP8_SPEED, GO_WITH_PDP8_SPEED_PRECISE */
 	ulong	usecTraceDelay;	/* delay (in microseconds) between two instructions in trace mode */
-	void	*pluginPointer[PDP8_IOADDRS];	/* for each I/O address, a pointer pointing to the plugin */
+	void	*pluginPointer[PDP8_IOADDRS];	/* for each I/O address, a pointer pointing to the plug-in */
 }	STATE;
 
 
-@interface PDP8 : NSObject <NSCoding> {
+@interface PDP8 : NSObject <NSCoding>
+{
 @public
 /* The attributes are public, so the C functions implementing the PDP-8 instructions can
    access them directly. No other Cocoa code should use them directly. To ensure this,
@@ -171,7 +174,7 @@ typedef struct {
 - (void) mountEAE:(BOOL)mount;		// mount or unmount
 - (BOOL) hasEAE;
 
-- (void) mountKM8E:(BOOL)mount memorySize:(unsigned)memsize timesharingEnabled:(BOOL)timesharing;
+- (void) mountKM8E:(BOOL)mount memorySize:(unsigned short)memsize timesharingEnabled:(BOOL)timesharing;
 - (BOOL) hasKM8E;
 - (BOOL) isTimesharingEnabled;
 - (ushort) memorySize;			// memory size in 12-bit words, e. g. 010000 for a 4K machine
@@ -253,8 +256,8 @@ typedef struct {
 - (ushort) memoryAtNext:(int)address;
 - (ushort *) directMemoryAccess;	// pointer to the PDP-8 memory, only for Data Break I/O devices
 - (void) directMemoryWriteFinished;	// call this method when the memory modifying Data Break is finished
-- (void) setMemoryAtAddress:(int)address toValue:(int)value;
-- (void) setMemoryAtNextAddress:(int)address toValue:(int)value;
+- (void) setMemoryAtAddress:(int)address toValue:(ushort)value;
+- (void) setMemoryAtNextAddress:(int)address toValue:(ushort)value;
 - (void) setMemoryAtAddress:(int)address toValues:(NSArray *)values withMask:(BOOL)withMask;
 - (void) clearMemory;
 
@@ -284,7 +287,7 @@ typedef struct {
 extern PDP8	*pdp8;
 #define EXECUTION_TIME(time)	(pdp8->_state.executionTime += (time))
 #if defined(NS_BLOCK_ASSERTIONS)
-#define PLUGIN_POINTER(plugin)	((__bridge plugin *) pdp8->_state.pluginPointer[(pdp8->_state.currInst >> 3) & 077])
+#define PLUGIN_POINTER(plugin)	((plugin *) pdp8->_state.pluginPointer[(pdp8->_state.currInst >> 3) & 077])
 #else
 #define PLUGIN_POINTER(plugin)	((plugin *) [pdp8 pluginPointer:[plugin class]])
 #endif

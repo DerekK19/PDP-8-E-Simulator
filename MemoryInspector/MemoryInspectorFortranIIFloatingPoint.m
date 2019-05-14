@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspectorFortranIIFloatingPoint.m - Fortran II Floating Point Memory Inspector
  *
@@ -119,9 +119,10 @@
 		return FALSE;
 	unsigned long long mantissa = [f mantissa];
 	*value = [NSArray arrayWithObjects:
-		[NSNumber numberWithInt:(int)(077770000 | ([f negative] ? 04000 : 0) | ([f exponent] << 3) | (unsigned long) (mantissa >> 61))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) ((mantissa >> 49) & 07777))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) ((mantissa >> 37) & 07777))],
+		[NSNumber numberWithInt:077770000 |
+			([f negative] ? 04000 : 0) | ([f exponent] << 3) | (unsigned) (mantissa >> 61)],
+		[NSNumber numberWithInt:077770000 | (unsigned) ((mantissa >> 49) & 07777)],
+		[NSNumber numberWithInt:077770000 | (unsigned) ((mantissa >> 37) & 07777)],
 		nil];
 	return TRUE;
 }

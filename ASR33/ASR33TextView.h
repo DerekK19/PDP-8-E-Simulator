@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	ASR33TextView.h - NSTextView for the ASR 33 Teletype
  *
@@ -25,7 +25,8 @@
 @class TypeaheadBuffer;
 
 
-@interface ASR33TextView : NSTextView {
+@interface ASR33TextView : NSTextView
+{
 @private
 	IBOutlet TypeaheadBuffer	*typeaheadBuffer;
 }

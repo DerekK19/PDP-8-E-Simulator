@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	NSFileManager+Additions.h - Additional functions for file management
  *
@@ -24,7 +24,7 @@
 
 @interface NSFileManager (Additions)
 
-- (BOOL) urlRef:(CFURLRef *)urlRef forPath:(NSString *)path;
+- (BOOL) fsRef:(FSRef *)fsRef forPath:(NSString *)path;
 - (NSString *) pathResolved:(NSString *)path;		// resolved path, returns nil on failure
 - (BOOL) isAliasPath:(NSString *)inPath;		
 - (NSString *) resolveAliasPath:(NSString *)path;	// resolved path, returns original path on failure

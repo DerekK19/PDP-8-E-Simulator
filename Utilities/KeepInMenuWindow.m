@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	KeepInMenuWindow.m - Windows that are kept in the window menu when hidden
  *
@@ -25,37 +25,35 @@
 #import <Cocoa/Cocoa.h>
 
 #import "KeepInMenuWindow.h"
-#import "Unicode.h"
+#import "NSWindow+VisibilityDefaults.h"
+#import "Utilities.h"
 
 
 @implementation KeepInMenuWindow
 
 
-#define WINDOW_VISIBILITY_DEFAULTS_KEY_SUFFIX	@" Visible"	// with leading space
+#ifdef __MAC_10_10
 
-
-- (void) saveVisibilityInDefaults
+- (id) initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style
+	backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
+// This init method avoids the High Sierra and Mojave console warning
+// *** WARNING: Textured window <KeepInMenuWindow: 0x7fb060899bd0> is getting an implicitly transparent titlebar.
+// This will break when linking against newer SDKs. Use NSWindow's -titlebarAppearsTransparent=YES instead.
 {
-	NSString *frameAutosaveName = [self frameAutosaveName];
-	if (frameAutosaveName)
-		[[NSUserDefaults standardUserDefaults] setBool:[self isVisible] forKey:
-			[frameAutosaveName stringByAppendingString:WINDOW_VISIBILITY_DEFAULTS_KEY_SUFFIX]];
+	self = [super initWithContentRect:contentRect styleMask:(style & ~NSWindowStyleMaskTexturedBackground)
+		backing:bufferingType defer:flag];
+	if (style & NSWindowStyleMaskTexturedBackground) {
+		[self setTitlebarAppearsTransparent:YES];
+		[self setStyleMask:style];
+	}
+	// disable full screen and tabbing (automatically enabled with Sierra and newer)
+	[self setCollectionBehavior:[self collectionBehavior] | NSWindowCollectionBehaviorFullScreenNone];
+	if (runningOnSierraOrNewer())
+		[NSWindow setAllowsAutomaticWindowTabbing:NO];
+	return self;
 }
 
-
-- (BOOL) getVisibilityFromDefaults
-{
-	NSNumber *visible = nil;
-	NSString *frameAutosaveName = [self frameAutosaveName];
-	if (frameAutosaveName)
-		visible = [[NSUserDefaults standardUserDefaults] objectForKey:
-			[frameAutosaveName stringByAppendingString:WINDOW_VISIBILITY_DEFAULTS_KEY_SUFFIX]];
-	else
-		NSLog (@"Missing autosave name for window %C%@%C",
-			UNICODE_LEFT_DOUBLEQUOTE, [self title], UNICODE_RIGHT_DOUBLEQUOTE);
-	// check existance of the key to make all windows visible at the very first launch of the simulator
-	return frameAutosaveName == nil || visible == nil || [visible boolValue];
-}
+#endif
 
 
 - (BOOL) windowShouldClose:(NSWindow *)window
@@ -65,7 +63,7 @@
 	if (delegate == nil || ! [delegate respondsToSelector:@selector(windowShouldClose:)] ||
 		[delegate windowShouldClose:self]) {
 		[window close];
-		[self saveVisibilityInDefaults];
+		[self saveVisibilityInDefaults:NO];
 		[NSApp addWindowsItem:window title:[window title] filename:NO];
 	}
 	return NO;
@@ -74,9 +72,11 @@
 
 - (void) makeKeyAndOrderFront:(id)sender
 {
+	Boolean alreadyVisible = [self isVisible];
 	[super makeKeyAndOrderFront:sender];
-	[super makeFirstResponder:self];
-	[self saveVisibilityInDefaults];
+	if (! alreadyVisible)
+		[self makeFirstResponder:[self initialFirstResponder]];
+	[self saveVisibilityInDefaults:NO];
 }
 
 
@@ -86,7 +86,8 @@
 		[self orderFront:sender];
 	else
 		[NSApp addWindowsItem:self title:[self title] filename:NO];
-	[self saveVisibilityInDefaults];
+	[self makeFirstResponder:[self initialFirstResponder]];
+	[self saveVisibilityInDefaults:NO];
 }
 
 
@@ -96,7 +97,8 @@
 		[self orderBack:sender];
 	else
 		[NSApp addWindowsItem:self title:[self title] filename:NO];
-	[self saveVisibilityInDefaults];
+	[self makeFirstResponder:[self initialFirstResponder]];
+	[self saveVisibilityInDefaults:NO];
 }
 
 

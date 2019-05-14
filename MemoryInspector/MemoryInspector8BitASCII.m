@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspector8BitASCII.m - 8-Bit ASCII Memory Inspector
  *
@@ -105,7 +105,7 @@
 	NSMutableString *string = [NSMutableString stringWithCapacity:4];
 	int i;
 	for (i = 0; i < WORDS_PER_ROW; i++) {
-		unsigned short c = [[value objectAtIndex:i] intValue];
+		unsigned short c = (unsigned short) [[value objectAtIndex:i] intValue];
 		c &= ~0200;	// ignore parity bit
 		if (c < 040 || 0177 <= c)
 			c = UNICODE_MIDDLE_DOT;

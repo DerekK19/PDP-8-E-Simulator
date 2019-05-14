@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	mri.c - MRI instructions code for the PDP-8/E
  *
@@ -145,7 +145,7 @@ unsigned s2000 (VOID)
     REG UWORD *p = base + (IF | (base[IF | PC] & 0177));
     /* Don´t use INST but pdp8.mem[pdp8.IF | pdp8.PC] because
        state.currInst is not set up for skip tests */
-    return (!((*p + 1) & 07777));
+    return ! ((*p + 1) & 07777);
 }
 /* -------------------------------------------------------------------- */
 VOID i2200 (VOID)
@@ -158,7 +158,7 @@ VOID i2200 (VOID)
 unsigned s2200 (VOID)
 {
     REG UWORD *p = base + (IF | (PC & 07600) | (base[IF | PC] & 0177)) ;
-    return (!((*p + 1) & 07777));
+    return ! ((*p + 1) & 07777);
 }
 /* -------------------------------------------------------------------- */
 VOID i2400 (VOID)
@@ -177,7 +177,7 @@ unsigned s2400 (VOID)
 	REG UWORD addr = base[IF | (base[IF | PC] & 0177)];
 	REG UWORD *p = base + (DF | addr);
 
-	return (! ((*p + 1) & 07777));
+	return ! ((*p + 1) & 07777);
 }
 /* -------------------------------------------------------------------- */
 VOID i2410 (VOID)
@@ -200,7 +200,7 @@ unsigned s2410 (VOID)
     
     pp = base + (DF | ((*p + 1) & 07777)) ;
     inc = (pp == p) ? 1 : 0;
-    return (! ((*pp + 1 + inc) & 07777));
+    return ! ((*pp + 1 + inc) & 07777);
 }
 /* -------------------------------------------------------------------- */
 VOID i2600 (VOID)
@@ -219,7 +219,7 @@ unsigned s2600 (VOID)
     REG UWORD addr = base[IF | (PC & 07600) | (base[IF | PC] & 0177)];
     REG UWORD *p = base + (DF | addr);
  
-    return (! ((*p + 1) & 07777));
+    return ! ((*p + 1) & 07777);
 }
 /* -------------------------------------------------------------------- */
 VOID i2610 (VOID)
@@ -249,7 +249,7 @@ unsigned s2610 (VOID)
     	pp = base + (DF | *p) ; 
     	inc = 0;
     }
-    return (! ((*pp + 1 + inc) & 07777));
+    return ! ((*pp + 1 + inc) & 07777);
 }
 /* -------------------------------------------------------------------- */
 VOID i3000 (VOID)

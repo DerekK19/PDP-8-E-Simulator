@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	ASR33WindowController.h - ASR 33 Teletype Window Controller
  *
@@ -21,24 +21,22 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Cocoa/Cocoa.h>
 
-@class ASR33, PaperTapeController, ASR33TextView, RegisterFormCell, KeepInMenuWindow;
+@class ASR33, PaperTapeController, ASR33TextView, RegisterTextField, KeepInMenuWindow;
 
 
-@interface ASR33WindowController : NSObject <NSToolbarDelegate>
+@interface ASR33WindowController : NSObject
+#ifdef __MAC_10_6
+	<NSWindowDelegate>	// with the 10.6 SDKs, it is a protocol, before it was an interface
+#endif
 {
 @private
 	IBOutlet ASR33			*asr33;
 	IBOutlet KeepInMenuWindow	*window;
-	IBOutlet NSView			*ttyToolbarView;
-	IBOutlet NSView			*readerToolbarView;
-	IBOutlet NSView			*punchToolbarView;
 	IBOutlet NSSegmentedControl	*localOnline;
-	IBOutlet RegisterFormCell	*kbb;
-	IBOutlet RegisterFormCell	*tto;
-	IBOutlet PaperTapeController	*readerController;
-	IBOutlet PaperTapeController	*punchController;
+	IBOutlet NSButton		*flushTypeaheadBuffer;
+	IBOutlet RegisterTextField	*kbb;
+	IBOutlet RegisterTextField	*tto;
 }
 
 - (IBAction) localOnlineClicked:(id)sender;

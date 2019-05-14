@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspectorFPP8AEPFloatingPoint.m - FPP8-A EP Floating Point Memory Inspector
  *
@@ -122,11 +122,12 @@
 	unsigned long long mantissa = [f mantissa];
 	*value = [NSArray arrayWithObjects:
 		[NSNumber numberWithInt:077770000 | [f exponent]],
-		[NSNumber numberWithInt:(int)(077770000 | ([f negative] ? 04000 : 0) | (unsigned long) (mantissa >> 53))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) ((mantissa >> 41) & 07777))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) ((mantissa >> 29) & 07777))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) ((mantissa >> 17) & 07777))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) ((mantissa >> 5) & 07777))],
+		[NSNumber numberWithInt:
+			077770000 | ([f negative] ? 04000 : 0) | (unsigned) (mantissa >> 53)],
+		[NSNumber numberWithInt:077770000 | (unsigned) ((mantissa >> 41) & 07777)],
+		[NSNumber numberWithInt:077770000 | (unsigned) ((mantissa >> 29) & 07777)],
+		[NSNumber numberWithInt:077770000 | (unsigned) ((mantissa >> 17) & 07777)],
+		[NSNumber numberWithInt:077770000 | (unsigned) ((mantissa >> 5) & 07777)],
 		nil];
 	return TRUE;
 }

@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	PluginAPI.h - Plugin API Definitions for PDP-8/E I/O Device Plugins
+ *	PluginAPI.h - Plug-in API definitions for PDP-8/E I/O device plug-ins
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -24,7 +24,8 @@
 
 #define PLUGIN_API_VERSION_0		0
 #define CURRENT_PLUGIN_API_VERSION	PLUGIN_API_VERSION_0	// see apiVersion method, below
-#define API_VERSION			- (unsigned) apiVersion {			\
+#define API_VERSION			- (unsigned) apiVersion				\
+					{						\
 						LOG_ASSERTING ();			\
 						return CURRENT_PLUGIN_API_VERSION;	\
 					}
@@ -37,9 +38,9 @@
 #define IO_INFO_IOTS_KEY		@"iots"		// an array of IOT mnemonics in the plist
 							
 
-/* Notification that is posted after all plugins are loaded. Plugins are loaded on the
+/* Notification that is posted after all plug-ins are loaded. Plug-ins are loaded on the
    NSApplicationWillFinishLaunchingNotification, then on the NSApplicationDidFinishLaunchingNotification,
-   the PLUGINS_LOADED_NOTIFICATION is posted. Use this notification e. g. to make plugin windows visible
+   the PLUGINS_LOADED_NOTIFICATION is posted. Use this notification e. g. to make plug-in windows visible
    to avoid screen flicker. */
 #define PLUGINS_LOADED_NOTIFICATION	@"PluginsLoadedNotification"
 
@@ -53,25 +54,23 @@
 	NSBundle	*bundle;
 @protected
 	PDP8		*pdp8;
-    NSArray     *topLevelObjects;
-
 }
 
-- (void) setPDP8:(PDP8 *)p8;		// gives the plugin a pointer to the global PDP-8 object
+- (void) setPDP8:(PDP8 *)p8;		// gives the plug-in a pointer to the global PDP-8 object
 - (unsigned) apiVersion;		// get the API compiletime version, you must define this
 					// method in your implementation with the API_VERSION macro, above
-- (NSBundle *) bundle;			// returns the plugin bundle private variable
-- (void) setBundle:(NSBundle *)bndl;	// sets the plugin bundle private variable
-- (NSString *) pluginName;		// returns the plugin name, i. e. file system name of the bundle
-- (void *) pluginPointer;		// returns a pointer of the plugin instance that can be accessed
+- (NSBundle *) bundle;			// returns the plug-in bundle private variable
+- (void) setBundle:(NSBundle *)bndl;	// sets the plug-in bundle private variable
+- (NSString *) pluginName;		// returns the plug-in name, i. e. file system name of the bundle
+- (void *) pluginPointer;		// returns a pointer of the plug-in instance that can be accessed
 					// by the IOT functions via the PLUGIN_POINTER macro from pdp8.h
-					// useful for multiinstance plugins to access the correct instance
+					// useful for multiinstance plug-ins to access the correct instance
 - (NSString *) ioInformationPlistName;	// returns the name (in the localizable resources directory)
 					// for the property list that contains the I/O flag and IOT info
 - (NSDictionary *) ioInformation;	// returns a dictionary with information about I/O flags and IOTs
-- (NSArray *) iotsForAddress:(int)ioAddress;
+- (NSArray *) iotsForAddress:(unsigned short)ioAddress;
 					// get 8 IOTs for an I/O address (nil for unused)
-- (NSArray *) skiptestsForAddress:(int)ioAddress;
+- (NSArray *) skiptestsForAddress:(unsigned short)ioAddress;
 					// get 8 skiptests for an I/O address (nil for unused)
 					// called after the iotsForAddress method
 - (void) setIOFlag:(unsigned long)flag forIOFlagName:(NSString *)name;
@@ -79,7 +78,7 @@
 - (void) loadNibs;			// called after it is known that the I/O device fits into the PDP-8,
 					// called after the methods above, so they must not access resources
 					// from nibs
-- (void) pluginDidLoad;			// called after the plugin has loaded and the PDP-8, the IOTs and
+- (void) pluginDidLoad;			// called after the plug-in has loaded and the PDP-8, the IOTs and
 					// I/O flags have been setup and the nibs are loaded
 - (void) CAF:(int)ioAddress;		// called when the CPU performs the CAF instruction; must not update
 					// the GUI e. g. by sending notifications; is called from non-main

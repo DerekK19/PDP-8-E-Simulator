@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	TSC8.h - TSC8-75 Board for the PDP-8/E Simulator
  *
@@ -22,16 +22,16 @@
  */
 
 
-@class KeepInMenuWindow, RegisterFormCell;
+@class KeepInMenuWindow, RegisterTextField;
 
 
 @interface TSC8 : PDP8Plugin <NSCoding>
 {
 @private
 	IBOutlet KeepInMenuWindow	*window;
-	IBOutlet RegisterFormCell	*ertbRegister;
-	IBOutlet RegisterFormCell	*eriotRegister;
-	IBOutlet RegisterFormCell	*ecdfRegister;
+	IBOutlet RegisterTextField	*ertbRegister;
+	IBOutlet RegisterTextField	*eriotRegister;
+	IBOutlet RegisterTextField	*ecdfRegister;
 	IBOutlet NSButton		*esmeButton;
 @public
 	// no registers here, the TSC8-75 registers are in pdp8->_tsc8

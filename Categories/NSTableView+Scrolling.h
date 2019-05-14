@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	NSTableView+Scrolling.m - Category with additional scrolling methods
+ *	NSTableView+Scrolling.h - Category with additional scrolling methods
  *
  *	This file is part of PDP-8/E Simulator.
  *

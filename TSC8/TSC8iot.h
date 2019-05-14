@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator Source Code
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	TSC8iots.c - IOTs for the TSC8-75 plugin
+ *	TSC8iot.c - IOTs for the TSC8-75 plug-in
  *
  *	This file is part of PDP-8/E Simulator.
  *

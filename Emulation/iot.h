@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	iot.c - Interface for the IOT instructions code for the PDP-8/E
+ *	iot.h - Interface for the IOT instructions code for the PDP-8/E
  *
  *	This file is part of PDP-8/E Simulator.
  *

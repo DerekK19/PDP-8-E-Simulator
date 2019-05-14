@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	PaperTapeProgressIndicator.h - Progress indicator for the paper tape reader and punch
  *
@@ -22,7 +22,8 @@
  */
 
 
-@interface PaperTapeProgressIndicator : NSProgressIndicator {
+@interface PaperTapeProgressIndicator : NSProgressIndicator
+{
 @private
 	BOOL	isAnimating;
 	NSTimer	*stopAnimationTimer;

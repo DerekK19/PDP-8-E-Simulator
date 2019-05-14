@@ -1,24 +1,24 @@
 /*
- *    PDP-8/E Simulator
+ *	PDP-8/E Simulator
  *
- *    Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *    PluginAPI.m - Plugin API Definitions for PDP-8/E I/O Device Plugins
+ *	PluginAPI.m - Plug-in API definitions for PDP-8/E I/O device plug-ins
  *
- *    This file is part of PDP-8/E Simulator.
+ *	This file is part of PDP-8/E Simulator.
  *
- *    PDP-8/E Simulator is free software: you can redistribute it and/or modify
- *    it under the terms of the GNU General Public License as published by
- *    the Free Software Foundation, either version 3 of the License, or
- *    (at your option) any later version.
+ *	PDP-8/E Simulator is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
  *
- *    This program is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *    GNU General Public License for more details.
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
  *
- *    You should have received a copy of the GNU General Public License
- *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
 
@@ -31,81 +31,79 @@
 @implementation PDP8Plugin
 
 
-PDP8 *pdp8;        // plugin local pdp8 variable for the IOT functions
+PDP8 *pdp8;		// plug-in local pdp8 variable for the IOT functions
 
-NSArray *topLevelObjects;
 
 static void setPDP8 (PDP8 *p8)
 {
-    pdp8 = p8;    // set the plugin local pdp8 variable for the IOT function
+	pdp8 = p8;	// set the plug-in local pdp8 variable for the IOT function
 }
 
 
 - (void) setPDP8:(PDP8 *)p8
 {
-    pdp8 = p8;    // set the class variable pdp8
-    setPDP8 (p8);
+	pdp8 = p8;	// set the class variable pdp8
+	setPDP8 (p8);
 }
 
 
 - (unsigned) apiVersion
 {
-    [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd
-                                                        object:self
-                                                          file:[NSString stringWithCString:__FILE__
-                                                                                  encoding: NSUTF8StringEncoding]
-                                                    lineNumber:__LINE__
-                                                   description:NSLocalizedString(@"Your plugin must override the apiVersion method using the API_VERSION macro.", @"")];
-    return CURRENT_PLUGIN_API_VERSION;
+	[[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self
+		file:[NSString stringWithCString:__FILE__] lineNumber:__LINE__
+		description:NSLocalizedString(
+			@"Your plug-in must override the apiVersion method using the API_VERSION macro.",
+			@"")];
+	return CURRENT_PLUGIN_API_VERSION;
 }
 
 
 - (NSBundle *) bundle
 {
-    return bundle;
+	return bundle;
 }
 
 
 - (void) setBundle:(NSBundle *)bndl
 {
-    bundle = bndl;
+	bundle = bndl;
 }
 
 
 - (NSString *) pluginName
 {
-    return [[bundle bundlePath] lastPathComponent];
+	return [[bundle bundlePath] lastPathComponent];
 }
 
 
 - (void *) pluginPointer
 {
-    return (__bridge void *) self;
+	return (void *) self;
 }
 
 
 - (NSString *) ioInformationPlistName
 {
-    return DEFAULT_IO_INFO_FILENAME;
+	return DEFAULT_IO_INFO_FILENAME;
 }
 
 
 - (NSDictionary *) ioInformation
 {
-    return [NSDictionary dictionaryWithContentsOfFile:
-        [bundle pathForResource:[self ioInformationPlistName] ofType:@"plist"]];
+	return [NSDictionary dictionaryWithContentsOfFile:
+		[bundle pathForResource:[self ioInformationPlistName] ofType:@"plist"]];
 }
 
 
-- (NSArray *) iotsForAddress:(int)ioAddress
+- (NSArray *) iotsForAddress:(unsigned short)ioAddress
 {
-    return nil;
+	return nil;
 }
 
 
-- (NSArray *) skiptestsForAddress:(int)ioAddress
+- (NSArray *) skiptestsForAddress:(unsigned short)ioAddress
 {
-    return nil;
+	return nil;
 }
 
 
@@ -116,22 +114,15 @@ static void setPDP8 (PDP8 *p8)
 
 - (void) loadNibs
 {
-    NSString *resourceName;
-    NSBundle *thisBundle;
-    
-    thisBundle = [NSBundle bundleForClass:[self class]];
-    NSString *resourcePath = [thisBundle resourcePath];
-    NSDirectoryEnumerator *resourcePathEnum =
-        [[NSFileManager defaultManager] enumeratorAtPath:resourcePath];
-    while (resourcePathEnum && (resourceName = [resourcePathEnum nextObject])) {
-        if ([[resourceName pathExtension] isEqualToString:@"nib"]) {
-            NSArray *objects = [[NSArray alloc] init];
-            NSString *name = [[resourceName lastPathComponent] stringByDeletingPathExtension];
-            if ([thisBundle loadNibNamed:name owner:self topLevelObjects:&objects]) {
-                topLevelObjects = [NSArray arrayWithArray:objects];
-            }
-        }
-    }
+	NSString *resourceName;
+	
+	NSString *resourcePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+	NSDirectoryEnumerator *resourcePathEnum =
+		[[NSFileManager defaultManager] enumeratorAtPath:resourcePath];
+	while (resourcePathEnum && (resourceName = [resourcePathEnum nextObject])) {
+		if ([[resourceName pathExtension] isEqualToString:@"nib"])
+			[NSBundle loadNibNamed:[resourceName lastPathComponent] owner:self];
+	}
 }
 
 

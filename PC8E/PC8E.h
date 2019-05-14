@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	ASR33.h - ASR 33 Teletype for the PDP-8/E Simulator
+ *	PC8E.h - PC8-E Paper Tape Reader and Punch for the PDP-8/E Simulator
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -26,7 +26,7 @@
 #define PBF_CHANGED_NOTIFICATION	@"pc8ePunchBufferChangedChangedNotification"
 
 
-@class NSCondition, KeepInMenuWindow, RegisterFormCell, PaperTapeController;
+@class NSCondition, KeepInMenuWindow, RegisterTextField, PaperTapeController;
 
 
 @interface PC8E : PDP8Plugin <NSCoding>
@@ -45,8 +45,8 @@
 	unsigned short				PBF;		// private: not accessed by IOTs
 	int					input;		// int: can be EOF == -1
 	IBOutlet KeepInMenuWindow		*window;
-	IBOutlet RegisterFormCell		*rbfCell;
-	IBOutlet RegisterFormCell		*pbfCell;
+	IBOutlet RegisterTextField		*rbfCell;
+	IBOutlet RegisterTextField		*pbfCell;
 	IBOutlet PaperTapeController		*reader;
 	IBOutlet PaperTapeController		*punch;
 	NSConditionLock				*inputLock;

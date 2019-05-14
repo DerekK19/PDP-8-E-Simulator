@@ -2,7 +2,7 @@
 <!--
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	index.html - Online help for the ASR 33 Teletype
  *
@@ -33,6 +33,7 @@
 </head>
 <body>
 
+<a name="de.bernhard-baehr.pdp8e.ASR33"></a>
 <h1>ASR 33 Teletype Help</h1>
 
 <p>
@@ -61,8 +62,8 @@ Teletypes:
 <li>
 Backspace handling: When the teletype is operated in local mode, typing the backspace key causes the
 last character to be removed from the output display and &mdash; when the punch is turned on &mdash;
-from the punch paper tape. The Macintosh clear key (at the top left of the numeric key pad or fn-6 on
-notebook keyboards) has the function of the ASR 33 rubout key.
+from the punch paper tape. The Macintosh clear key (at the top left of the numeric key pad or fn-delete
+on notebook keyboards) has the function of the ASR 33 rubout key.
 </li>
 <li>
 Tabulator handling: The teletype handles the output of tabulator characters with tabulator stops at every
@@ -87,8 +88,8 @@ the following code is to be loaded to memory field x.)
 When you paste text into the teletype window, the text is inserted into a typeahead buffer
 from where the teletype reads it sccessively as if the characters were typed at the keyboard.
 New keyboard input is appended at the end of the typeahead buffer. While the typeahead buffer is not
-empty, a button &ldquo;Flush Typeahead Buffer&rdquo; appears in the toolbar of the ASR 33 window that
-you can use to clear the buffer prematurely.
+empty, a button &ldquo;Flush Typeahead Buffer&rdquo; appears in the control area of the ASR 33 window
+to clear the buffer prematurely.
 </li>
 </ul>
 
@@ -298,9 +299,9 @@ supports the following IOTs:
 <h2>Additional Teletypes</h2>
 
 <p>
-When you need additional teletypes, you can duplicate the Console or Auxiliary Teletype plugin and
-then modify the property list that describes the I/O addresses and IOTs for the plugin. You find
-this property list inside the plugin package at Contents/Resources/English.lproj/auxtty-io-info.plist.
+When you need additional teletypes, you can duplicate the Console or Auxiliary Teletype plug-in and
+then modify the property list that describes the I/O addresses and IOTs for the plug-in. You find
+this property list inside the plug-in package at Contents/Resources/English.lproj/auxtty-io-info.plist.
 </p>
 
 </body>

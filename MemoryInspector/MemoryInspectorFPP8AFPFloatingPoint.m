@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspectorFPP8AFPFloatingPoint.m - FPP8-A FP Floating Point Memory Inspector
  *
@@ -118,8 +118,9 @@
 		return FALSE;
 	*value = [NSArray arrayWithObjects:
 		[NSNumber numberWithInt:077770000 | [f exponent]],
-		[NSNumber numberWithInt:(int)(077770000 | ([f negative] ? 04000 : 0) | (unsigned long) ([f mantissa] >> 53))],
-		[NSNumber numberWithInt:(int)(077770000 | (unsigned long) (([f mantissa] >> 41) & 07777))],
+		[NSNumber numberWithInt:
+			077770000 | ([f negative] ? 04000 : 0) | (unsigned) ([f mantissa] >> 53)],
+		[NSNumber numberWithInt:077770000 | (unsigned) (([f mantissa] >> 41) & 07777)],
 		nil];
 	return TRUE;
 }

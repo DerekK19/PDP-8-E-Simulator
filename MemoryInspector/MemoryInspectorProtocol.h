@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspectorProtocol.h - Protocol for Memory Inspectors
  *
@@ -23,7 +23,7 @@
 
 
 /* A Memory Inspector is a subclass of NSFormatter that conforms to the MemoryInspector protocol.
-   To add a new inspector, simply include a new class in a plugin; it will automatically be detected.
+   To add a new inspector, simply include a new class in a plug-in; it will automatically be detected.
    The NSFormatter methods work on a NSArray of wordsPerRow 12-bit PDP-8 words. The order of the
    inspector in the popup menu of the memory inspector drawer is determined by orderInMemoryInspectorMenu;
    the built-in inspectors use numbers 10, 20,... */

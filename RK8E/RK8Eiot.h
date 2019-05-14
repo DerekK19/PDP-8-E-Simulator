@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator Source Code
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	RK8Eiots.c - IOTs for the RK8-E plugin
+ *	RK8Eiot.c - IOTs for the RK8-E plug-in
  *
  *	This file is part of PDP-8/E Simulator.
  *

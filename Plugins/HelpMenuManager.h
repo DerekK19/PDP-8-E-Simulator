@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	HelpMenuManager.h - Manager for Help menu items of plugins
+ *	HelpMenuManager.h - Manager for Help menu items of plug-ins
  *
  *	This file is part of PDP-8/E Simulator.
  *

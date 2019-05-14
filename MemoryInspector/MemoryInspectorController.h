@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MemoryInspectorController.h - Controller for the Memory Inspectors Drawer
  *
@@ -26,15 +26,13 @@
 @protocol MemoryInspector;
 
 
-@interface MemoryInspectorScrollView : NSScrollView
+@interface MemoryInspectorController : NSObject
+#ifdef __MAC_10_6
+	<NSTableViewDelegate, NSTableViewDataSource>
+#endif
 {
-}
-@end
-
-
-@interface MemoryInspectorController : NSObject {
 @private
-	IBOutlet NSDrawer		*memoryInspectorDrawer;
+	IBOutlet NSPanel		*memoryInspectorPanel;
 	IBOutlet NSPopUpButton		*popupButton;
 	IBOutlet NonWrappingTableView	*memoryView;
 	IBOutlet TableCornerView	*cornerView;
@@ -42,7 +40,6 @@
 	NSArray				*memoryInspectors;
 	NSFormatter <MemoryInspector>	*currentInspector;
 	unsigned			alignment;
-	unsigned			lastTopRow;
 }
 
 - (IBAction) selectMemoryInspector:(id)sender;

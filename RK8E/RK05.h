@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	RK05.h - Class implementing a RK05 DECpack drive
  *
@@ -31,7 +31,8 @@
 @class RK8E, PDP8;
 
 
-@interface RK05 : NSObject {
+@interface RK05 : NSObject
+{
 @private
 	IBOutlet RK8E	*rk8e;
 	PDP8		*pdp8;
@@ -52,7 +53,7 @@
 }
 
 - (int) driveNumber;
-- (void) setDriveNumber:(short)drvNum;
+- (void) setDriveNumber:(int)drvNum;
 - (void) setPDP8:(PDP8 *)p8;
 - (void) setWriteProtected:(BOOL)writeProtected;
 - (BOOL) isWriteProtected;

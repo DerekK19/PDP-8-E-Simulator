@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	InfoPlist.strings - Localized strings for Info.plist
  *
@@ -23,6 +23,6 @@
 
 
 CFBundleName = "RK8-E Disk Cartridge System";
-CFBundleGetInfoString = "RK8-E Disk Cartridge System 2.0.2, Copyright © 1994-2015 Bernhard Baehr";
-NSHumanReadableCopyright = "Copyright © 1994-2015 Bernhard Baehr";
+CFBundleGetInfoString = "RK8-E Disk Cartridge System 2.1, Copyright © 1994-2018 Bernhard Baehr";
+NSHumanReadableCopyright = "Copyright © 1994-2018 Bernhard Baehr";
 CFBundleHelpBookName = "RK8-E Disk Cartridge System Help";

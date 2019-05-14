@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	ASR33.h - ASR 33 Teletype for the PDP-8/E Simulator
  *
@@ -54,7 +54,8 @@
 	IBOutlet ASR33WindowController		*windowController;
 	IBOutlet TypeaheadBuffer		*typeaheadBuffer;
 	BOOL					online;
-	NSConditionLock				*inputLock;
+	BOOL					continueInput;
+	NSCondition				*inputLock;
 	NSConditionLock				*outputLock;
 	NSCondition				*outputOnline;
 	BOOL					runWithRealtimeSpeed;
@@ -63,7 +64,6 @@
 	BOOL					isConsoleTTY;
 }
 
-- (void) loadCoder:(NSCoder *)coder;
 - (unsigned short) getKBB;
 - (void) setKBB:(unsigned short)kbb;
 - (unsigned short) getTTO;

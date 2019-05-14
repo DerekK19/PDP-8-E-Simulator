@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	CPUWindowController.h - Controller for the CPU window
  *
@@ -22,29 +22,40 @@
  */
 
 
-@class RegisterFormCell, EnableDisableTextField, PDP8;
+@class RegisterTextField, EnableDisableTextField, PDP8;
 
 
-@interface CPUWindowController : NSObject <NSToolbarDelegate>
+@interface CPUWindowController : NSObject
+#ifdef __MAC_10_6
+	<NSWindowDelegate, NSToolbarDelegate>	// with the 10.6 SDKs, it is a protocol, before it was an interface
+#endif
 {
 @private
 	IBOutlet NSWindow		*window;
-	IBOutlet RegisterFormCell	*sr;
-	IBOutlet RegisterFormCell	*l;
-	IBOutlet RegisterFormCell	*ac;
-	IBOutlet RegisterFormCell	*pc;
-	IBOutlet RegisterFormCell	*sc;
-	IBOutlet RegisterFormCell	*gtf;
-	IBOutlet RegisterFormCell	*mq;
-	IBOutlet EnableDisableTextField	*mode;
+	IBOutlet RegisterTextField	*sr;
+	IBOutlet RegisterTextField	*l;
+	IBOutlet RegisterTextField	*ac;
+	IBOutlet RegisterTextField	*pc;
+	IBOutlet EnableDisableTextField	*scLabel;
+	IBOutlet RegisterTextField	*sc;
+	IBOutlet EnableDisableTextField	*gtfLabel;
+	IBOutlet RegisterTextField	*gtf;
+	IBOutlet RegisterTextField	*mq;
+	IBOutlet EnableDisableTextField	*modeLabel;
 	IBOutlet NSButton		*a;
 	IBOutlet NSButton		*b;
-	IBOutlet RegisterFormCell	*df;
-	IBOutlet RegisterFormCell	*_if;
-	IBOutlet RegisterFormCell	*ib;
-	IBOutlet RegisterFormCell	*uf;
-	IBOutlet RegisterFormCell	*ub;
-	IBOutlet RegisterFormCell	*sf;
+	IBOutlet EnableDisableTextField	*dfLabel;
+	IBOutlet RegisterTextField	*df;
+	IBOutlet EnableDisableTextField	*ifLabel;
+	IBOutlet RegisterTextField	*_if;
+	IBOutlet EnableDisableTextField	*ibLabel;
+	IBOutlet RegisterTextField	*ib;
+	IBOutlet EnableDisableTextField	*ufLabel;
+	IBOutlet RegisterTextField	*uf;
+	IBOutlet EnableDisableTextField	*ubLabel;
+	IBOutlet RegisterTextField	*ub;
+	IBOutlet EnableDisableTextField	*sfLabel;
+	IBOutlet RegisterTextField	*sf;
 	IBOutlet NSButton		*enable;
 	IBOutlet NSButton		*delay;
 	IBOutlet NSButton		*inhibit;

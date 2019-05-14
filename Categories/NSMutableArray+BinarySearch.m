@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	NSMutableArray+BinarySearch.m - Category for binary search
  *
@@ -24,13 +24,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Utilities.h"
 #import "NSMutableArray+BinarySearch.h"
 
 
 @implementation NSMutableArray (BinarySearch)
 
 
-- (unsigned) addObject:(id)object toArraySortedBy:(SEL)compare replaceExistingObject:(BOOL)replace
+- (NSUInteger) addObject:(id)object toArraySortedBy:(SEL)compare replaceExistingObject:(BOOL)replace
 {
 	NSUInteger n = [self count];
 	if (n == 0) {
@@ -40,39 +41,31 @@
 	NSRange range = NSMakeRange(0, n);
 	while (range.length > 0) {
 		NSUInteger m = range.location + range.length / 2;
-        id obj = [self objectAtIndex:m];
-        if ([obj respondsToSelector:compare]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            NSComparisonResult result = (NSComparisonResult) [obj performSelector:compare withObject:object];
-#pragma clang diagnostic pop
-            switch (result) {
-            case NSOrderedAscending:
-                n = range.location + range.length;
-                range.location = m + 1;
-                range.length = n - range.location;
-                break;
-            case NSOrderedDescending:
-                range.length = m - range.location;
-                break;
-            case NSOrderedSame:
-                if (replace)
-                    [self replaceObjectAtIndex:m withObject:object];
-                return (unsigned)m;
-            default:
-                NSAssert (FALSE, @"Invalid comparison result");
-                break;
-            }
-        } else {
-            NSLog(@"** Cannot performSelector:compare(1)");
-        }
+		switch ((NSComparisonResult)
+			[[self objectAtIndex:m] performSelector:compare withObject:object]) {
+		case NSOrderedAscending:
+			n = range.location + range.length;
+			range.location = m + 1;
+			range.length = n - range.location;
+			break;
+		case NSOrderedDescending:
+			range.length = m - range.location;
+			break;
+		case NSOrderedSame:
+			if (replace)
+				[self replaceObjectAtIndex:m withObject:object];
+			return m;
+		default:
+			NSAssert (FALSE, @"Invalid comparison result");
+			break;
+		}
 	}
 	[self insertObject:object atIndex:range.location];
-	return (unsigned)(range.location);
+	return range.location;
 }
 
 
-- (unsigned) indexOfObject:(id)object inArraySortedBy:(SEL)compare;
+- (NSUInteger) indexOfObject:(id)object inArraySortedBy:(SEL)compare;
 {
 	NSUInteger n = [self count];
 	if (n == 0)
@@ -80,30 +73,22 @@
 	NSRange range = NSMakeRange(0, n);
 	while (range.length > 0) {
 		NSUInteger m = range.location + range.length / 2;
-        id obj = [self objectAtIndex:m];
-        if ([obj respondsToSelector:compare]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            NSComparisonResult result = (NSComparisonResult) [obj performSelector:compare withObject:object];
-#pragma clang diagnostic pop
-            switch (result) {
-            case NSOrderedAscending:
-                n = range.location + range.length;
-                range.location = m + 1;
-                range.length = n - range.location;
-                break;
-            case NSOrderedDescending:
-                range.length = m - range.location;
-                break;
-            case NSOrderedSame:
-                return (unsigned)m;
-            default:
-                NSAssert (FALSE, @"Invalid comparison result");
-                break;
-            }
-        } else {
-            NSLog(@"** Cannot performSelector:compare(2)");
-        }
+		switch ((NSComparisonResult)
+			[[self objectAtIndex:m] performSelector:compare withObject:object]) {
+		case NSOrderedAscending:
+			n = range.location + range.length;
+			range.location = m + 1;
+			range.length = n - range.location;
+			break;
+		case NSOrderedDescending:
+			range.length = m - range.location;
+			break;
+		case NSOrderedSame:
+			return m;
+		default:
+			NSAssert (FALSE, @"Invalid comparison result");
+			break;
+		}
 	}
 	return NSNotFound;
 }

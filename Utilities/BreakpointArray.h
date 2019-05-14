@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	BreakpointArray.h - Container for a sorted array of breakpoints
  *
@@ -40,13 +40,13 @@
 - (BOOL) hasBreakpointWithValueNotEqualTo:(unsigned)value;
 
 - (unsigned) valueForIdentifier:(unsigned)ident;
-- (unsigned) setBreakpointWithIdentifier:(unsigned)ident value:(unsigned)val;
+- (NSUInteger) setBreakpointWithIdentifier:(unsigned)ident value:(unsigned)val;
 - (NSIndexSet *) setBreakpointsWithIdentifierArray:(NSArray *)idents value:(unsigned)val;
 
-- (unsigned) identifierAtIndex:(unsigned)index;
-- (unsigned) valueAtIndex:(unsigned)index;
-- (void) setBreakpointAtIndex:(unsigned)index value:(unsigned)val;
-- (void) deleteBreakpointAtIndex:(unsigned)index;
+- (unsigned) identifierAtIndex:(NSUInteger)index;
+- (unsigned) valueAtIndex:(NSUInteger)index;
+- (void) setBreakpointAtIndex:(NSUInteger)index value:(unsigned)val;
+- (void) deleteBreakpointAtIndex:(NSUInteger)index;
 - (void) deleteBreakpointsAtIndexes:(NSIndexSet *)indexes;
 
 - (void) setAllValues:(unsigned)val;

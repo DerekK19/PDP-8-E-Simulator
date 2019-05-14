@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator Source Code
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	TSC8iot.h - IOTs for the TSC8-75 plugin
+ *	TSC8iot.c - IOTs for the TSC8-75 plug-in
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -49,7 +49,7 @@ void i6361 (void)				/* ESKP 6361 */
 
 unsigned s6361 (void)				/* ESKP 6361 skip test */
 {
-	return (int)(pdp8->IOFLAGS & pdp8->_tsc8.flag);
+	return (pdp8->IOFLAGS & pdp8->_tsc8.flag) != 0;
 }
 
 

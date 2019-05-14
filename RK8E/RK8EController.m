@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	RK8EController.h - Controller for RK8-E register view
+ *	RK8EController.m - Controller for RK8-E register view
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -26,7 +26,7 @@
 
 #import "PluginFramework/PluginAPI.h"
 #import "PluginFramework/PDP8.h"
-#import "PluginFramework/RegisterFormCell.h"
+#import "PluginFramework/RegisterTextField.h"
 #import "PluginFramework/KeepInMenuWindow.h"
 
 #import "RK8EController.h"
@@ -44,9 +44,10 @@
 
 - (IBAction) commandPopupClicked:(id)sender
 {
-	unsigned short tag = [sender tag];
-	unsigned short mask = (tag >> 8) << (tag & 0xff);
-	[rk8e setCommand:([rk8e getCommand] & ~mask) | ([[sender selectedItem] tag] << (tag & 0xff))];
+	unsigned short tag = (unsigned short) [sender tag];
+	unsigned short mask = (unsigned short) ((tag >> 8) << (tag & 0xff));
+	[rk8e setCommand:(unsigned short)
+		(([rk8e getCommand] & ~mask) | ([[sender selectedItem] tag] << (tag & 0xff)))];
 }
 
 
@@ -56,7 +57,7 @@
 	unsigned short tag;
 	unsigned short command = [rk8e getCommand];
 #define SET_COMMAND_POPUP(popup) \
-	tag = [(popup) tag]; [(popup) selectItemAtIndex:(command >> (tag & 0xff)) & (tag >> 8)]
+	tag = (unsigned short) [(popup) tag]; [(popup) selectItemAtIndex:(command >> (tag & 0xff)) & (tag >> 8)]
 	SET_COMMAND_POPUP (cmdFunction);
 	SET_COMMAND_POPUP (cmdInterrupt);
 	SET_COMMAND_POPUP (cmdSetDone);
@@ -74,9 +75,9 @@
 - (IBAction) statusCheckboxClicked:(id)sender
 {
 	if ([sender intValue])
-		[rk8e setStatusBits:(uint)([sender tag]) clearStatusBits:0];
+		[rk8e setStatusBits:(unsigned) [sender tag] clearStatusBits:0];
 	else
-		[rk8e setStatusBits:0 clearStatusBits:(uint)([sender tag])];
+		[rk8e setStatusBits:0 clearStatusBits:(unsigned) [sender tag]];
 }
 
 
@@ -145,8 +146,8 @@
 		selector:@selector(notifyStop:) name:PDP8_STOP_NOTIFICATION object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 		selector:@selector(notifyStep:) name:PDP8_STEP_NOTIFICATION object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(notifyPluginsLoaded:) name:PLUGINS_LOADED_NOTIFICATION object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyPluginsLoaded:)
+		name:PLUGINS_LOADED_NOTIFICATION object:nil];
 }
 
 
@@ -170,7 +171,6 @@
 - (void) notifyPluginsLoaded:(NSNotification *)notification
 {
 	[window orderBackFromDefaults:self];
-	[window makeFirstResponder:window];
 }
 
 

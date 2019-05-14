@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	ASR33iot.c - ASR 33 Teletype IOTs
  *
@@ -52,7 +52,7 @@ void i6031 (void)				/* KSF		6031	*/
 
 unsigned s6031 (void)				/* KSF		6031	stiptest */
 {
-	return (unsigned)(pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->inflag);
+	return (pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->inflag) != 0;
 }
 
 
@@ -108,7 +108,7 @@ void i6041 (void)				/* TSF		6041	*/
 
 unsigned s6041 (void)				/* TSF		6041	skiptest */
 {
-	return (unsigned)(pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->outflag);
+	return (pdp8->IOFLAGS & PLUGIN_POINTER(ASR33)->outflag) != 0;
 }
 
 
@@ -138,7 +138,7 @@ void i6045 (void)				/* TSK		6045	*/
 
 unsigned s6045 (void)				/* TSK		6045	skiptest */
 {
-	return (unsigned)(pdp8->IOFLAGS & pdp8->IMASK & (PLUGIN_POINTER(ASR33)->inflag | PLUGIN_POINTER(ASR33)->outflag));
+	return (pdp8->IOFLAGS & pdp8->IMASK & (PLUGIN_POINTER(ASR33)->inflag | PLUGIN_POINTER(ASR33)->outflag)) != 0;
 }
 
 

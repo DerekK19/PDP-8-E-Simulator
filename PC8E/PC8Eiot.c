@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	PC8Eiot.c - PC8-E Paper Tape Reader & Punch IOTs
  *
@@ -51,7 +51,7 @@ void i6011 (void)				/* RSF		6011	*/
 
 unsigned s6011 (void)				/* RSF		6011	skiptest */
 {
-	return (int)(pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->inflag);
+	return (pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->inflag) != 0;
 }
 
 
@@ -95,7 +95,7 @@ void i6021 (void)				/* PSF		6021	*/
 
 unsigned s6021 (void)				/* PSF		6021	skiptest */
 {
-	return (int)(pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->outflag);
+	return (pdp8->IOFLAGS & PLUGIN_POINTER(PC8E)->outflag) != 0;
 }
 
 

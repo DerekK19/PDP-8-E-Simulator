@@ -1,9 +1,9 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
- *	Assembler.h - Inline assembler for PDP-8/E instructions
+ *	Assembler.m - Inline assembler for PDP-8/E instructions
  *
  *	This file is part of PDP-8/E Simulator.
  *
@@ -133,7 +133,7 @@
 	if (*s == '\0') {
 		*octal = 0;
 		*flags = isNothing;
-		return (s);
+		return s;
 	}
 	if (*s == '.') {
 		s++;
@@ -145,11 +145,11 @@
 				s++;
 		} else if (*s) {
 			*err = asmBadRelativeAddress;
-			return (s);
+			return s;
 		} else {
 			*flags = isRelativeAddress;
 			*octal = 0;
-			return (s);
+			return s;
 		}
 	} else
 		c = '\0';
@@ -162,7 +162,7 @@
 			n = 8 * n + *s - '0';
 			if (n & ~07777) {
 				*err = c ? asmBadRelativeAddress : asmBadNumber;
-				return (t);
+				return t;
 			}
 		}
 		if (c) {
@@ -172,11 +172,11 @@
 			*flags = isNumber;
 			*octal = n;
 		}
-		return (s);
+		return s;
 	}
 	if (c) {
 		*err = asmBadRelativeAddress;
-		return (s);
+		return s;
 	}
 	while (*t && *t != ' ')
 		t++;
@@ -189,9 +189,9 @@
 		t = s;
 	} else {
 		*octal = [sym intValue] & 07777;
-		*flags = [sym intValue] >> 12;
+		*flags = (ushort) ([sym intValue] >> 12);
 	}
-	return (t);
+	return t;
 }
 
 
@@ -202,7 +202,7 @@
 	long w, word, word1;
 	ushort cl, flags;
 	
-	int errpos = 0;
+	long errpos = 0;
 	NSString *err = asmNoError;
 	Opcode *opcode = [Opcode opcodeWithAddress:address];
 	
@@ -221,7 +221,7 @@
 		bp = [self lookupSymbol:bp getOctal:&w getFlags:&cl error:&err];
 		while (*oldbp == ' ')
 			oldbp++;
-		errpos = (int)(oldbp - buf);
+		errpos = oldbp - buf;
 		if (err)
 			goto error;
 		if (cl == isNothing)
@@ -323,7 +323,7 @@
 error :
 	if (err) {
 		if (error)
-			*error = [NSString stringWithFormat:@"%d %@", errpos, err];
+			*error = [NSString stringWithFormat:@"%ld %@", errpos, err];
 		return nil;
 	}
 	return opcode;

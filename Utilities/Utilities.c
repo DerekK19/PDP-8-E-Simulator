@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	Utilities.c - Some general utilities and macros, esp. for Tiger compatibility
  *
@@ -27,6 +27,47 @@
 
 #include "Utilities.h"
 
+
+#ifndef __MAC_10_10
+
+@interface NSProcessInfo (OSVersion)		// available in NSProcessInfo.h since 10.10
+
+typedef struct {
+	long	majorVersion;
+	long	minorVersion;
+	long	patchVersion;
+} NSOperatingSystemVersion;
+
+- (NSOperatingSystemVersion) operatingSystemVersion;
+
+@end
+
+#endif
+
+
+#ifndef __MAC_10_9
+
+@interface NSProcessInfo (Activity)		// available in NSProcessInfo.h since 10.9
+
+typedef enum  {
+	NSActivityIdleDisplaySleepDisabled = (1ULL << 40),
+	NSActivityIdleSystemSleepDisabled = (1ULL << 20),
+	NSActivitySuddenTerminationDisabled = (1ULL << 14),
+	NSActivityAutomaticTerminationDisabled = (1ULL << 15),
+	NSActivityUserInitiated = (0x00FFFFFFULL | NSActivityIdleSystemSleepDisabled),
+	NSActivityUserInitiatedAllowingIdleSystemSleep = (NSActivityUserInitiated & ~NSActivityIdleSystemSleepDisabled),
+	NSActivityBackground = 0x000000FFULL,
+	NSActivityLatencyCritical = 0xFF00000000ULL,
+} NSActivityOptions;
+
+- (id <NSObject>) beginActivityWithOptions:(NSActivityOptions)options reason:(NSString *)reason;
+- (void) endActivity:(id <NSObject>)activity;
+
+@end
+
+#endif
+
+
 BOOL runningOnOSXVersion (long major, long minor, BOOL orBetter)
 {
 	if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10)
@@ -37,16 +78,22 @@ BOOL runningOnOSXVersion (long major, long minor, BOOL orBetter)
 }
 
 
-void adjustToolbarControlForTiger (NSView *view)
+@interface MojaveTableHeaderView: NSTableHeaderView
 {
-	if (runningOnTiger() &&
-		[[[[(view) superview] superview] class]
-			isSubclassOfClass:NSClassFromString(@"NSToolbarItemViewer")]) {
-		NSPoint p = [(view) frame].origin;
-		p.x += (float) 2.0;
-		[(view) setFrameOrigin:p];
-	}
 }
+@end
+
+@implementation MojaveTableHeaderView
+
+- (void) drawRect:(NSRect)rect
+{
+	[super drawRect:rect];
+	rect = NSInsetRect(rect, -1, 0);
+	[[NSColor secondarySelectedControlColor] set];
+	NSFrameRect (rect);
+}
+
+@end
 
 
 void adjustTableHeaderForElCapitan (NSTableView *view)
@@ -58,9 +105,50 @@ void adjustTableHeaderForElCapitan (NSTableView *view)
 	if (runningOnElCapitanOrNewer()) {
 		NSRect rect = [[view headerView] frame];
 		rect.size.height -= 6;
-		[[view headerView] setFrame:rect];
+		if (runningOnMojaveOrNewer()) {
+			rect.size.height -= 2;
+			// With Mojave Public Beta 18A389 from 12.09.2018, in Dark Mode, the frame of the
+			// table header border is drawn in light gray when the height is decreased,
+			// so we use a subclass that draws the frame in secondarySelectedControlColor.
+			[view setHeaderView:[[[MojaveTableHeaderView alloc] initWithFrame:rect] autorelease]];
+		} else
+			[[view headerView] setFrame:rect];
 	}
 }
+
+
+id disableAppNap (NSString *reason)
+{
+	id activity = nil;
+	if (runningOnMavericksOrNewer())
+		activity = [[NSProcessInfo processInfo] beginActivityWithOptions:
+			NSActivityUserInitiated | NSActivityBackground | NSActivityLatencyCritical
+			reason:reason];
+	return activity;
+}
+
+
+void reenableAppNap (id activity)
+{
+	if (runningOnMavericksOrNewer())
+		[[NSProcessInfo processInfo] endActivity:activity];
+}
+
+
+#ifndef __MAC_10_5
+
+@implementation NSThread (MainThread)
+
+
++ (BOOL) isMainThread
+{
+	return pthread_main_np() != 0;
+}
+
+
+@end
+
+#endif
 
 
 static mach_timebase_info_data_t timebaseInfo;

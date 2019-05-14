@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	InfoPlist.strings - Localized strings for Info.plist
  *
@@ -23,6 +23,6 @@
 
 
 CFBundleName = "PC8-E Paper Tape Reader & Punch";
-CFBundleGetInfoString = "PC8-E Paper Tape Reader & Punch 2.0.2, Copyright © 1994-2015 Bernhard Baehr";
-NSHumanReadableCopyright = "Copyright © 1994-2015 Bernhard Baehr";
+CFBundleGetInfoString = "PC8-E Paper Tape Reader & Punch 2.1, Copyright © 1994-2018 Bernhard Baehr";
+NSHumanReadableCopyright = "Copyright © 1994-2018 Bernhard Baehr";
 CFBundleHelpBookName = "PC8-E Paper Tape Reader & Punch Help";

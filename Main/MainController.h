@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	MainController.h - Main Application Controller Class
  *
@@ -26,22 +26,26 @@
 
 
 @interface MainController : NSObject
+#ifdef __MAC_10_6
+	<NSWindowDelegate>	// for the breakpoints, bootstrap and memory inspector panel
+#endif
 {
 @private
 	IBOutlet KeepInMenuWindow	*cpuWindow;
 	IBOutlet NSPanel		*preferencesPanel;
 	IBOutlet NSPanel		*breakpointPanel;
 	IBOutlet NSPanel		*bootstrapPanel;
-	IBOutlet NSDrawer		*memoryInspectorDrawer;
+	IBOutlet NSPanel		*memoryInspectorPanel;
 	IBOutlet NSView			*loadPaperTapeFieldView;
 	IBOutlet NSStepper		*loadPaperTapeFieldStepper;
 	IBOutlet PDP8			*pdp8;
 	IBOutlet BreakpointArray	*breakpoints;
 	IBOutlet BreakpointArray	*breakopcodes;
 	IBOutlet PluginManager		*pluginManager;
-	BOOL				memoryInspectorVisibleBeforeGo;
 	BOOL				breakpointPanelVisibleBeforeGo;
 	BOOL				bootstrapPanelVisibleBeforeGo;
+	BOOL				memoryInspectorPanelVisibleBeforeGo;
+	BOOL				applicationIsTerminating;
 }
 
 - (IBAction) reset:(id)sender;
@@ -52,7 +56,7 @@
 - (IBAction) showPreferencesPanel:(id)sender;
 - (IBAction) showHideBreakpointPanel:(id)sender;
 - (IBAction) showHideBootstrapPanel:(id)sender;
-- (IBAction) toggleMemoryInspectorDrawer:(id)sender;
+- (IBAction) showHideMemoryInspectorPanel:(id)sender;
 - (IBAction) clearAllFlags:(id)sender;
 - (IBAction) loadExtendedAddress:(id)sender;
 - (IBAction) loadPaperTape:(id)sender;

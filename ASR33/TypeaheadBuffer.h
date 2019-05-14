@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	TypeaheadBuffer.h - Typeahead buffer for a keyboard input device
  *
@@ -25,7 +25,8 @@
 @protocol InputConsumer;
 
 
-@interface TypeaheadBuffer : NSObject {
+@interface TypeaheadBuffer : NSObject
+{
 @private
 	IBOutlet id <InputConsumer>	inputConsumer;
 	IBOutlet NSButton		*flushTypeaheadBufferButton;

@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	PaperTapeController.h - Controller for a paper tape reader and punch
  *
@@ -21,13 +21,13 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FileDropControlTargetProtocol.h"
 
 @protocol InputConsumer;
 @class PaperTapeProgressIndicator, EnableDisableTextField;
 
 
-@interface PaperTapeController : NSObject <FileDropControlTarget> {
+@interface PaperTapeController : NSObject <FileDropControlTarget>
+{
 @private
 	IBOutlet NSControl			*loadUnloadButton;	// NSButton or NSSegmentedControl
 	IBOutlet NSSegmentedControl		*onOffButton;

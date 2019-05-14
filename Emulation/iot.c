@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	iot.c - IOT instructions code for the PDP-8/E
  *
@@ -67,7 +67,7 @@ VOID i6000 (VOID)				/* SKON		6000	*/
 }
 unsigned s6000 (VOID)				/* SKON		6000	*/
 {
-	return (int_ena);
+	return int_ena;
 }
 /* -------------------------------------------------------------------- */
 VOID i6001 (VOID)				/* ION		6001	*/
@@ -90,12 +90,13 @@ VOID i6003 (VOID)				/* SRQ		6003	*/
 }
 unsigned s6003 (VOID)				/* SRQ		6003	*/
 {
-	return (unsigned)(io_flags & int_mask);
+	return (io_flags & int_mask) != 0;
 }
 /* -------------------------------------------------------------------- */
 VOID i6004 (VOID)				/* GTF		6004	*/
 {
-    AC = (AC & 010000) | ((AC & 010000) >> 1)	/* Save the LINK	*/
+    AC = (ushort) (
+	(AC & 010000) | ((AC & 010000) >> 1)	/* Save the LINK	*/
 	| ((EAE == 'B' && GTF) ? BIT1 : 0)	/* Save the GTF		*/
 	| ((io_flags & int_mask) ? BIT2 : 0)	/* Save Interrupt Req	*/
 	/* | (int_inh << 8) */			/* Save Interrupt Inh	*/
@@ -103,21 +104,22 @@ VOID i6004 (VOID)				/* GTF		6004	*/
 	   hardware does not implement this - detected by the
 	   Extended Memory Control and Timeshare Test MAINDEC-8E-D1HA */
 	| (int_ena << 7)			/* Save Interrupt Ena	*/
-	| SF ;					/* Save UF, IF, DF	*/
+	| SF					/* Save UF, IF, DF	*/
+	);
     EXECUTION_TIME (12);
 }
 /* -------------------------------------------------------------------- */
 VOID i6005 (VOID)				/* RTF		6005	*/
 {
-    AC = (AC & 07777) | ((AC & BIT0) << 1) ;	/* Restore LINK	*/
+    AC = (ushort) ((AC & 07777) | ((AC & BIT0) << 1));	/* Restore LINK	*/
     if (EAE == 'B')
-	GTF = (AC & BIT1) >> 10 ;		/* Restore GTF	*/
-    SF = AC & 0177 ;				/* Restore SF	*/
-    UB = (AC & BIT5) << 6;			/* Restore UB	*/
-    W_IB = IB = (AC & 070) << 9 ;		/* Restore IB	*/
+	GTF = (AC & BIT1) >> 10 ;			/* Restore GTF	*/
+    SF = AC & 0177 ;					/* Restore SF	*/
+    UB = (ushort) ((AC & BIT5) << 6);			/* Restore UB	*/
+    W_IB = IB = (ushort) ((AC & 070) << 9);		/* Restore IB	*/
     if (IB >= hw.memsize)
     	W_IB = 0100000;
-    W_DF = DF = (AC & 07) << 12 ;		/* Restore DF	*/
+    W_DF = DF = (ushort) ((AC & 07) << 12);		/* Restore DF	*/
     if (DF >= hw.memsize)
     	W_DF = 0100000;
     int_ena = delay = int_inh = true ;
@@ -132,7 +134,7 @@ VOID i6006 (VOID)				/* SGT		6006	*/
 }
 unsigned s6006 (VOID)				/* SGT		6006	*/
 {
-	return (EAE == 'B' && GTF);
+	return EAE == 'B' && GTF;
 }
 /* -------------------------------------------------------------------- */
 VOID i6007 (VOID)				/* CAF		6007	*/
@@ -145,7 +147,7 @@ VOID i6007 (VOID)				/* CAF		6007	*/
     int i;
     for (i = 0; i < PDP8_IOADDRS; i++) {
 	if (pdp8->_state.pluginPointer[i])
-        [(__bridge PDP8Plugin *) pdp8->_state.pluginPointer[i] CAF:i];
+		[(PDP8Plugin *) pdp8->_state.pluginPointer[i] CAF:i];
     }
 
 #ifdef FPP
@@ -315,10 +317,10 @@ VOID i6243 (VOID)				/* CIF CDF 4	6243	*/
 /* -------------------------------------------------------------------- */
 VOID i6244 (VOID)				/* RMF		6244	*/
 {
-    UB = (SF & BIT5) << 6 ;
-    if ((W_IB = IB = (SF & 070) << 9) >= hw.memsize)
+    UB = (ushort) ((SF & BIT5) << 6);
+    if ((W_IB = IB = (ushort) ((SF & 070) << 9)) >= hw.memsize)
     	W_IB = 0100000;
-    if ((W_DF = DF = (SF & 07) << 12) >= hw.memsize)
+    if ((W_DF = DF = (ushort) ((SF & 07) << 12)) >= hw.memsize)
     	W_DF = 0100000;
     int_inh = true;
     EXECUTION_TIME (12);
@@ -359,7 +361,7 @@ VOID i6254 (VOID)				/* SINT		6254	*/
 }
 unsigned s6254 (VOID)				/* SINT		6254	*/
 {
-	return (io_flags & userFLAG);
+	return io_flags & userFLAG;
 }
 /* -------------------------------------------------------------------- */
 VOID i6261 (VOID)				/* CDF 6	6261	*/

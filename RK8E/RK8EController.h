@@ -1,7 +1,7 @@
 /*
  *	PDP-8/E Simulator
  *
- *	Copyright © 1994-2015 Bernhard Baehr
+ *	Copyright © 1994-2018 Bernhard Baehr
  *
  *	RK8EController.h - Controller for RK8-E register view
  *
@@ -22,15 +22,16 @@
  */
 
 
-@class RK8E, RegisterFormCell, KeepInMenuWindow;
+@class RK8E, RegisterTextField, KeepInMenuWindow;
 
 
-@interface RK8EController : NSObject {
+@interface RK8EController : NSObject
+{
 @private
 	IBOutlet RK8E			*rk8e;
 	IBOutlet KeepInMenuWindow	*window;
 	IBOutlet NSBox			*rk8eBox;
-	IBOutlet RegisterFormCell	*commandRegister;
+	IBOutlet RegisterTextField	*commandRegister;
 	IBOutlet NSPopUpButton		*cmdFunction;
 	IBOutlet NSPopUpButton		*cmdInterrupt;
 	IBOutlet NSPopUpButton		*cmdSetDone;
@@ -38,7 +39,7 @@
 	IBOutlet NSPopUpButton		*cmdExtendedAddress;
 	IBOutlet NSPopUpButton		*cmdDriveSelect;
 	IBOutlet NSPopUpButton		*cmdBlockNumberMSB;
-	IBOutlet RegisterFormCell	*statusRegister;
+	IBOutlet RegisterTextField	*statusRegister;
 	IBOutlet NSButton		*statusTransferDone;
 	IBOutlet NSButton		*statusHeadInMotion;
 	IBOutlet NSButton		*statusUnused;
@@ -51,8 +52,8 @@
 	IBOutlet NSButton		*statusDataRequestLate;
 	IBOutlet NSButton		*statusDriveStatusError;
 	IBOutlet NSButton		*statusCylinderAddressError;
-	IBOutlet RegisterFormCell	*blockNumberRegister;
-	IBOutlet RegisterFormCell	*memoryAddressRegister;
+	IBOutlet RegisterTextField	*blockNumberRegister;
+	IBOutlet RegisterTextField	*memoryAddressRegister;
 }
 
 - (IBAction) commandPopupClicked:(id)sender;
