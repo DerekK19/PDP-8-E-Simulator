@@ -86,8 +86,12 @@
 {
 	NSImage *image = [NSImage imageNamed:PC_ARROW_FLAT_COLORED_IMAGE];
 	if (image == nil) {
-		image = [self generatePCArrowWithColor:runningOnMojaveOrNewer() ?
-			[NSColor controlAccentColor] : [NSColor selectedMenuItemColor]];
+        if (@available(macOS 10.14, *)) {
+            image = [self generatePCArrowWithColor:runningOnMojaveOrNewer() ?
+                     [NSColor controlAccentColor] : [NSColor selectedMenuItemColor]];
+        } else {
+            image = [self generatePCArrowWithColor: [NSColor selectedMenuItemColor]];
+        }
 		[image setName:PC_ARROW_FLAT_COLORED_IMAGE];
 	}
 	return image;
